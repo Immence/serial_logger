@@ -4,7 +4,8 @@ from PySide6 import QtCore, QtGui, QtWidgets
 
 from util.serial_thread import SerialThread
 from components.my_text_box import MyTextBox
-from constants import PORT_NAME, BAUD_RATE, RETURN_CHAR, PASTE_CHAR
+from constants import PORT_NAME, BAUD_RATE, RETURN_CHAR, PASTE_CHAR, TEXT_SIZE
+
 class SerialMonitor(QtWidgets.QWidget):
     
     text_update = QtCore.Signal(str)
@@ -13,7 +14,7 @@ class SerialMonitor(QtWidgets.QWidget):
         QtWidgets.QWidget.__init__(self)
         self.text_box = MyTextBox()
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setPointSize(TEXT_SIZE)
         self.text_box.setFont(font)
 
         layout = QtWidgets.QVBoxLayout()

@@ -18,7 +18,6 @@ class MainWindow(QtWidgets.QMainWindow):
         self.dock_widget.setFeatures(QtWidgets.QDockWidget.NoDockWidgetFeatures)
 
         #Menu
-
         self.addDockWidget(Qt.TopDockWidgetArea, self.dock_widget)
 
         #Exit QAction
