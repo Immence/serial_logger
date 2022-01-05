@@ -4,8 +4,13 @@ from PySide6.QtCore import Qt
 from widgets.port_selector import PortSelector
 
 from widgets.serial_monitor import SerialMonitor
+from handlers.file_handler import FileHandler
 
-from constants import WIN_HEIGHT, WIN_WIDTH
+from util.serial_thread import SerialThread
+
+import util.log_writer as logger
+
+from constants import WIN_HEIGHT, WIN_WIDTH, BAUD_RATE
 
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
@@ -28,7 +33,13 @@ class MainWindow(QtWidgets.QMainWindow):
         self.button = QtWidgets.QPushButton("Click me!")
         
         self.monitor = SerialMonitor()
-        self.port_selector.port_selected.connect(self.monitor.connect_port)
+        self.file_handler = FileHandler()
+        
+        self.serial_thread = SerialThread(BAUD_RATE)
+        self.port_selector.port_selected.connect(self.serial_thread.set_port)
+        self.serial_thread.response_emitter.connect(self.monitor.append_text)
+        self.serial_thread.response_emitter.connect(logger.write_log)
+
         # layout = QtWidgets.QVBoxLayout(self)
         # layout.addWidget(self.monitor)
         # layout.addWidget(self.button)
