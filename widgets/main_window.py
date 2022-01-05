@@ -28,6 +28,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.button = QtWidgets.QPushButton("Click me!")
         
         self.monitor = SerialMonitor()
+        self.port_selector.port_selected.connect(self.monitor.connect_port)
         # layout = QtWidgets.QVBoxLayout(self)
         # layout.addWidget(self.monitor)
         # layout.addWidget(self.button)

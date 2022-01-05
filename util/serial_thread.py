@@ -8,7 +8,7 @@ from constants import SER_TIMEOUT
 
 class SerialThread(QtCore.QThread):
 
-    port_name: str
+    port_name: str = None
     baud_rate: int
 
     running: bool
@@ -19,14 +19,17 @@ class SerialThread(QtCore.QThread):
 
     buf: bytearray
 
-    def __init__(self, port_name:str, baud_rate: int):
+    def __init__(self, baud_rate: int):
         QtCore.QThread.__init__(self)
-        self.port_name, self.baud_rate = port_name, baud_rate
+        self.baud_rate = baud_rate
         self.running = True
         self.text_queue = Queue()
         self.buf = bytearray()
 
-
+    def set_port(self, port_name):
+        self.port_name = port_name
+        self.start()
+        
     def run(self):
         print(f"Opening {self.port_name} at {self.baud_rate} baud")
         
@@ -45,7 +48,13 @@ class SerialThread(QtCore.QThread):
             self.running = False
 
         while self.running:
-            line = self.read_line()
+            try:
+                line = self.read_line()
+            
+            except:
+                print("Device has been disconnected")
+                break
+
             if line:
                 line = line.decode("ascii", "ignore").strip("\r\n")
                 print(line)
