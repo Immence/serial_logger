@@ -4,7 +4,7 @@ from PySide6 import QtCore
 
 from queue import Queue
 
-from constants import SER_TIMEOUT
+from global_values import SER_TIMEOUT
 
 class SerialThread(QtCore.QThread):
 

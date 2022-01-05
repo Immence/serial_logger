@@ -1,10 +1,10 @@
-import os, sys
+import os
 
-OUTPUT_FOLDER = "output"
+from global_values import OUTPUT_FOLDER
 
-file_name = os.path.abspath(os.path.join(sys.argv[0], os.path.pardir, os.path.pardir, "output", "output.csv"))
+file_name = f"{OUTPUT_FOLDER}/output.txt"
 
-def open_log_file() -> bool:
+def __open_log_file() -> bool:
     success = False
 
     if os.path.exists(file_name):
@@ -19,9 +19,9 @@ def open_log_file() -> bool:
         
     return success
 
-def write_log(text):
+def write_log_line(text):
 
-    if not open_log_file():
+    if not __open_log_file():
         print(f"Failed to open {file_name}")
         return
 
