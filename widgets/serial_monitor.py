@@ -24,6 +24,7 @@ class SerialMonitor(QtWidgets.QWidget):
         sys.stdout = self
 
         self.serial_thread = SerialThread(BAUD_RATE)
+        self.serial_thread.response_received.connect(self.append_text)
 
     def write(self, text):
         self.text_update.emit(text)
@@ -34,7 +35,7 @@ class SerialMonitor(QtWidgets.QWidget):
     def append_text(self, text):
         curr = self.text_box.textCursor()
         curr.movePosition(QtGui.QTextCursor.End)
-        s = str(text)
+        s = str(text) + "\n"
         while s:
             head, sep, s = s.partition("\n")
             curr.insertText(head)

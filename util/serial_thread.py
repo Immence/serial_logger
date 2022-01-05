@@ -19,6 +19,8 @@ class SerialThread(QtCore.QThread):
 
     buf: bytearray
 
+    response_received = QtCore.Signal(str)
+
     def __init__(self, baud_rate: int):
         QtCore.QThread.__init__(self)
         self.baud_rate = baud_rate
@@ -57,8 +59,8 @@ class SerialThread(QtCore.QThread):
 
             if line:
                 line = line.decode("ascii", "ignore").strip("\r\n")
-                print(line)
-
+                self.response_received.emit(line)
+                
         if self.serial_connection:
             self.serial_connection.close()
             self.serial_connection = None
