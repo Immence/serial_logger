@@ -1,5 +1,4 @@
 import csv, os, sys
-from datetime import datetime
 
 OUTPUT_FOLDER = "output"
 
@@ -31,22 +30,16 @@ def verify_csv_has_headers() -> bool:
 
 
 def write_csv_line(output_dict: dict):
-    my_dict = {
-        "Barcode": "B2-H-6969",
-        "Frequency": "1000.69",
-        "Temperature": "30"
-    }
-
     if not open_csv_file():
-        print(f"Could not open file {file_name}")
+        print(f"Failed to open {file_name}")
         return
     
-    with open(file_name, "a", newline="") as _f:
-        field_names = my_dict.keys()
+    with open(file_name, "a", newline="") as _csv_file:
+        field_names = output_dict.keys()
 
-        writer = csv.DictWriter(_f, fieldnames=field_names)
+        writer = csv.DictWriter(_csv_file, fieldnames=field_names)
 
         if not verify_csv_has_headers():
             writer.writeheader()
 
-        writer.writerow(my_dict)
+        writer.writerow(output_dict)
