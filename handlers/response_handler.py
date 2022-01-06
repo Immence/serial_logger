@@ -10,8 +10,10 @@ unit_dict = {           # Fuck it, I might handle unit stuff at a later point if
     "f": "Fahrenheit",
 }
 
-class ResponseHandler(QtCore.QObject):
 
+class ResponseHandler(QtCore.QObject):
+    qr_code = ""
+    
     def __init__(self):
         super().__init__()
 
@@ -19,14 +21,17 @@ class ResponseHandler(QtCore.QObject):
         log_writer.write_log_line(text)
 
         if text.startswith("#"):
-            parsed_text = self.interpret_response(text)
+            parsed_text = self.interpret_response(self.qr_code, text)
             csv_writer.write_csv_line(parsed_text)
 
+    def set_qr_code(self, qr_code: str) -> None:
+        self.qr_code = qr_code
+        print(f"QR-code has been set to {self.qr_code}")
+
     @staticmethod
-    def interpret_response(text: str) -> dict:
+    def interpret_response(qr_code: str, text: str) -> dict:
         parsed_text = {
-            "unix": int(time.time()), 
-            "gmt": datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+            "qr_code": qr_code,
             }
 
         word_list = text.strip("# ").split()
@@ -40,6 +45,10 @@ class ResponseHandler(QtCore.QObject):
 
         for i in range (0,len(headers)):
             parsed_text[headers[i]] = values[i]
+
+        parsed_text["gmt"] = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        unix = int(time.time())
+        parsed_text["unix"] = unix
 
         return parsed_text
     

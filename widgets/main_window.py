@@ -4,7 +4,8 @@ from PySide6.QtCore import Qt
 from widgets.port_selector import PortSelector
 
 from widgets.serial_monitor import SerialMonitor
-from handlers.file_handler import FileHandler
+from widgets.input_widget import InputWidget
+from widgets.button_menu import CommandButtonGroup
 
 from util.serial_thread import SerialThread
 
@@ -19,12 +20,22 @@ class MainWindow(QtWidgets.QMainWindow):
         self.port_selector = PortSelector()
         self.dock_widget = QtWidgets.QDockWidget("Serial Port")
         self.dock_widget.setWidget(self.port_selector)
-
         self.dock_widget.setFeatures(QtWidgets.QDockWidget.NoDockWidgetFeatures)
+        
+        self.input_field = InputWidget()
+        self.input_widget = QtWidgets.QDockWidget("QR-Code")
+        self.input_widget.setWidget(self.input_field)
+        self.input_widget.setFeatures(QtWidgets.QDockWidget.NoDockWidgetFeatures)
+
+        self.command_buttons = CommandButtonGroup()
+        self.command_widget = QtWidgets.QDockWidget("Commands")
+        self.command_widget.setWidget(self.command_buttons)
+        self.command_widget.setFeatures(QtWidgets.QDockWidget.NoDockWidgetFeatures)
 
         #Menu
+        self.addDockWidget(Qt.TopDockWidgetArea, self.input_widget)
         self.addDockWidget(Qt.TopDockWidgetArea, self.dock_widget)
-
+        self.addDockWidget(Qt.RightDockWidgetArea, self.command_widget)
         #Exit QAction
         exit_action = QtGui.QAction("Exit", self)
         exit_action.setShortcut(QtGui.QKeySequence.Quit)
@@ -34,6 +45,7 @@ class MainWindow(QtWidgets.QMainWindow):
         
         self.monitor = SerialMonitor()
         self.response_handler = ResponseHandler()
+        self.input_field.emit_input.connect(self.response_handler.set_qr_code)
         
         self.serial_thread = SerialThread(BAUD_RATE)
         self.port_selector.port_selected.connect(self.serial_thread.set_port)

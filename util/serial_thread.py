@@ -4,7 +4,7 @@ from PySide6 import QtCore
 
 from queue import Queue
 
-from global_values import SER_TIMEOUT
+from global_values import SER_TIMEOUT, COMMAND_QUEUE
 
 class SerialThread(QtCore.QThread):
 
@@ -51,16 +51,21 @@ class SerialThread(QtCore.QThread):
 
         while self.running:
             try:
+                if not COMMAND_QUEUE.empty():
+                    output = COMMAND_QUEUE.get()
+                    print(output)
+                    bytes_command = bytes(output, "ascii")
+                    self.serial_connection.write(bytes_command)
+
                 line = self.read_line()
-            
+                
+                if line:
+                    line = line.decode("ascii", "ignore").strip("\r\n")
+                    self.response_emitter.emit(line)
+                    
             except:
                 print("Device has been disconnected")
                 break
-
-            if line:
-                line = line.decode("ascii", "ignore").strip("\r\n")
-                self.response_emitter.emit(line)
-                
         if self.serial_connection:
             self.serial_connection.close()
             self.serial_connection = None
