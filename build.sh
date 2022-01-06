@@ -4,7 +4,7 @@
 # CONFIGURATION #
 #################
 script_name="main.py"
-program_name="PLAATO Serial Logger"
+program_name="PLAATO_Serial_Logger"
 dist_dir="./dist/${program_name}"
 #################
 
