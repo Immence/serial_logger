@@ -1,8 +1,8 @@
 import os
-
+from datetime import datetime
 from global_values import OUTPUT_FOLDER
 
-file_name = f"{OUTPUT_FOLDER}/output.txt"
+file_name = f"{OUTPUT_FOLDER}/hour-{datetime.now().hour}.txt"
 
 def __open_log_file() -> bool:
     success = False

@@ -1,9 +1,9 @@
 import csv, os
-
+from datetime import datetime
 from global_values import OUTPUT_FOLDER
 
 
-file_name = f"{OUTPUT_FOLDER}/output.csv"
+file_name = f"{OUTPUT_FOLDER}/hour-{datetime.now().hour}.csv"
 
 def __open_csv_file() -> bool:
     success = False
