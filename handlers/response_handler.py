@@ -26,6 +26,7 @@ class ResponseHandler(QtCore.QObject):
 
     def set_qr_code(self, qr_code: str) -> None:
         self.qr_code = qr_code
+        self.handle_response(f"//////////////////////////////////\nQR-code has been set to {self.qr_code}")
         print(f"QR-code has been set to {self.qr_code}")
 
     @staticmethod
