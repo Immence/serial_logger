@@ -6,7 +6,7 @@ from widgets.port_selector import PortSelector
 from widgets.serial_monitor import SerialMonitor
 from widgets.input_widget import InputWidget
 from widgets.button_menu import CommandButtonGroup
-
+from widgets.toolbar import ToolBar
 from util.serial_thread import SerialThread
 
 from handlers.response_handler import ResponseHandler
@@ -56,5 +56,10 @@ class MainWindow(QtWidgets.QMainWindow):
         # layout.addWidget(self.monitor)
         # layout.addWidget(self.button)
         # self.setLayout(layout)
+        self._create_toolbars()
         self.setCentralWidget(self.monitor)
         self.resize(WIN_WIDTH, WIN_HEIGHT)
+
+    def _create_toolbars(self):
+        top_toolbar = ToolBar(self)
+        self.addToolBar(top_toolbar)

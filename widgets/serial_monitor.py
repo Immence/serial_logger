@@ -3,7 +3,7 @@ import sys
 from PySide6 import QtCore, QtGui, QtWidgets
 
 from util.serial_thread import SerialThread
-from components.my_text_box import MyTextBox
+from components.my_text_box import TextContainerReadOnly
 from global_values import RETURN_CHAR, PASTE_CHAR, TEXT_SIZE
 
 class SerialMonitor(QtWidgets.QWidget):
@@ -12,7 +12,7 @@ class SerialMonitor(QtWidgets.QWidget):
 
     def __init__(self):
         QtWidgets.QWidget.__init__(self)
-        self.text_box = MyTextBox()
+        self.text_box = TextContainerReadOnly()
         font = QtGui.QFont()
         font.setPointSize(TEXT_SIZE)
         self.text_box.setFont(font)
