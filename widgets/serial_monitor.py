@@ -42,17 +42,13 @@ class SerialMonitor(QtWidgets.QWidget):
             if sep:
                 curr.insertBlock()
         self.text_box.setTextCursor(curr)
-    
-    # def keypress_handler(self, event):
-    #     k = event.key()
-    #     s = RETURN_CHAR if k == QtCore.Qt.Key_Return else event.text()
-    #     if len(s)>0 and s[0] == PASTE_CHAR:
-    #         cb = QtWidgets.QApplication.clipboard()
-    #         self.serial_thread.ser_out(cb.text())
-    #     else:
-    #         self.serial_thread.ser_out(s)
 
-
+    def toggleSerialMonitor(self):
+        if self.isHidden():
+            self.show()
+        else:
+            self.hide()
+            
     def closeEvent(self, event):
         self.serial_thread.running = False
         self.serial_thread.wait()

@@ -61,5 +61,5 @@ class MainWindow(QtWidgets.QMainWindow):
         self.resize(WIN_WIDTH, WIN_HEIGHT)
 
     def _create_toolbars(self):
-        top_toolbar = ToolBar(self)
+        top_toolbar = ToolBar(self, self.monitor.toggleSerialMonitor)
         self.addToolBar(top_toolbar)
