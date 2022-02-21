@@ -1,0 +1,1456 @@
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0018,len:4
+load:0x3fff001c,len:1044
+load:0x40078000,len:10124
+load:0x40080400,len:5828
+entry 0x400806a8
+U2-hal-cpu.c:189] setCpuFrequencyMhz(): PLL: 320 / 4 = 80 Mhz, APB: 80000000 Hz
+[D][indicator.cpp:7] createGroup(): Created LEDGroup: rgb
+[D][indicator.cpp:7] createGroup(): Created LEDGroup: leds
+[D][led_group.cpp:39] connectRGB(): Checking if RGB pins 25, 26 and 27 are already attached
+[D][indicator.cpp:97] noEffect(): Blink effect activated on group: rgb
+[D][indicator.cpp:97] noEffect(): Blink effect activated on group: leds
+[D][indicator.cpp:91] setGroupColor(): Setting color for group rgb
+[D][led_group.cpp:151] setGroupColor(): Setting RGB color for pins 25, 26 and 27
+[D][indicator.cpp:105] staticOn(): Static effect activated on group: rgb
+[D][led_group.cpp:168] stopCurrentEffect(): Stopping current effect on group rgb
+[D][led_group.cpp:75] attachActiveRGBPinsToChannel(): Attaching pin 25 to channel 0
+[D][led_group.cpp:75] attachActiveRGBPinsToChannel(): Attaching pin 27 to channel 0
+[D][main.cpp:144] forkInit(): Initilizing fork
+[D][main.cpp:120] enableHighPower(): High Power Mode ENABLED
+[D][main.cpp:108] enableSensors(): Fork sensor ENABLED
+[D][indicator.cpp:113] stepOn(): Step on effect activated on group: leds
+[D][led_group.cpp:168] stopCurrentEffect(): Stopping current effect on group leds
+[D][led_group.cpp:247] stepOn(): Number of channels in use by group: 1
+[D][led_group.cpp:215] attachAllPinsStepOn(): Attaching pin 18 to channel 1
+[D][led_group.cpp:215] attachAllPinsStepOn(): Attaching pin 19 to channel 1
+[D][led_group.cpp:215] attachAllPinsStepOn(): Attaching pin 17 to channel 1
+[D][main.cpp:156] forkInit(): Setting up configuration for frequency counter
+[D][main.cpp:172] forkInit(): Starting frequency counter task
+[D][main.cpp:174] forkInit(): Task started. Sampling frequency
+[D][device.cpp:86] getWakeupReason(): Wakeup was not caused by deep sleep
+[I][device.cpp:7] begin(): Firmware: v1.2.1
+[I][device.cpp:8] begin(): Device Token: OPIQ9I18MKZNAW6N91F0_B3-H-0049
+[I][device.cpp:9] begin(): Device variant: b2-h
+[I][device.cpp:13] begin(): MAC Address: C4:DD:57:AF:15:94
+[I][constants_store.cpp:68] constantInit(): Loaded old constantStore
+[I][device_provision.cpp:354] awsConfigInit(): Loaded old AWS Config
+[D][temp_sensor.cpp:44] tempInit(): Si7051 started. Address: 0x40
+[I][main.cpp:499] upstartModeInit(): Button press on startup detected
+[D][indicator.cpp:91] setGroupColor(): Setting color for group rgb
+[D][led_group.cpp:151] setGroupColor(): Setting RGB color for pins 25, 26 and 27
+[D][indicator.cpp:105] staticOn(): Static effect activated on group: rgb
+[D][main.cpp:528] upstartModeInit(): Returning to Command Mode
+[D][indicator.cpp:145] fade(): Fade effect activated on group: leds
+[D][led_group.cpp:168] stopCurrentEffect(): Stopping current effect on group leds
+[D][led_group.cpp:83] attachActivePinsToChannel(): Attaching pin 18 to channel 1
+[D][led_group.cpp:83] attachActivePinsToChannel(): Attaching pin 19 to channel 1
+[D][led_group.cpp:83] attachActivePinsToChannel(): Attaching pin 17 to channel 1
+[D][main.cpp:620] setup(): Errors in cache
+[I][error_handler.cpp:91] printErrors(): Cache size: 0
+[I][error_handler.cpp:92] printErrors(): Cache: 
+[D][main.cpp:622] setup(): Wake count: 0
+[I][main.cpp:555] stateMachineInit(): Upstart mode: Command
+Command Mode running
+fork get freq run
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1362.483448
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1362.483448
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057748
+1361.35718 Temperature: 22.13 C Frequency Compensated: 1362.48345 SG: 1.05775
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1362.534516
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1362.534516
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057485
+1361.42859 Temperature: 22.06 C Frequency Compensated: 1362.53452 SG: 1.05749
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1362.525796
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1362.525796
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057530
+1361.42859 Temperature: 22.03 C Frequency Compensated: 1362.52580 SG: 1.05753
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1362.519983
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1362.519983
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057560
+1361.42859 Temperature: 22.01 C Frequency Compensated: 1362.51998 SG: 1.05756
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1362.514170
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1362.514170
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057590
+1361.42859 Temperature: 21.98 C Frequency Compensated: 1362.51417 SG: 1.05759
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1362.517076
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1362.517076
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057575
+1361.42859 Temperature: 21.99 C Frequency Compensated: 1362.51708 SG: 1.05758
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1362.514170
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1362.514170
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057590
+1361.42859 Temperature: 21.98 C Frequency Compensated: 1362.51417 SG: 1.05759
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1362.517076
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1362.517076
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057575
+1361.42859 Temperature: 21.99 C Frequency Compensated: 1362.51708 SG: 1.05758
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1362.514170
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1362.514170
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057590
+1361.42859 Temperature: 21.98 C Frequency Compensated: 1362.51417 SG: 1.05759
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1362.517076
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1362.517076
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057575
+1361.42859 Temperature: 21.99 C Frequency Compensated: 1362.51708 SG: 1.05758
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1362.514170
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1362.514170
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057590
+1361.42859 Temperature: 21.98 C Frequency Compensated: 1362.51417 SG: 1.05759
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1362.517076
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1362.517076
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057575
+1361.42859 Temperature: 21.99 C Frequency Compensated: 1362.51708 SG: 1.05758
+
+Brownout detector was triggered
+
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0018,len:4
+load:0x3fff001c,len:1044
+load:0x40078000,len:10124
+load:0x40080400,len:5828
+entry 0x400806a8
+
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0018,len:4
+load:0x3fff001c,len:1044
+load:0x40078000,len:10124
+load:0x40080400,len:5828
+entry 0x400806a8
+U2-hal-cpu.c:189] setCpuFrequencyMhz(): PLL: 320 / 4 = 80 Mhz, APB: 80000000 Hz
+[D][indicator.cpp:7] createGroup(): Created LEDGroup: rgb
+[D][indicator.cpp:7] createGroup(): Created LEDGroup: leds
+[D][led_group.cpp:39] connectRGB(): Checking if RGB pins 25, 26 and 27 are already attached
+[D][indicator.cpp:97] noEffect(): Blink effect activated on group: rgb
+[D][indicator.cpp:97] noEffect(): Blink effect activated on group: leds
+[D][indicator.cpp:91] setGroupColor(): Setting color for group rgb
+[D][led_group.cpp:151] setGroupColor(): Setting RGB color for pins 25, 26 and 27
+[D][indicator.cpp:105] staticOn(): Static effect activated on group: rgb
+[D][led_group.cpp:168] stopCurrentEffect(): Stopping current effect on group rgb
+[D][led_group.cpp:75] attachActiveRGBPinsToChannel(): Attaching pin 25 to channel 0
+[D][led_group.cpp:75] attachActiveRGBPinsToChannel(): Attaching pin 27 to channel 0
+[D][main.cpp:144] forkInit(): Initilizing fork
+[D][main.cpp:120] enableHighPower(): High Power Mode ENABLED
+[D][main.cpp:108] enableSensors(): Fork sensor ENABLED
+[D][indicator.cpp:113] stepOn(): Step on effect activated on group: leds
+[D][led_group.cpp:168] stopCurrentEffect(): Stopping current effect on group leds
+[D][led_group.cpp:247] stepOn(): Number of channels in use by group: 1
+[D][led_group.cpp:215] attachAllPinsStepOn(): Attaching pin 18 to channel 1
+[D][led_group.cpp:215] attachAllPinsStepOn(): Attaching pin 19 to channel 1
+[D][led_group.cpp:215] attachAllPinsStepOn(): Attaching pin 17 to channel 1
+[D][main.cpp:156] forkInit(): Setting up configuration for frequency counter
+[D][main.cpp:172] forkInit(): Starting frequency counter task
+[D][main.cpp:174] forkInit(): Task started. Sampling frequency
+[D][device.cpp:86] getWakeupReason(): Wakeup was not caused by deep sleep
+[I][device.cpp:7] begin(): Firmware: v1.2.1
+[I][device.cpp:8] begin(): Device Token: XUG7JFTTLV4LV533CQK4_B3-H-0045
+[I][device.cpp:9] begin(): Device variant: b2-h
+[I][device.cpp:13] begin(): MAC Address: E0:E2:E6:6C:D6:14
+[I][constants_store.cpp:68] constantInit(): Loaded old constantStore
+[I][device_provision.cpp:354] awsConfigInit(): Loaded old AWS Config
+[D][temp_sensor.cpp:44] tempInit(): Si7051 started. Address: 0x40
+[I][main.cpp:499] upstartModeInit(): Button press on startup detected
+[D][indicator.cpp:91] setGroupColor(): Setting color for group rgb
+[D][led_group.cpp:151] setGroupColor(): Setting RGB color for pins 25, 26 and 27
+[D][indicator.cpp:105] staticOn(): Static effect activated on group: rgb
+[D][main.cpp:528] upstartModeInit(): Returning to Command Mode
+[D][indicator.cpp:145] fade(): Fade effect activated on group: leds
+[D][led_group.cpp:168] stopCurrentEffect(): Stopping current effect on group leds
+[D][led_group.cpp:83] attachActivePinsToChannel(): Attaching pin 18 to channel 1
+[D][led_group.cpp:83] attachActivePinsToChannel(): Attaching pin 19 to channel 1
+[D][led_group.cpp:83] attachActivePinsToChannel(): Attaching pin 17 to channel 1
+[D][main.cpp:620] setup(): Errors in cache
+[I][error_handler.cpp:91] printErrors(): Cache size: 0
+[I][error_handler.cpp:92] printErrors(): Cache: 
+[D][main.cpp:622] setup(): Wake count: 0
+[I][main.cpp:555] stateMachineInit(): Upstart mode: Command
+Command Mode running
+fork get freq run
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1355.709306
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1355.709306
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057218
+1354.57141 Temperature: 22.18 C Frequency Compensated: 1355.70931 SG: 1.05722
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1355.703494
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1355.703494
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057248
+1354.57141 Temperature: 22.16 C Frequency Compensated: 1355.70349 SG: 1.05725
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1355.709306
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1355.709306
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057218
+1354.57141 Temperature: 22.18 C Frequency Compensated: 1355.70931 SG: 1.05722
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1355.626271
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1355.626271
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057647
+1354.50000 Temperature: 22.13 C Frequency Compensated: 1355.62627 SG: 1.05765
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1355.700588
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1355.700588
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057263
+1354.57141 Temperature: 22.14 C Frequency Compensated: 1355.70059 SG: 1.05726
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1355.700588
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1355.700588
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057263
+1354.57141 Temperature: 22.14 C Frequency Compensated: 1355.70059 SG: 1.05726
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1355.697682
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1355.697682
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057278
+1354.57141 Temperature: 22.13 C Frequency Compensated: 1355.69768 SG: 1.05728
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1355.706400
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1355.706400
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057233
+1354.57141 Temperature: 22.17 C Frequency Compensated: 1355.70640 SG: 1.05723
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1355.700588
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1355.700588
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057263
+1354.57141 Temperature: 22.14 C Frequency Compensated: 1355.70059 SG: 1.05726
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1355.700588
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1355.700588
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057263
+1354.57141 Temperature: 22.14 C Frequency Compensated: 1355.70059 SG: 1.05726
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1355.700588
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1355.700588
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057263
+1354.57141 Temperature: 22.14 C Frequency Compensated: 1355.70059 SG: 1.05726
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1355.700588
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1355.700588
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057263
+1354.57141 Temperature: 22.14 C Frequency Compensated: 1355.70059 SG: 1.05726
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1355.697682
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1355.697682
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057278
+1354.57141 Temperature: 22.13 C Frequency Compensated: 1355.69768 SG: 1.05728
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1355.700588
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1355.700588
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057263
+1354.57141 Temperature: 22.14 C Frequency Compensated: 1355.70059 SG: 1.05726
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1355.703494
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1355.703494
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057248
+1354.57141 Temperature: 22.16 C Frequency Compensated: 1355.70349 SG: 1.05725
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1355.691870
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1355.691870
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057308
+1354.57141 Temperature: 22.11 C Frequency Compensated: 1355.69187 SG: 1.05731
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1355.697682
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1355.697682
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057278
+1354.57141 Temperature: 22.13 C Frequency Compensated: 1355.69768 SG: 1.05728
+fork get freq stop
+
+Brownout detector was triggered
+
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0018,len:4
+load:0x3fff001c,len:1044
+load:0x40078000,len:10124
+load:0x40080400,len:5828
+entry 0x400806a8
+Fatal exception (29): StoreProhibited
+
+
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0018,len:4
+load:0x3fff001c,len:1044
+load:0x40078000,len:10124
+load:0x40080400,len:5828
+entry 0x400806a8
+;TU2-hal-cpu.c:189] setCpuFrequencyMhz(): PLL: 320 / 4 = 80 Mhz, APB: 80000000 Hz
+[D][indicator.cpp:7] createGroup(): Created LEDGroup: rgb
+[D][indicator.cpp:7] createGroup(): Created LEDGroup: leds
+[D][led_group.cpp:39] connectRGB(): Checking if RGB pins 25, 26 and 27 are already attached
+[D][indicator.cpp:97] noEffect(): Blink effect activated on group: rgb
+[D][indicator.cpp:97] noEffect(): Blink effect activated on group: leds
+[D][indicator.cpp:91] setGroupColor(): Setting color for group rgb
+[D][led_group.cpp:151] setGroupColor(): Setting RGB color for pins 25, 26 and 27
+[D][indicator.cpp:105] staticOn(): Static effect activated on group: rgb
+[D][led_group.cpp:168] stopCurrentEffect(): Stopping current effect on group rgb
+[D][led_group.cpp:75] attachActiveRGBPinsToChannel(): Attaching pin 25 to channel 0
+[D][led_group.cpp:75] attachActiveRGBPinsToChannel(): Attaching pin 27 to channel 0
+[D][main.cpp:144] forkInit(): Initilizing fork
+[D][main.cpp:120] enableHighPower(): High Power Mode ENABLED
+[D][main.cpp:108] enableSensors(): Fork sensor ENABLED
+[D][indicator.cpp:113] stepOn(): Step on effect activated on group: leds
+[D][led_group.cpp:168] stopCurrentEffect(): Stopping current effect on group leds
+[D][led_group.cpp:247] stepOn(): Number of channels in use by group: 1
+[D][led_group.cpp:215] attachAllPinsStepOn(): Attaching pin 18 to channel 1
+[D][led_group.cpp:215] attachAllPinsStepOn(): Attaching pin 19 to channel 1
+[D][led_group.cpp:215] attachAllPinsStepOn(): Attaching pin 17 to channel 1
+[D][main.cpp:156] forkInit(): Setting up configuration for frequency counter
+[D][main.cpp:172] forkInit(): Starting frequency counter task
+[D][main.cpp:174] forkInit(): Task started. Sampling frequency
+[D][device.cpp:86] getWakeupReason(): Wakeup was not caused by deep sleep
+[I][device.cpp:7] begin(): Firmware: v1.2.1
+[I][device.cpp:8] begin(): Device Token: 4ARPSCLP0PISAEDGGJFN_B1-K-0472
+[I][device.cpp:9] begin(): Device variant: b2-h
+[I][device.cpp:13] begin(): MAC Address: C4:DD:57:AF:25:E8
+[I][constants_store.cpp:68] constantInit(): Loaded old constantStore
+[I][device_provision.cpp:354] awsConfigInit(): Loaded old AWS Config
+[D][temp_sensor.cpp:44] tempInit(): Si7051 started. Address: 0x40
+[I][main.cpp:499] upstartModeInit(): Button press on startup detected
+[D][indicator.cpp:91] setGroupColor(): Setting color for group rgb
+[D][led_group.cpp:151] setGroupColor(): Setting RGB color for pins 25, 26 and 27
+[D][indicator.cpp:105] staticOn(): Static effect activated on group: rgb
+[D][main.cpp:528] upstartModeInit(): Returning to Command Mode
+[D][indicator.cpp:145] fade(): Fade effect activated on group: leds
+[D][led_group.cpp:168] stopCurrentEffect(): Stopping current effect on group leds
+[D][led_group.cpp:83] attachActivePinsToChannel(): Attaching pin 18 to channel 1
+[D][led_group.cpp:83] attachActivePinsToChannel(): Attaching pin 19 to channel 1
+[D][led_group.cpp:83] attachActivePinsToChannel(): Attaching pin 17 to channel 1
+[D][main.cpp:620] setup(): Errors in cache
+[I][error_handler.cpp:91] printErrors(): Cache size: 0
+[I][error_handler.cpp:92] printErrors(): Cache: 
+[D][main.cpp:622] setup(): Wake count: 0
+[I][main.cpp:555] stateMachineInit(): Upstart mode: Command
+Command Mode running
+fork get freq run
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.923661
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.923661
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057586
+1362.78577 Temperature: 22.18 C Frequency Compensated: 1363.92366 SG: 1.05759
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.995072
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.995072
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057217
+1362.85718 Temperature: 22.18 C Frequency Compensated: 1363.99507 SG: 1.05722
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.986355
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.986355
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057262
+1362.85718 Temperature: 22.14 C Frequency Compensated: 1363.98635 SG: 1.05726
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.992167
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.992167
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057232
+1362.85718 Temperature: 22.17 C Frequency Compensated: 1363.99217 SG: 1.05723
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.989261
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.989261
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057247
+1362.85718 Temperature: 22.16 C Frequency Compensated: 1363.98926 SG: 1.05725
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.986355
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.986355
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057262
+1362.85718 Temperature: 22.14 C Frequency Compensated: 1363.98635 SG: 1.05726
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.986355
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.986355
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057262
+1362.85718 Temperature: 22.14 C Frequency Compensated: 1363.98635 SG: 1.05726
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.986355
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.986355
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057262
+1362.85718 Temperature: 22.14 C Frequency Compensated: 1363.98635 SG: 1.05726
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.983448
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.983448
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057277
+1362.85718 Temperature: 22.13 C Frequency Compensated: 1363.98345 SG: 1.05728
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.986355
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.986355
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057262
+1362.85718 Temperature: 22.14 C Frequency Compensated: 1363.98635 SG: 1.05726
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.912037
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.912037
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057646
+1362.78577 Temperature: 22.13 C Frequency Compensated: 1363.91204 SG: 1.05765
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.917850
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.917850
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057616
+1362.78577 Temperature: 22.16 C Frequency Compensated: 1363.91785 SG: 1.05762
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.914944
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.914944
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057631
+1362.78577 Temperature: 22.14 C Frequency Compensated: 1363.91494 SG: 1.05763
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.986355
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.986355
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057262
+1362.85718 Temperature: 22.14 C Frequency Compensated: 1363.98635 SG: 1.05726
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.986355
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.986355
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057262
+1362.85718 Temperature: 22.14 C Frequency Compensated: 1363.98635 SG: 1.05726
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.986355
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.986355
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057262
+1362.85718 Temperature: 22.14 C Frequency Compensated: 1363.98635 SG: 1.05726
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.912037
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.912037
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057646
+1362.78577 Temperature: 22.13 C Frequency Compensated: 1363.91204 SG: 1.05765
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.977636
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.977636
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057307
+1362.85718 Temperature: 22.11 C Frequency Compensated: 1363.97764 SG: 1.05731
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.977636
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.977636
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057307
+1362.85718 Temperature: 22.11 C Frequency Compensated: 1363.97764 SG: 1.05731
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.909131
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.909131
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057661
+1362.78577 Temperature: 22.12 C Frequency Compensated: 1363.90913 SG: 1.05766
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.980542
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.980542
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057292
+1362.85718 Temperature: 22.12 C Frequency Compensated: 1363.98054 SG: 1.05729
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.980542
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.980542
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057292
+1362.85718 Temperature: 22.12 C Frequency Compensated: 1363.98054 SG: 1.05729
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.903319
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.903319
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057691
+1362.78577 Temperature: 22.10 C Frequency Compensated: 1363.90332 SG: 1.05769
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.983448
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.983448
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057277
+1362.85718 Temperature: 22.13 C Frequency Compensated: 1363.98345 SG: 1.05728
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.980542
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.980542
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057292
+1362.85718 Temperature: 22.12 C Frequency Compensated: 1363.98054 SG: 1.05729
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.912037
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.912037
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057646
+1362.78577 Temperature: 22.13 C Frequency Compensated: 1363.91204 SG: 1.05765
+fork get freq stop
+
+Brownout detector was triggered
+
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0018,len:4
+load:0x3fff001c,len:1044
+load:0x40078000,len:10124
+load:0x40080400,len:5828
+entry 0x400806a8
+
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0018,len:4
+load:0x3fff001c,len:1044
+load:0x40078000,len:10124
+load:0x40080400,len:5828
+entry 0x400806a8
+U2-hal-cpu.c:189] setCpuFrequencyMhz(): PLL: 320 / 4 = 80 Mhz, APB: 80000000 Hz
+[D][indicator.cpp:7] createGroup(): Created LEDGroup: rgb
+[D][indicator.cpp:7] createGroup(): Created LEDGroup: leds
+[D][led_group.cpp:39] connectRGB(): Checking if RGB pins 25, 26 and 27 are already attached
+[D][indicator.cpp:97] noEffect(): Blink effect activated on group: rgb
+[D][indicator.cpp:97] noEffect(): Blink effect activated on group: leds
+[D][indicator.cpp:91] setGroupColor(): Setting color for group rgb
+[D][led_group.cpp:151] setGroupColor(): Setting RGB color for pins 25, 26 and 27
+[D][indicator.cpp:105] staticOn(): Static effect activated on group: rgb
+[D][led_group.cpp:168] stopCurrentEffect(): Stopping current effect on group rgb
+[D][led_group.cpp:75] attachActiveRGBPinsToChannel(): Attaching pin 25 to channel 0
+[D][led_group.cpp:75] attachActiveRGBPinsToChannel(): Attaching pin 27 to channel 0
+[D][main.cpp:144] forkInit(): Initilizing fork
+[D][main.cpp:120] enableHighPower(): High Power Mode ENABLED
+[D][main.cpp:108] enableSensors(): Fork sensor ENABLED
+[D][indicator.cpp:113] stepOn(): Step on effect activated on group: leds
+[D][led_group.cpp:168] stopCurrentEffect(): Stopping current effect on group leds
+[D][led_group.cpp:247] stepOn(): Number of channels in use by group: 1
+[D][led_group.cpp:215] attachAllPinsStepOn(): Attaching pin 18 to channel 1
+[D][led_group.cpp:215] attachAllPinsStepOn(): Attaching pin 19 to channel 1
+[D][led_group.cpp:215] attachAllPinsStepOn(): Attaching pin 17 to channel 1
+[D][main.cpp:156] forkInit(): Setting up configuration for frequency counter
+[D][main.cpp:172] forkInit(): Starting frequency counter task
+[D][main.cpp:174] forkInit(): Task started. Sampling frequency
+[D][device.cpp:86] getWakeupReason(): Wakeup was not caused by deep sleep
+[I][device.cpp:7] begin(): Firmware: v1.2.1
+[I][device.cpp:8] begin(): Device Token: 1ZCC6ZBSUE6RSRC7TBCL_B3-H-0042
+[I][device.cpp:9] begin(): Device variant: b2-h
+[I][device.cpp:13] begin(): MAC Address: E0:E2:E6:6C:D6:3C
+[I][constants_store.cpp:68] constantInit(): Loaded old constantStore
+[I][device_provision.cpp:354] awsConfigInit(): Loaded old AWS Config
+[D][temp_sensor.cpp:44] tempInit(): Si7051 started. Address: 0x40
+[I][main.cpp:499] upstartModeInit(): Button press on startup detected
+[D][indicator.cpp:91] setGroupColor(): Setting color for group rgb
+[D][led_group.cpp:151] setGroupColor(): Setting RGB color for pins 25, 26 and 27
+[D][indicator.cpp:105] staticOn(): Static effect activated on group: rgb
+[D][main.cpp:528] upstartModeInit(): Returning to Command Mode
+[D][indicator.cpp:145] fade(): Fade effect activated on group: leds
+[D][led_group.cpp:168] stopCurrentEffect(): Stopping current effect on group leds
+[D][led_group.cpp:83] attachActivePinsToChannel(): Attaching pin 18 to channel 1
+[D][led_group.cpp:83] attachActivePinsToChannel(): Attaching pin 19 to channel 1
+[D][led_group.cpp:83] attachActivePinsToChannel(): Attaching pin 17 to channel 1
+[D][main.cpp:620] setup(): Errors in cache
+[I][error_handler.cpp:91] printErrors(): Cache size: 0
+[I][error_handler.cpp:92] printErrors(): Cache: 
+[D][main.cpp:622] setup(): Wake count: 0
+[I][main.cpp:555] stateMachineInit(): Upstart mode: Command
+Command Mode running
+fork get freq run
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.088488
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.088488
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057576
+1362.00000 Temperature: 21.99 C Frequency Compensated: 1363.08849 SG: 1.05758
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.017076
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.017076
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057943
+1361.92859 Temperature: 21.99 C Frequency Compensated: 1363.01708 SG: 1.05794
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.088488
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.088488
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057576
+1362.00000 Temperature: 21.99 C Frequency Compensated: 1363.08849 SG: 1.05758
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.019983
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.019983
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057928
+1361.92859 Temperature: 22.01 C Frequency Compensated: 1363.01998 SG: 1.05793
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.088488
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.088488
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057576
+1362.00000 Temperature: 21.99 C Frequency Compensated: 1363.08849 SG: 1.05758
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.091394
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.091394
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057561
+1362.00000 Temperature: 22.01 C Frequency Compensated: 1363.09139 SG: 1.05756
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.085581
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.085581
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057591
+1362.00000 Temperature: 21.98 C Frequency Compensated: 1363.08558 SG: 1.05759
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.019983
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.019983
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057928
+1361.92859 Temperature: 22.01 C Frequency Compensated: 1363.01998 SG: 1.05793
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.097208
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.097208
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057531
+1362.00000 Temperature: 22.03 C Frequency Compensated: 1363.09721 SG: 1.05753
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.088488
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.088488
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057576
+1362.00000 Temperature: 21.99 C Frequency Compensated: 1363.08849 SG: 1.05758
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.097208
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.097208
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057531
+1362.00000 Temperature: 22.03 C Frequency Compensated: 1363.09721 SG: 1.05753
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.022890
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.022890
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057913
+1361.92859 Temperature: 22.02 C Frequency Compensated: 1363.02289 SG: 1.05791
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.091394
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.091394
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057561
+1362.00000 Temperature: 22.01 C Frequency Compensated: 1363.09139 SG: 1.05756
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.091394
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.091394
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057561
+1362.00000 Temperature: 22.01 C Frequency Compensated: 1363.09139 SG: 1.05756
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.094301
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.094301
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057546
+1362.00000 Temperature: 22.02 C Frequency Compensated: 1363.09430 SG: 1.05755
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.094301
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.094301
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057546
+1362.00000 Temperature: 22.02 C Frequency Compensated: 1363.09430 SG: 1.05755
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.022890
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.022890
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057913
+1361.92859 Temperature: 22.02 C Frequency Compensated: 1363.02289 SG: 1.05791
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.091394
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.091394
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057561
+1362.00000 Temperature: 22.01 C Frequency Compensated: 1363.09139 SG: 1.05756
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.094301
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.094301
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057546
+1362.00000 Temperature: 22.02 C Frequency Compensated: 1363.09430 SG: 1.05755
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.091394
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.091394
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057561
+1362.00000 Temperature: 22.01 C Frequency Compensated: 1363.09139 SG: 1.05756
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.091394
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.091394
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057561
+1362.00000 Temperature: 22.01 C Frequency Compensated: 1363.09139 SG: 1.05756
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.091394
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.091394
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057561
+1362.00000 Temperature: 22.01 C Frequency Compensated: 1363.09139 SG: 1.05756
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.097208
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.097208
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057531
+1362.00000 Temperature: 22.03 C Frequency Compensated: 1363.09721 SG: 1.05753
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.091394
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.091394
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057561
+1362.00000 Temperature: 22.01 C Frequency Compensated: 1363.09139 SG: 1.05756
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.097208
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.097208
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057531
+1362.00000 Temperature: 22.03 C Frequency Compensated: 1363.09721 SG: 1.05753
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.097208
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.097208
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057531
+1362.00000 Temperature: 22.03 C Frequency Compensated: 1363.09721 SG: 1.05753
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.022890
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.022890
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057913
+1361.92859 Temperature: 22.02 C Frequency Compensated: 1363.02289 SG: 1.05791
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.100114
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.100114
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057516
+1362.00000 Temperature: 22.04 C Frequency Compensated: 1363.10011 SG: 1.05752
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.097208
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.097208
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057531
+1362.00000 Temperature: 22.03 C Frequency Compensated: 1363.09721 SG: 1.05753
+fork get freq stop
+
+Brownout detector was triggered
+
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0018,len:4
+load:0x3fff001c,len:1044
+load:0x40078000,len:10124
+load:0x40080400,len:5828
+entry 0x400806a8
+Fatal exception (0): IllegalInstruction
+
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0018,len:4
+load:0x3fff001c,len:1044
+load:0x40078000,len:10124
+load:0x40080400,len:5828
+entry 0x400806a8
+U2-hal-cpu.c:189] setCpuFrequencyMhz(): PLL: 320 / 4 = 80 Mhz, APB: 80000000 Hz
+[D][indicator.cpp:7] createGroup(): Created LEDGroup: rgb
+[D][indicator.cpp:7] createGroup(): Created LEDGroup: leds
+[D][led_group.cpp:39] connectRGB(): Checking if RGB pins 25, 26 and 27 are already attached
+[D][indicator.cpp:97] noEffect(): Blink effect activated on group: rgb
+[D][indicator.cpp:97] noEffect(): Blink effect activated on group: leds
+[D][indicator.cpp:91] setGroupColor(): Setting color for group rgb
+[D][led_group.cpp:151] setGroupColor(): Setting RGB color for pins 25, 26 and 27
+[D][indicator.cpp:105] staticOn(): Static effect activated on group: rgb
+[D][led_group.cpp:168] stopCurrentEffect(): Stopping current effect on group rgb
+[D][led_group.cpp:75] attachActiveRGBPinsToChannel(): Attaching pin 25 to channel 0
+[D][led_group.cpp:75] attachActiveRGBPinsToChannel(): Attaching pin 27 to channel 0
+[D][main.cpp:144] forkInit(): Initilizing fork
+[D][main.cpp:120] enableHighPower(): High Power Mode ENABLED
+[D][main.cpp:108] enableSensors(): Fork sensor ENABLED
+[D][indicator.cpp:113] stepOn(): Step on effect activated on group: leds
+[D][led_group.cpp:168] stopCurrentEffect(): Stopping current effect on group leds
+[D][led_group.cpp:247] stepOn(): Number of channels in use by group: 1
+[D][led_group.cpp:215] attachAllPinsStepOn(): Attaching pin 18 to channel 1
+[D][led_group.cpp:215] attachAllPinsStepOn(): Attaching pin 19 to channel 1
+[D][led_group.cpp:215] attachAllPinsStepOn(): Attaching pin 17 to channel 1
+[D][main.cpp:156] forkInit(): Setting up configuration for frequency counter
+[D][main.cpp:172] forkInit(): Starting frequency counter task
+[D][main.cpp:174] forkInit(): Task started. Sampling frequency
+[D][device.cpp:86] getWakeupReason(): Wakeup was not caused by deep sleep
+[I][device.cpp:7] begin(): Firmware: v1.2.1
+[I][device.cpp:8] begin(): Device Token: B50OFLIYS6BWFS0LSA5H_B3-H-0016
+[I][device.cpp:9] begin(): Device variant: b2-h
+[I][device.cpp:13] begin(): MAC Address: C4:DD:57:AF:16:C4
+[I][constants_store.cpp:68] constantInit(): Loaded old constantStore
+[I][device_provision.cpp:354] awsConfigInit(): Loaded old AWS Config
+[D][temp_sensor.cpp:44] tempInit(): Si7051 started. Address: 0x40
+[I][main.cpp:499] upstartModeInit(): Button press on startup detected
+[D][indicator.cpp:91] setGroupColor(): Setting color for group rgb
+[D][led_group.cpp:151] setGroupColor(): Setting RGB color for pins 25, 26 and 27
+[D][indicator.cpp:105] staticOn(): Static effect activated on group: rgb
+[D][main.cpp:528] upstartModeInit(): Returning to Command Mode
+[D][indicator.cpp:145] fade(): Fade effect activated on group: leds
+[D][led_group.cpp:168] stopCurrentEffect(): Stopping current effect on group leds
+[D][led_group.cpp:83] attachActivePinsToChannel(): Attaching pin 18 to channel 1
+[D][led_group.cpp:83] attachActivePinsToChannel(): Attaching pin 19 to channel 1
+[D][led_group.cpp:83] attachActivePinsToChannel(): Attaching pin 17 to channel 1
+[D][main.cpp:620] setup(): Errors in cache
+[I][error_handler.cpp:91] printErrors(): Cache size: 0
+[I][error_handler.cpp:92] printErrors(): Cache: 
+[D][main.cpp:622] setup(): Wake count: 0
+[I][main.cpp:555] stateMachineInit(): Upstart mode: Command
+Command Mode running
+fork get freq run
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1365.000884
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1365.000884
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057028
+1363.85718 Temperature: 22.20 C Frequency Compensated: 1365.00088 SG: 1.05703
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1364.992167
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1364.992167
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057073
+1363.85718 Temperature: 22.17 C Frequency Compensated: 1364.99217 SG: 1.05707
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1364.986355
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1364.986355
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057103
+1363.85718 Temperature: 22.14 C Frequency Compensated: 1364.98635 SG: 1.05710
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1364.917850
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1364.917850
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057453
+1363.78577 Temperature: 22.16 C Frequency Compensated: 1364.91785 SG: 1.05745
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1364.992167
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1364.992167
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057073
+1363.85718 Temperature: 22.17 C Frequency Compensated: 1364.99217 SG: 1.05707
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1364.989261
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1364.989261
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057088
+1363.85718 Temperature: 22.16 C Frequency Compensated: 1364.98926 SG: 1.05709
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1364.989261
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1364.989261
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057088
+1363.85718 Temperature: 22.16 C Frequency Compensated: 1364.98926 SG: 1.05709
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1364.914944
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1364.914944
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057468
+1363.78577 Temperature: 22.14 C Frequency Compensated: 1364.91494 SG: 1.05747
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1364.989261
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1364.989261
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057088
+1363.85718 Temperature: 22.16 C Frequency Compensated: 1364.98926 SG: 1.05709
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1364.914944
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1364.914944
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057468
+1363.78577 Temperature: 22.14 C Frequency Compensated: 1364.91494 SG: 1.05747
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1364.989261
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1364.989261
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057088
+1363.85718 Temperature: 22.16 C Frequency Compensated: 1364.98926 SG: 1.05709
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1364.992167
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1364.992167
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057073
+1363.85718 Temperature: 22.17 C Frequency Compensated: 1364.99217 SG: 1.05707
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1364.992167
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1364.992167
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057073
+1363.85718 Temperature: 22.17 C Frequency Compensated: 1364.99217 SG: 1.05707
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1364.986355
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1364.986355
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057103
+1363.85718 Temperature: 22.14 C Frequency Compensated: 1364.98635 SG: 1.05710
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1364.986355
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1364.986355
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057103
+1363.85718 Temperature: 22.14 C Frequency Compensated: 1364.98635 SG: 1.05710
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1364.986355
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1364.986355
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057103
+1363.85718 Temperature: 22.14 C Frequency Compensated: 1364.98635 SG: 1.05710
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1364.989261
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1364.989261
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057088
+1363.85718 Temperature: 22.16 C Frequency Compensated: 1364.98926 SG: 1.05709
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1364.992167
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1364.992167
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057073
+1363.85718 Temperature: 22.17 C Frequency Compensated: 1364.99217 SG: 1.05707
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1364.983448
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1364.983448
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057118
+1363.85718 Temperature: 22.13 C Frequency Compensated: 1364.98345 SG: 1.05712
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1364.986355
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1364.986355
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057103
+1363.85718 Temperature: 22.14 C Frequency Compensated: 1364.98635 SG: 1.05710
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1364.986355
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1364.986355
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057103
+1363.85718 Temperature: 22.14 C Frequency Compensated: 1364.98635 SG: 1.05710
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1364.986355
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1364.986355
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057103
+1363.85718 Temperature: 22.14 C Frequency Compensated: 1364.98635 SG: 1.05710
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1364.986355
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1364.986355
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057103
+1363.85718 Temperature: 22.14 C Frequency Compensated: 1364.98635 SG: 1.05710
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1364.986355
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1364.986355
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057103
+1363.85718 Temperature: 22.14 C Frequency Compensated: 1364.98635 SG: 1.05710
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1364.986355
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1364.986355
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057103
+1363.85718 Temperature: 22.14 C Frequency Compensated: 1364.98635 SG: 1.05710
+fork get freq stop
+
+Brownout detector was triggered
+
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0018,len:4
+load:0x3fff001c,len:1044
+load:0x40078000,len:10124
+load:0x40080400,len:5828
+entry 0x400806a8
+
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0018,len:4
+load:0x3fff001c,len:1044
+load:0x40078000,len:10124
+load:0x40080400,len:5828
+entry 0x400806a8
+TU2-hal-cpu.c:189] setCpuFrequencyMhz(): PLL: 320 / 4 = 80 Mhz, APB: 80000000 Hz
+[D][indicator.cpp:7] createGroup(): Created LEDGroup: rgb
+[D][indicator.cpp:7] createGroup(): Created LEDGroup: leds
+[D][led_group.cpp:39] connectRGB(): Checking if RGB pins 25, 26 and 27 are already attached
+[D][indicator.cpp:97] noEffect(): Blink effect activated on group: rgb
+[D][indicator.cpp:97] noEffect(): Blink effect activated on group: leds
+[D][indicator.cpp:91] setGroupColor(): Setting color for group rgb
+[D][led_group.cpp:151] setGroupColor(): Setting RGB color for pins 25, 26 and 27
+[D][indicator.cpp:105] staticOn(): Static effect activated on group: rgb
+[D][led_group.cpp:168] stopCurrentEffect(): Stopping current effect on group rgb
+[D][led_group.cpp:75] attachActiveRGBPinsToChannel(): Attaching pin 25 to channel 0
+[D][led_group.cpp:75] attachActiveRGBPinsToChannel(): Attaching pin 27 to channel 0
+[D][main.cpp:144] forkInit(): Initilizing fork
+[D][main.cpp:120] enableHighPower(): High Power Mode ENABLED
+[D][main.cpp:108] enableSensors(): Fork sensor ENABLED
+[D][indicator.cpp:113] stepOn(): Step on effect activated on group: leds
+[D][led_group.cpp:168] stopCurrentEffect(): Stopping current effect on group leds
+[D][led_group.cpp:247] stepOn(): Number of channels in use by group: 1
+[D][led_group.cpp:215] attachAllPinsStepOn(): Attaching pin 18 to channel 1
+[D][led_group.cpp:215] attachAllPinsStepOn(): Attaching pin 19 to channel 1
+[D][led_group.cpp:215] attachAllPinsStepOn(): Attaching pin 17 to channel 1
+[D][main.cpp:156] forkInit(): Setting up configuration for frequency counter
+[D][main.cpp:172] forkInit(): Starting frequency counter task
+[D][main.cpp:174] forkInit(): Task started. Sampling frequency
+[D][device.cpp:86] getWakeupReason(): Wakeup was not caused by deep sleep
+[I][device.cpp:7] begin(): Firmware: v1.2.1
+[I][device.cpp:8] begin(): Device Token: 9PA94SF65I1XQ33XE52C_B3-H-0018
+[I][device.cpp:9] begin(): Device variant: b2-h
+[I][device.cpp:13] begin(): MAC Address: C4:DD:57:AF:25:20
+[I][constants_store.cpp:68] constantInit(): Loaded old constantStore
+[I][device_provision.cpp:354] awsConfigInit(): Loaded old AWS Config
+[D][temp_sensor.cpp:44] tempInit(): Si7051 started. Address: 0x40
+[I][main.cpp:499] upstartModeInit(): Button press on startup detected
+[D][indicator.cpp:91] setGroupColor(): Setting color for group rgb
+[D][led_group.cpp:151] setGroupColor(): Setting RGB color for pins 25, 26 and 27
+[D][indicator.cpp:105] staticOn(): Static effect activated on group: rgb
+[D][main.cpp:528] upstartModeInit(): Returning to Command Mode
+[D][indicator.cpp:145] fade(): Fade effect activated on group: leds
+[D][led_group.cpp:168] stopCurrentEffect(): Stopping current effect on group leds
+[D][led_group.cpp:83] attachActivePinsToChannel(): Attaching pin 18 to channel 1
+[D][led_group.cpp:83] attachActivePinsToChannel(): Attaching pin 19 to channel 1
+[D][led_group.cpp:83] attachActivePinsToChannel(): Attaching pin 17 to channel 1
+[D][main.cpp:620] setup(): Errors in cache
+[I][error_handler.cpp:91] printErrors(): Cache size: 0
+[I][error_handler.cpp:92] printErrors(): Cache: 
+[D][main.cpp:622] setup(): Wake count: 0
+[I][main.cpp:555] stateMachineInit(): Upstart mode: Command
+Command Mode running
+fork get freq run
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1354.046141
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1354.046141
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057590
+1352.92859 Temperature: 22.10 C Frequency Compensated: 1354.04614 SG: 1.05759
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1354.037422
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1354.037422
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057635
+1352.92859 Temperature: 22.07 C Frequency Compensated: 1354.03742 SG: 1.05763
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1354.040329
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1354.040329
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057620
+1352.92859 Temperature: 22.08 C Frequency Compensated: 1354.04033 SG: 1.05762
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1354.037422
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1354.037422
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057635
+1352.92859 Temperature: 22.07 C Frequency Compensated: 1354.03742 SG: 1.05763
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1354.108834
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1354.108834
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057264
+1353.00000 Temperature: 22.07 C Frequency Compensated: 1354.10883 SG: 1.05726
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1354.108834
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1354.108834
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057264
+1353.00000 Temperature: 22.07 C Frequency Compensated: 1354.10883 SG: 1.05726
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1354.108834
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1354.108834
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057264
+1353.00000 Temperature: 22.07 C Frequency Compensated: 1354.10883 SG: 1.05726
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1354.037422
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1354.037422
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057635
+1352.92859 Temperature: 22.07 C Frequency Compensated: 1354.03742 SG: 1.05763
+fork get freq stop
+
+Brownout detector was triggered
+
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0018,len:4
+load:0x3fff001c,len:1044
+load:0x40078000,len:10124
+load:0x40080400,len:5828
+entry 0x400806a8
+
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0018,len:4
+load:0x3fff001c,len:1044
+load:0x40078000,len:10124
+load:0x40080400,len:5828
+entry 0x400806a8
+TU2-hal-cpu.c:189] setCpuFrequencyMhz(): PLL: 320 / 4 = 80 Mhz, APB: 80000000 Hz
+[D][indicator.cpp:7] createGroup(): Created LEDGroup: rgb
+[D][indicator.cpp:7] createGroup(): Created LEDGroup: leds
+[D][led_group.cpp:39] connectRGB(): Checking if RGB pins 25, 26 and 27 are already attached
+[D][indicator.cpp:97] noEffect(): Blink effect activated on group: rgb
+[D][indicator.cpp:97] noEffect(): Blink effect activated on group: leds
+[D][indicator.cpp:91] setGroupColor(): Setting color for group rgb
+[D][led_group.cpp:151] setGroupColor(): Setting RGB color for pins 25, 26 and 27
+[D][indicator.cpp:105] staticOn(): Static effect activated on group: rgb
+[D][led_group.cpp:168] stopCurrentEffect(): Stopping current effect on group rgb
+[D][led_group.cpp:75] attachActiveRGBPinsToChannel(): Attaching pin 25 to channel 0
+[D][led_group.cpp:75] attachActiveRGBPinsToChannel(): Attaching pin 27 to channel 0
+[D][main.cpp:144] forkInit(): Initilizing fork
+[D][main.cpp:120] enableHighPower(): High Power Mode ENABLED
+[D][main.cpp:108] enableSensors(): Fork sensor ENABLED
+[D][indicator.cpp:113] stepOn(): Step on effect activated on group: leds
+[D][led_group.cpp:168] stopCurrentEffect(): Stopping current effect on group leds
+[D][led_group.cpp:247] stepOn(): Number of channels in use by group: 1
+[D][led_group.cpp:215] attachAllPinsStepOn(): Attaching pin 18 to channel 1
+[D][led_group.cpp:215] attachAllPinsStepOn(): Attaching pin 19 to channel 1
+[D][led_group.cpp:215] attachAllPinsStepOn(): Attaching pin 17 to channel 1
+[D][main.cpp:156] forkInit(): Setting up configuration for frequency counter
+[D][main.cpp:172] forkInit(): Starting frequency counter task
+[D][main.cpp:174] forkInit(): Task started. Sampling frequency
+[D][device.cpp:86] getWakeupReason(): Wakeup was not caused by deep sleep
+[I][device.cpp:7] begin(): Firmware: v1.2.1
+[I][device.cpp:8] begin(): Device Token: IC71DEM7ZZXOX56D2AWU_B1-K-0191
+[I][device.cpp:9] begin(): Device variant: b2-h
+[I][device.cpp:13] begin(): MAC Address: E0:E2:E6:6C:D2:40
+[I][constants_store.cpp:68] constantInit(): Loaded old constantStore
+[I][device_provision.cpp:354] awsConfigInit(): Loaded old AWS Config
+[D][temp_sensor.cpp:44] tempInit(): Si7051 started. Address: 0x40
+[I][main.cpp:499] upstartModeInit(): Button press on startup detected
+[D][indicator.cpp:91] setGroupColor(): Setting color for group rgb
+[D][led_group.cpp:151] setGroupColor(): Setting RGB color for pins 25, 26 and 27
+[D][indicator.cpp:105] staticOn(): Static effect activated on group: rgb
+[D][main.cpp:528] upstartModeInit(): Returning to Command Mode
+[D][indicator.cpp:145] fade(): Fade effect activated on group: leds
+[D][led_group.cpp:168] stopCurrentEffect(): Stopping current effect on group leds
+[D][led_group.cpp:83] attachActivePinsToChannel(): Attaching pin 18 to channel 1
+[D][led_group.cpp:83] attachActivePinsToChannel(): Attaching pin 19 to channel 1
+[D][led_group.cpp:83] attachActivePinsToChannel(): Attaching pin 17 to channel 1
+[D][main.cpp:620] setup(): Errors in cache
+[I][error_handler.cpp:91] printErrors(): Cache size: 0
+[I][error_handler.cpp:92] printErrors(): Cache: 
+[D][main.cpp:622] setup(): Wake count: 0
+[I][main.cpp:555] stateMachineInit(): Upstart mode: Command
+Command Mode running
+fork get freq run
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.162805
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.162805
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057297
+1362.07141 Temperature: 22.01 C Frequency Compensated: 1363.16281 SG: 1.05730
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.154085
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.154085
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057341
+1362.07141 Temperature: 21.97 C Frequency Compensated: 1363.15408 SG: 1.05734
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.156992
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.156992
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057327
+1362.07141 Temperature: 21.98 C Frequency Compensated: 1363.15699 SG: 1.05733
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.228403
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.228403
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.056961
+1362.14282 Temperature: 21.98 C Frequency Compensated: 1363.22840 SG: 1.05696
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.159899
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.159899
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057312
+1362.07141 Temperature: 21.99 C Frequency Compensated: 1363.15990 SG: 1.05731
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.159899
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.159899
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057312
+1362.07141 Temperature: 21.99 C Frequency Compensated: 1363.15990 SG: 1.05731
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.156992
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.156992
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057327
+1362.07141 Temperature: 21.98 C Frequency Compensated: 1363.15699 SG: 1.05733
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.159899
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.159899
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057312
+1362.07141 Temperature: 21.99 C Frequency Compensated: 1363.15990 SG: 1.05731
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.159899
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.159899
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057312
+1362.07141 Temperature: 21.99 C Frequency Compensated: 1363.15990 SG: 1.05731
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1363.159899
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1363.159899
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057312
+1362.07141 Temperature: 21.99 C Frequency Compensated: 1363.15990 SG: 1.05731
+fork get freq stop
+
+Brownout detector was triggered
+
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0018,len:4
+load:0x3fff001c,len:1044
+load:0x40078000,len:10124
+load:0x40080400,len:5828
+entry 0x400806a8
+Fatal exception (28): LoadProhibited
+
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0018,len:4
+load:0x3fff001c,len:1044
+load:0x40078000,len:10124
+load:0x40080400,len:5828
+entry 0x400806a8
+TU2-hal-cpu.c:189] setCpuFrequencyMhz(): PLL: 320 / 4 = 80 Mhz, APB: 80000000 Hz
+[D][indicator.cpp:7] createGroup(): Created LEDGroup: rgb
+[D][indicator.cpp:7] createGroup(): Created LEDGroup: leds
+[D][led_group.cpp:39] connectRGB(): Checking if RGB pins 25, 26 and 27 are already attached
+[D][indicator.cpp:97] noEffect(): Blink effect activated on group: rgb
+[D][indicator.cpp:97] noEffect(): Blink effect activated on group: leds
+[D][indicator.cpp:91] setGroupColor(): Setting color for group rgb
+[D][led_group.cpp:151] setGroupColor(): Setting RGB color for pins 25, 26 and 27
+[D][indicator.cpp:105] staticOn(): Static effect activated on group: rgb
+[D][led_group.cpp:168] stopCurrentEffect(): Stopping current effect on group rgb
+[D][led_group.cpp:75] attachActiveRGBPinsToChannel(): Attaching pin 25 to channel 0
+[D][led_group.cpp:75] attachActiveRGBPinsToChannel(): Attaching pin 27 to channel 0
+[D][main.cpp:144] forkInit(): Initilizing fork
+[D][main.cpp:120] enableHighPower(): High Power Mode ENABLED
+[D][main.cpp:108] enableSensors(): Fork sensor ENABLED
+[D][indicator.cpp:113] stepOn(): Step on effect activated on group: leds
+[D][led_group.cpp:168] stopCurrentEffect(): Stopping current effect on group leds
+[D][led_group.cpp:247] stepOn(): Number of channels in use by group: 1
+[D][led_group.cpp:215] attachAllPinsStepOn(): Attaching pin 18 to channel 1
+[D][led_group.cpp:215] attachAllPinsStepOn(): Attaching pin 19 to channel 1
+[D][led_group.cpp:215] attachAllPinsStepOn(): Attaching pin 17 to channel 1
+[D][main.cpp:156] forkInit(): Setting up configuration for frequency counter
+[D][main.cpp:172] forkInit(): Starting frequency counter task
+[D][main.cpp:174] forkInit(): Task started. Sampling frequency
+[D][device.cpp:86] getWakeupReason(): Wakeup was not caused by deep sleep
+[I][device.cpp:7] begin(): Firmware: v1.2.1
+[I][device.cpp:8] begin(): Device Token: M9DZHI2IOJSRTPA0AL85_B3-H-0084
+[I][device.cpp:9] begin(): Device variant: b2-h
+[I][device.cpp:13] begin(): MAC Address: 24:D7:EB:42:39:D0
+[I][constants_store.cpp:68] constantInit(): Loaded old constantStore
+[I][device_provision.cpp:354] awsConfigInit(): Loaded old AWS Config
+[D][temp_sensor.cpp:44] tempInit(): Si7051 started. Address: 0x40
+[I][main.cpp:499] upstartModeInit(): Button press on startup detected
+[D][indicator.cpp:91] setGroupColor(): Setting color for group rgb
+[D][led_group.cpp:151] setGroupColor(): Setting RGB color for pins 25, 26 and 27
+[D][indicator.cpp:105] staticOn(): Static effect activated on group: rgb
+[D][main.cpp:528] upstartModeInit(): Returning to Command Mode
+[D][indicator.cpp:145] fade(): Fade effect activated on group: leds
+[D][led_group.cpp:168] stopCurrentEffect(): Stopping current effect on group leds
+[D][led_group.cpp:83] attachActivePinsToChannel(): Attaching pin 18 to channel 1
+[D][led_group.cpp:83] attachActivePinsToChannel(): Attaching pin 19 to channel 1
+[D][led_group.cpp:83] attachActivePinsToChannel(): Attaching pin 17 to channel 1
+[D][main.cpp:620] setup(): Errors in cache
+[I][error_handler.cpp:91] printErrors(): Cache size: 0
+[I][error_handler.cpp:92] printErrors(): Cache: 
+[D][main.cpp:622] setup(): Wake count: 0
+[I][main.cpp:555] stateMachineInit(): Upstart mode: Command
+Command Mode running
+fork get freq run
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1367.097208
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1367.097208
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057998
+1366.00000 Temperature: 22.03 C Frequency Compensated: 1367.09721 SG: 1.05800
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1367.088488
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1367.088488
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.058043
+1366.00000 Temperature: 21.99 C Frequency Compensated: 1367.08849 SG: 1.05804
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1367.156992
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1367.156992
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057692
+1366.07141 Temperature: 21.98 C Frequency Compensated: 1367.15699 SG: 1.05769
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1367.159899
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1367.159899
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057677
+1366.07141 Temperature: 21.99 C Frequency Compensated: 1367.15990 SG: 1.05768
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1367.162805
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1367.162805
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057662
+1366.07141 Temperature: 22.01 C Frequency Compensated: 1367.16281 SG: 1.05766
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1367.159899
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1367.159899
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057677
+1366.07141 Temperature: 21.99 C Frequency Compensated: 1367.15990 SG: 1.05768
+fork get freq stop
+
+Brownout detector was triggered
+
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0018,len:4
+load:0x3fff001c,len:1044
+load:0x40078000,len:10124
+load:0x40080400,len:5828
+entry 0x400806a8
+
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0018,len:4
+load:0x3fff001c,len:1044
+load:0x40078000,len:10124
+load:0x40080400,len:5828
+entry 0x400806a8
+;TU2-hal-cpu.c:189] setCpuFrequencyMhz(): PLL: 320 / 4 = 80 Mhz, APB: 80000000 Hz
+[D][indicator.cpp:7] createGroup(): Created LEDGroup: rgb
+[D][indicator.cpp:7] createGroup(): Created LEDGroup: leds
+[D][led_group.cpp:39] connectRGB(): Checking if RGB pins 25, 26 and 27 are already attached
+[D][indicator.cpp:97] noEffect(): Blink effect activated on group: rgb
+[D][indicator.cpp:97] noEffect(): Blink effect activated on group: leds
+[D][indicator.cpp:91] setGroupColor(): Setting color for group rgb
+[D][led_group.cpp:151] setGroupColor(): Setting RGB color for pins 25, 26 and 27
+[D][indicator.cpp:105] staticOn(): Static effect activated on group: rgb
+[D][led_group.cpp:168] stopCurrentEffect(): Stopping current effect on group rgb
+[D][led_group.cpp:75] attachActiveRGBPinsToChannel(): Attaching pin 25 to channel 0
+[D][led_group.cpp:75] attachActiveRGBPinsToChannel(): Attaching pin 27 to channel 0
+[D][main.cpp:144] forkInit(): Initilizing fork
+[D][main.cpp:120] enableHighPower(): High Power Mode ENABLED
+[D][main.cpp:108] enableSensors(): Fork sensor ENABLED
+[D][indicator.cpp:113] stepOn(): Step on effect activated on group: leds
+[D][led_group.cpp:168] stopCurrentEffect(): Stopping current effect on group leds
+[D][led_group.cpp:247] stepOn(): Number of channels in use by group: 1
+[D][led_group.cpp:215] attachAllPinsStepOn(): Attaching pin 18 to channel 1
+[D][led_group.cpp:215] attachAllPinsStepOn(): Attaching pin 19 to channel 1
+[D][led_group.cpp:215] attachAllPinsStepOn(): Attaching pin 17 to channel 1
+[D][main.cpp:156] forkInit(): Setting up configuration for frequency counter
+[D][main.cpp:172] forkInit(): Starting frequency counter task
+[D][main.cpp:174] forkInit(): Task started. Sampling frequency
+[D][device.cpp:86] getWakeupReason(): Wakeup was not caused by deep sleep
+[I][device.cpp:7] begin(): Firmware: v1.2.1
+[I][device.cpp:8] begin(): Device Token: LRDSMNWDRAM08EEHPUOU_B1-K-0236
+[I][device.cpp:9] begin(): Device variant: b2-h
+[I][device.cpp:13] begin(): MAC Address: E0:E2:E6:6C:D5:F4
+[I][constants_store.cpp:68] constantInit(): Loaded old constantStore
+[I][device_provision.cpp:354] awsConfigInit(): Loaded old AWS Config
+[D][temp_sensor.cpp:44] tempInit(): Si7051 started. Address: 0x40
+[I][main.cpp:499] upstartModeInit(): Button press on startup detected
+[D][indicator.cpp:91] setGroupColor(): Setting color for group rgb
+[D][led_group.cpp:151] setGroupColor(): Setting RGB color for pins 25, 26 and 27
+[D][indicator.cpp:105] staticOn(): Static effect activated on group: rgb
+[D][main.cpp:528] upstartModeInit(): Returning to Command Mode
+[D][indicator.cpp:145] fade(): Fade effect activated on group: leds
+[D][led_group.cpp:168] stopCurrentEffect(): Stopping current effect on group leds
+[D][led_group.cpp:83] attachActivePinsToChannel(): Attaching pin 18 to channel 1
+[D][led_group.cpp:83] attachActivePinsToChannel(): Attaching pin 19 to channel 1
+[D][led_group.cpp:83] attachActivePinsToChannel(): Attaching pin 17 to channel 1
+[D][main.cpp:620] setup(): Errors in cache
+[I][error_handler.cpp:91] printErrors(): Cache size: 0
+[I][error_handler.cpp:92] printErrors(): Cache: 
+[D][main.cpp:622] setup(): Wake count: 0
+[I][main.cpp:555] stateMachineInit(): Upstart mode: Command
+Command Mode running
+fork get freq run
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1357.656535
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1357.656535
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057329
+1356.42859 Temperature: 22.51 C Frequency Compensated: 1357.65654 SG: 1.05733
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1357.642014
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1357.642014
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057403
+1356.42859 Temperature: 22.46 C Frequency Compensated: 1357.64201 SG: 1.05740
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1357.624587
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1357.624587
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057492
+1356.42859 Temperature: 22.39 C Frequency Compensated: 1357.62459 SG: 1.05749
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1357.610063
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1357.610063
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057567
+1356.42859 Temperature: 22.34 C Frequency Compensated: 1357.61006 SG: 1.05757
+fork get freq stop
+0,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0018,len:4
+load:0x3fff001c,len:1044
+load:0x40078000,len:10124
+load:0x40080400,len:5828
+entry 0x400806a8
+;U2-hal-cpu.c:189] setCpuFrequencyMhz(): PLL: 320 / 4 = 80 Mhz, APB: 80000000 Hz
+[D][indicator.cpp:7] createGroup(): Created LEDGroup: rgb
+[D][indicator.cpp:7] createGroup(): Created LEDGroup: leds
+[D][led_group.cpp:39] connectRGB(): Checking if RGB pins 25, 26 and 27 are already attached
+[D][indicator.cpp:97] noEffect(): Blink effect activated on group: rgb
+[D][indicator.cpp:97] noEffect(): Blink effect activated on group: leds
+[D][indicator.cpp:91] setGroupColor(): Setting color for group rgb
+[D][led_group.cpp:151] setGroupColor(): Setting RGB color for pins 25, 26 and 27
+[D][indicator.cpp:105] staticOn(): Static effect activated on group: rgb
+[D][led_group.cpp:168] stopCurrentEffect(): Stopping current effect on group rgb
+[D][led_group.cpp:75] attachActiveRGBPinsToChannel(): Attaching pin 25 to channel 0
+[D][led_group.cpp:75] attachActiveRGBPinsToChannel(): Attaching pin 27 to channel 0
+[D][main.cpp:144] forkInit(): Initilizing fork
+[D][main.cpp:120] enableHighPower(): High Power Mode ENABLED
+[D][main.cpp:108] enableSensors(): Fork sensor ENABLED
+[D][indicator.cpp:113] stepOn(): Step on effect activated on group: leds
+[D][led_group.cpp:168] stopCurrentEffect(): Stopping current effect on group leds
+[D][led_group.cpp:247] stepOn(): Number of channels in use by group: 1
+[D][led_group.cpp:215] attachAllPinsStepOn(): Attaching pin 18 to channel 1
+
+Brownout detector was triggered
+
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0018,len:4
+load:0x3fff001c,len:1044
+load:0x40078000,len:10124
+load:0x40080400,len:5828
+entry 0x400806a8
+
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0018,len:4
+load:0x3fff001c,len:1044
+load:0x40078000,len:10124
+load:0x40080400,len:5828
+entry 0x400806a8
+;TU2-hal-cpu.c:189] setCpuFrequencyMhz(): PLL: 320 / 4 = 80 Mhz, APB: 80000000 Hz
+[D][indicator.cpp:7] createGroup(): Created LEDGroup: rgb
+[D][indicator.cpp:7] createGroup(): Created LEDGroup: leds
+[D][led_group.cpp:39] connectRGB(): Checking if RGB pins 25, 26 and 27 are already attached
+[D][indicator.cpp:97] noEffect(): Blink effect activated on group: rgb
+[D][indicator.cpp:97] noEffect(): Blink effect activated on group: leds
+[D][indicator.cpp:91] setGroupColor(): Setting color for group rgb
+[D][led_group.cpp:151] setGroupColor(): Setting RGB color for pins 25, 26 and 27
+[D][indicator.cpp:105] staticOn(): Static effect activated on group: rgb
+[D][led_group.cpp:168] stopCurrentEffect(): Stopping current effect on group rgb
+[D][led_group.cpp:75] attachActiveRGBPinsToChannel(): Attaching pin 25 to channel 0
+[D][led_group.cpp:75] attachActiveRGBPinsToChannel(): Attaching pin 27 to channel 0
+[D][main.cpp:144] forkInit(): Initilizing fork
+[D][main.cpp:120] enableHighPower(): High Power Mode ENABLED
+[D][main.cpp:108] enableSensors(): Fork sensor ENABLED
+[D][indicator.cpp:113] stepOn(): Step on effect activated on group: leds
+[D][led_group.cpp:168] stopCurrentEffect(): Stopping current effect on group leds
+[D][led_group.cpp:247] stepOn(): Number of channels in use by group: 1
+[D][led_group.cpp:215] attachAllPinsStepOn(): Attaching pin 18 to channel 1
+[D][led_group.cpp:215] attachAllPinsStepOn(): Attaching pin 19 to channel 1
+[D][led_group.cpp:215] attachAllPinsStepOn(): Attaching pin 17 to channel 1
+[D][main.cpp:156] forkInit(): Setting up configuration for frequency counter
+[D][main.cpp:172] forkInit(): Starting frequency counter task
+[D][main.cpp:174] forkInit(): Task started. Sampling frequency
+[D][device.cpp:86] getWakeupReason(): Wakeup was not caused by deep sleep
+[I][device.cpp:7] begin(): Firmware: v1.2.1
+[I][device.cpp:8] begin(): Device Token: Z14VCG1D83O94KMWR5B1_B3-H-0048
+[I][device.cpp:9] begin(): Device variant: b2-h
+[I][device.cpp:13] begin(): MAC Address: E0:E2:E6:6C:F1:30
+[I][constants_store.cpp:68] constantInit(): Loaded old constantStore
+[I][device_provision.cpp:354] awsConfigInit(): Loaded old AWS Config
+[D][temp_sensor.cpp:44] tempInit(): Si7051 started. Address: 0x40
+[I][main.cpp:499] upstartModeInit(): Button press on startup detected
+[D][indicator.cpp:91] setGroupColor(): Setting color for group rgb
+[D][led_group.cpp:151] setGroupColor(): Setting RGB color for pins 25, 26 and 27
+[D][indicator.cpp:105] staticOn(): Static effect activated on group: rgb
+[D][main.cpp:528] upstartModeInit(): Returning to Command Mode
+[D][indicator.cpp:145] fade(): Fade effect activated on group: leds
+[D][led_group.cpp:168] stopCurrentEffect(): Stopping current effect on group leds
+[D][led_group.cpp:83] attachActivePinsToChannel(): Attaching pin 18 to channel 1
+[D][led_group.cpp:83] attachActivePinsToChannel(): Attaching pin 19 to channel 1
+[D][led_group.cpp:83] attachActivePinsToChannel(): Attaching pin 17 to channel 1
+[D][main.cpp:620] setup(): Errors in cache
+[I][error_handler.cpp:91] printErrors(): Cache size: 0
+[I][error_handler.cpp:92] printErrors(): Cache: 
+[D][main.cpp:622] setup(): Wake count: 0
+[I][main.cpp:555] stateMachineInit(): Upstart mode: Command
+Command Mode running
+fork get freq run
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1362.957292
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1362.957292
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057515
+1361.85718 Temperature: 22.04 C Frequency Compensated: 1362.95729 SG: 1.05752
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1362.951479
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1362.951479
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057545
+1361.85718 Temperature: 22.02 C Frequency Compensated: 1362.95148 SG: 1.05755
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1362.954385
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1362.954385
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057530
+1361.85718 Temperature: 22.03 C Frequency Compensated: 1362.95439 SG: 1.05753
+fork get freq run
+fork get freq stop
+
+Brownout detector was triggered
+
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0018,len:4
+load:0x3fff001c,len:1044
+load:0x40078000,len:10124
+load:0x40080400,len:5828
+entry 0x400806a8
+_.6s
+
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0018,len:4
+load:0x3fff001c,len:1044
+load:0x40078000,len:10124
+load:0x40080400,len:5828
+entry 0x400806a8
+;U2-hal-cpu.c:189] setCpuFrequencyMhz(): PLL: 320 / 4 = 80 Mhz, APB: 80000000 Hz
+[D][indicator.cpp:7] createGroup(): Created LEDGroup: rgb
+[D][indicator.cpp:7] createGroup(): Created LEDGroup: leds
+[D][led_group.cpp:39] connectRGB(): Checking if RGB pins 25, 26 and 27 are already attached
+[D][indicator.cpp:97] noEffect(): Blink effect activated on group: rgb
+[D][indicator.cpp:97] noEffect(): Blink effect activated on group: leds
+[D][indicator.cpp:91] setGroupColor(): Setting color for group rgb
+[D][led_group.cpp:151] setGroupColor(): Setting RGB color for pins 25, 26 and 27
+[D][indicator.cpp:105] staticOn(): Static effect activated on group: rgb
+[D][led_group.cpp:168] stopCurrentEffect(): Stopping current effect on group rgb
+[D][led_group.cpp:75] attachActiveRGBPinsToChannel(): Attaching pin 25 to channel 0
+[D][led_group.cpp:75] attachActiveRGBPinsToChannel(): Attaching pin 27 to channel 0
+[D][main.cpp:144] forkInit(): Initilizing fork
+[D][main.cpp:120] enableHighPower(): High Power Mode ENABLED
+[D][main.cpp:108] enableSensors(): Fork sensor ENABLED
+[D][indicator.cpp:113] stepOn(): Step on effect activated on group: leds
+[D][led_group.cpp:168] stopCurrentEffect(): Stopping current effect on group leds
+[D][led_group.cpp:247] stepOn(): Number of channels in use by group: 1
+[D][led_group.cpp:215] attachAllPinsStepOn(): Attaching pin 18 to channel 1
+[D][led_group.cpp:215] attachAllPinsStepOn(): Attaching pin 19 to channel 1
+[D][led_group.cpp:215] attachAllPinsStepOn(): Attaching pin 17 to channel 1
+[D][main.cpp:156] forkInit(): Setting up configuration for frequency counter
+[D][main.cpp:172] forkInit(): Starting frequency counter task
+[D][main.cpp:174] forkInit(): Task started. Sampling frequency
+[D][device.cpp:86] getWakeupReason(): Wakeup was not caused by deep sleep
+[I][device.cpp:7] begin(): Firmware: v1.2.1
+[I][device.cpp:8] begin(): Device Token: 1O00Z9ZJQOIRDG8VKZG6_B3-H-0019
+[I][device.cpp:9] begin(): Device variant: b2-h
+[I][device.cpp:13] begin(): MAC Address: E0:E2:E6:6C:D5:C8
+[I][constants_store.cpp:68] constantInit(): Loaded old constantStore
+[I][device_provision.cpp:354] awsConfigInit(): Loaded old AWS Config
+[D][temp_sensor.cpp:44] tempInit(): Si7051 started. Address: 0x40
+[I][main.cpp:499] upstartModeInit(): Button press on startup detected
+[D][indicator.cpp:91] setGroupColor(): Setting color for group rgb
+[D][led_group.cpp:151] setGroupColor(): Setting RGB color for pins 25, 26 and 27
+[D][indicator.cpp:105] staticOn(): Static effect activated on group: rgb
+[D][main.cpp:528] upstartModeInit(): Returning to Command Mode
+[D][indicator.cpp:145] fade(): Fade effect activated on group: leds
+[D][led_group.cpp:168] stopCurrentEffect(): Stopping current effect on group leds
+[D][led_group.cpp:83] attachActivePinsToChannel(): Attaching pin 18 to channel 1
+[D][led_group.cpp:83] attachActivePinsToChannel(): Attaching pin 19 to channel 1
+[D][led_group.cpp:83] attachActivePinsToChannel(): Attaching pin 17 to channel 1
+[D][main.cpp:620] setup(): Errors in cache
+[I][error_handler.cpp:91] printErrors(): Cache size: 0
+[I][error_handler.cpp:92] printErrors(): Cache: 
+[D][main.cpp:622] setup(): Wake count: 0
+[I][main.cpp:555] stateMachineInit(): Upstart mode: Command
+Command Mode running
+fork get freq run
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1362.742936
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1362.742936
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057883
+1361.64282 Temperature: 22.04 C Frequency Compensated: 1362.74294 SG: 1.05788
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1362.805628
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1362.805628
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057561
+1361.71423 Temperature: 22.01 C Frequency Compensated: 1362.80563 SG: 1.05756
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1362.802721
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1362.802721
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057576
+1361.71423 Temperature: 21.99 C Frequency Compensated: 1362.80272 SG: 1.05758
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1362.805628
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1362.805628
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057561
+1361.71423 Temperature: 22.01 C Frequency Compensated: 1362.80563 SG: 1.05756
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1362.882974
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1362.882974
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057163
+1361.78577 Temperature: 22.03 C Frequency Compensated: 1362.88297 SG: 1.05716
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1362.811441
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1362.811441
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057531
+1361.71423 Temperature: 22.03 C Frequency Compensated: 1362.81144 SG: 1.05753
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1362.805628
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1362.805628
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057561
+1361.71423 Temperature: 22.01 C Frequency Compensated: 1362.80563 SG: 1.05756
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1362.811441
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1362.811441
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057531
+1361.71423 Temperature: 22.03 C Frequency Compensated: 1362.81144 SG: 1.05753
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1362.888787
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1362.888787
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057133
+1361.78577 Temperature: 22.05 C Frequency Compensated: 1362.88879 SG: 1.05713
+[D][unit_calculator.cpp:112] calcFrequencyCompensation4th(): Frequency Compensated: 1362.814348
+[D][unit_calculator.cpp:136] calcSGFromFreq(): Calculating specific_gravity with frequency_compensated: 1362.814348
+[D][unit_calculator.cpp:149] calcSGFromFreq(): Specific gravity calculated: 1.057516
+1361.71423 Temperature: 22.04 C Frequency Compensated: 1362.81435 SG: 1.05752
+fork get freq stop
+
+Brownout detector was triggered
+
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0018,len:4
+load:0x3fff001c,len:1044
+load:0x40078000,len:10124
+load:0x40080400,len:5828
+entry 0x400806a8
