@@ -21,7 +21,9 @@ class InputWithTitle(QtWidgets.QFrame):
         self.submit_button.clicked.connect(self.on_click)
         # QFrame properties
         self.setMaximumHeight(120)
-        self.setMaximumWidth(130)
+        self.setMaximumWidth(200)
+        self.input_field.setMaximumWidth(100)
+        self.submit_button.setMaximumWidth(100)
     
         # Main Layout
         layout = QtWidgets.QVBoxLayout()

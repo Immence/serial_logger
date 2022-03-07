@@ -14,8 +14,12 @@ class LocalStateBridge(QtWidgets.QWidget):
 
     def __init__(self):
         QtWidgets.QWidget.__init__(self)
+        self.qr_code_set.connect(self.debug)
         self.target_sg_set.connect(self.debug)
         self.pass_threshold_set.connect(self.debug)
+        self.reading_amount_set.connect(self.debug)
+        self.start_reading.connect(self.debug)
+
 
     def debug(self, signal_str = "WOW"):
         sender_index = self.senderSignalIndex()
