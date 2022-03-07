@@ -19,6 +19,9 @@ class TopDockWidget(QtWidgets.QWidget):
         
         self.threshold_input_frame = InputWithTitle("Pass threshold")
         self.threshold_input_frame.emit_input.connect(self._LSB.pass_threshold_set)
+
+        self.reading_amount_frame = InputWithTitle("Amount of readings")
+        self.reading_amount_frame.emit_input.connect(self._LSB.reading_amount_set)
         
         layout = QtWidgets.QHBoxLayout()
         layout.addWidget(self.target_input_frame)

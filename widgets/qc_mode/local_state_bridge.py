@@ -8,10 +8,18 @@ class LocalStateBridge(QtWidgets.QWidget):
 
     pass_threshold_set = QtCore.Signal(str)
 
+    reading_amount_set = QtCore.Signal(str)
+
+    start_reading = QtCore.Signal()
+
     def __init__(self):
         QtWidgets.QWidget.__init__(self)
+        self.target_sg_set.connect(self.debug)
+        self.pass_threshold_set.connect(self.debug)
 
-    def debug(self, str = "WOW"):
-        print(str)
+    def debug(self, signal_str = "WOW"):
+        sender_index = self.senderSignalIndex()
+        print(f"{self.metaObject().method(sender_index).name()} --#-- Signal: {signal_str}")
+        
 
         
