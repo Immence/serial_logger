@@ -11,6 +11,8 @@ class ProgramStateBridge(QtWidgets.QWidget):
 
     qr_code_set = QtCore.Signal(str)
 
+    reading_received = QtCore.Signal(dict)
+
     def __init__(self):
         QtWidgets.QWidget.__init__(self)
         self.qr_code_set.connect(self.debug)
