@@ -10,7 +10,7 @@ class InputWithTitle(QtWidgets.QFrame):
 
     emit_input = QtCore.Signal(str)
 
-    def __init__(self, title= "Title not set", text="Not set"):
+    def __init__(self, title= "Title not set"):
         QtWidgets.QFrame.__init__(self)
         
         # Child widgets
