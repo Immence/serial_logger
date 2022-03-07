@@ -1,4 +1,4 @@
-from PySide6 import QtCore, QtWidgets
+from PySide6 import QtCore, QtWidgets, QtGui
 from components.connection_indicator import ConnectionIndicator, Status
 from util.port_scanner import PortScanner
 from res.icons import Icons
@@ -64,14 +64,14 @@ class PortSelector(QtWidgets.QComboBox):
         self.__active_port = None
         self.set_current_port()
 
-    self._other_action = QtGui.QAction(self)
-    self._other_action.setText("&Test image")
-    self._other_action.setIcon(Icons.connection_indicator(Qt.red))
-    self._other_action.triggered.connect(self._change_icon_color)
+        # self._other_action = QtGui.QAction(self)
+        # self._other_action.setText("&Test image")
+        # self._other_action.setIcon(Icons.connection_indicator(Qt.red))
+        # self._other_action.triggered.connect(self._change_icon_color)
 
-    def _change_icon_color(self):
-        self.color = not self.color
-        if self.color:
-            self._other_action.setIcon(Icons.connection_indicator(Qt.green))
-        else:
-            self._other_action.setIcon(Icons.connection_indicator(Qt.red))
+        # def _change_icon_color(self):
+        #     self.color = not self.color
+        #     if self.color:
+        #         self._other_action.setIcon(Icons.connection_indicator(Qt.green))
+        #     else:
+        #         self._other_action.setIcon(Icons.connection_indicator(Qt.red))

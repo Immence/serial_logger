@@ -4,7 +4,7 @@ lines = []
 
 output = []
 
-with open("./hour-14.txt", "r") as input_file:
+with open("./hour-16.txt", "r") as input_file:
     lines = input_file.readlines()
 
 current_barcode = None
@@ -28,7 +28,7 @@ for line in lines:
         _d["SG"] = reading[8]
         output.append(_d)
 
-with open("microbatch_station_3.csv", mode="w") as output_file:
+with open("microbatch_station_4.csv", mode="w") as output_file:
     
     field_names = output[0].keys()
 

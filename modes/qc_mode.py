@@ -1,14 +1,17 @@
 from PySide6 import QtCore, QtGui, QtWidgets
 
-from components.my_text_box import TextContainerReadOnly
+from widgets.qc_mode.qc_mode_main_widget import QcModeMainWidget
+from bridges.program_state_bridge import ProgramStateBridge
 
 class QcMode(QtWidgets.QWidget):
 
-    def __init__(self):
+    PSB : ProgramStateBridge
+    def __init__(self, psb: ProgramStateBridge):
         QtWidgets.QWidget.__init__(self)
         
-        self.text_box = TextContainerReadOnly()
+        self.PSB = psb
+
+        central_widget = QcModeMainWidget(self.PSB)
         layout = QtWidgets.QVBoxLayout()
-        layout = QtWidgets.QVBoxLayout()
-        layout.addWidget(self.text_box)
+        layout.addWidget(central_widget)
         self.setLayout(layout)

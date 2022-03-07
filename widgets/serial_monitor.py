@@ -2,7 +2,6 @@ import sys
 
 from PySide6 import QtCore, QtGui, QtWidgets
 
-from util.serial_thread import SerialThread
 from components.my_text_box import TextContainerReadOnly
 from global_values import RETURN_CHAR, PASTE_CHAR, TEXT_SIZE
 

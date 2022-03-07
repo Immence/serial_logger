@@ -2,8 +2,7 @@ from PySide6 import QtCore
 
 from datetime import datetime
 import time
-from util import csv_writer
-from util import log_writer
+from util import csv_writer, log_writer
 
 unit_dict = {           # Fuck it, I might handle unit stuff at a later point if it's necessary.
     "c": "Celsius",
@@ -16,11 +15,17 @@ class ResponseHandler(QtCore.QObject):
     
     def __init__(self):
         super().__init__()
+       
 
     def handle_response(self, text) -> None:
         log_writer.write_log_line(text)
 
-        if text.startswith("#"):
+        if text.startswith("rst"):
+            if "POWERON_RESET" in text:
+                #Reset event
+                pass
+        
+        elif text.startswith("#"):
             parsed_text = self.interpret_response(self.qr_code, text)
             csv_writer.write_csv_line(parsed_text)
 

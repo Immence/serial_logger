@@ -29,7 +29,7 @@ class ConnectionIndicator(QtWidgets.QWidget):
         __color = Qt.red
 
     def status_change(self, status: Status):
-        
+        pass
 
     def _draw(self):
         # https://stackoverflow.com/questions/24943711/qt-drawing-icons-using-color-and-alpha-map
