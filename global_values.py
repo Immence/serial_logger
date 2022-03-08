@@ -11,4 +11,5 @@ PASTE_CHAR = "\x16"
 BAUD_RATE = 115200
 TEXT_SIZE = 14
 OUTPUT_FOLDER = os.path.abspath(os.path.join(sys.argv[0], os.path.pardir, "output", date.today().strftime("%d-%m-%Y")))
+QC_OUTPUT_FOLDER = os.path.abspath(os.path.join(sys.argv[0], os.path.pardir, "output_qc", date.today().strftime("%d-%m-%Y")))
 COMMAND_QUEUE = Queue()

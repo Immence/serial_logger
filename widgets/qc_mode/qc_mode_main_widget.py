@@ -8,8 +8,10 @@ from widgets.qc_mode.top_dock_widget import TopDockWidget
 
 from  widgets.qc_mode.reading_list import ReadingList
 
+from datetime import datetime, date
 from util.commands import Commands
-from global_values import COMMAND_QUEUE
+import util.csv_writer as csv_writer
+from global_values import COMMAND_QUEUE, QC_OUTPUT_FOLDER
 
 class QcModeMainWidget(QtWidgets.QWidget):
     _PSB : ProgramStateBridge
@@ -98,23 +100,29 @@ class QcModeMainWidget(QtWidgets.QWidget):
 
     # Logic shit
     def check_reading(self, reading: dict):
+        reading["target_sg"] = self.target_sg
+        reading["accepted_deviance"] = self.pass_threshold
+
         if float(reading["sg"]) == 0:
             self.status = False
             self.worst_reading = 0
             self.worst_reading_deviance = -self.target_sg
+            reading["deviance"] = self.worst_reading_deviance
             self.worst_reading_frame.update_reading(reading)
 
         else:
-            deviance = self.target_sg-float(reading["sg"])
-
+            deviance = round(self.target_sg-float(reading["sg"]), 6)
+            reading["deviance"] = deviance
             if abs(deviance) > self.pass_threshold:
                 self.status = False
             
             if abs(deviance) > abs(self.worst_reading_deviance):
                 self.worst_reading =  float(reading["sg"])
-                self.worst_reading_deviance = round(deviance, 6)
+                self.worst_reading_deviance = deviance
                 self.worst_reading_deviance_frame.set_text(self.worst_reading_deviance)
                 self.worst_reading_frame.update_reading(reading)
+
+        csv_writer.write_csv_line(reading, file_name = f"{QC_OUTPUT_FOLDER}/qc_hour-{datetime.now().hour}.csv")        
             
     # This is for the main widget.
     def get_top_dock_widget(self) -> QtWidgets.QWidget:

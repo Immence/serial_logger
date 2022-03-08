@@ -13,10 +13,10 @@ from util.serial_thread import SerialThread
 from handlers.response_handler import ResponseHandler
 from bridges.program_state_bridge import ProgramStateBridge
 
-from modes.qc_mode import QcMode
 from modes.mode_enum import Mode
 
 from global_values import WIN_HEIGHT, WIN_WIDTH, BAUD_RATE
+
 
 class MainWindow(QtWidgets.QMainWindow):
     PSB : ProgramStateBridge
@@ -42,7 +42,6 @@ class MainWindow(QtWidgets.QMainWindow):
         self.serial_widget.resize(1000, 600)
         self.serial_widget.setHidden(True)
         
-
         #Exit QAction
         exit_action = QtGui.QAction("Exit", self)
         exit_action.setShortcut(QtGui.QKeySequence.Quit)

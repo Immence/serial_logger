@@ -1,5 +1,6 @@
 #Output folder
 output/*
+output_qc/*
 
 #Test files
 *test*

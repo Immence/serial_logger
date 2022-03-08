@@ -55,8 +55,8 @@ class ResponseHandler(QtCore.QObject):
                 self._PSB.qr_code_set.emit(re.search("B[0-9]+-[A-Z]+-[0-9]{4,}", text).group(0))
             else:
                 parsed_text = self.interpret_response(self.qr_code, text)
-                self._PSB.reading_received.emit(parsed_text)
                 csv_writer.write_csv_line(parsed_text)
+                self._PSB.reading_received.emit(parsed_text)
 
     def set_qr_code(self, qr_code: str) -> None:
         self.qr_code = qr_code

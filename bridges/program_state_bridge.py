@@ -13,6 +13,8 @@ class ProgramStateBridge(QtWidgets.QWidget):
 
     reading_received = QtCore.Signal(dict)
 
+    write_to_csv = QtCore.Signal(dict)
+
     def __init__(self):
         QtWidgets.QWidget.__init__(self)
         self.qr_code_set.connect(self.debug)
