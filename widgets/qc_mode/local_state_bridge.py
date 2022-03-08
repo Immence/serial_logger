@@ -12,6 +12,8 @@ class LocalStateBridge(QtWidgets.QWidget):
 
     start_reading = QtCore.Signal()
 
+    program_ready = QtCore.Signal(bool)
+
     def __init__(self):
         QtWidgets.QWidget.__init__(self)
         self.qr_code_set.connect(self.debug)
@@ -19,9 +21,10 @@ class LocalStateBridge(QtWidgets.QWidget):
         self.pass_threshold_set.connect(self.debug)
         self.reading_amount_set.connect(self.debug)
         self.start_reading.connect(self.debug)
+        self.program_ready.connect(self.debug)
 
 
-    def debug(self, signal_str = "WOW"):
+    def debug(self, signal_str = "LOCAL WOWEEEEEE"):
         sender_index = self.senderSignalIndex()
         print(f"{self.metaObject().method(sender_index).name()} --#-- Signal: {signal_str}")
         

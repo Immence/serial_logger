@@ -9,10 +9,13 @@ class TopDockWidget(QtWidgets.QWidget):
     target_input_frame: InputWithTitle
     threshold_input_frame: InputWithTitle
 
+    program_ready: bool = False
+    
     def __init__(self, LSB: LocalStateBridge):
         QtWidgets.QWidget.__init__(self)
 
         self._LSB = LSB
+        self._LSB.program_ready.connect(self.handle_program_ready)
 
         self.reading_amount_frame = InputWithTitle("Reading amount")
         self.reading_amount_frame.emit_input.connect(self._LSB.reading_amount_set)
@@ -20,6 +23,8 @@ class TopDockWidget(QtWidgets.QWidget):
         self.start_reading_button = QtWidgets.QPushButton("Start reading")
         self.start_reading_button.setMinimumWidth(200)
         self.start_reading_button.setMinimumHeight(100)
+        self.start_reading_button.setEnabled(self.program_ready)
+
         self.start_reading_button.clicked.connect(self._LSB.start_reading)
 
         self.target_input_frame = InputWithTitle("Target SG")
@@ -35,4 +40,8 @@ class TopDockWidget(QtWidgets.QWidget):
         layout.addWidget(self.target_input_frame)
         layout.addWidget(self.threshold_input_frame)
         self.setLayout(layout)
+
+    def handle_program_ready(self, program_ready: bool):
+        self.program_ready = program_ready
+        self.start_reading_button.setEnabled(self.program_ready)
         

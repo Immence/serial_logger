@@ -13,45 +13,12 @@ class ReadingList(QtWidgets.QWidget):
         self.list_layout = QtWidgets.QVBoxLayout()
         self.setLayout(self.list_layout)
 
-        self.add_reading(
-            {
-                "Frequency": "1357.28577",
-                "Temperature": "21.93",
-                "Compensated": "1600.6000",
-                "SG": "1.07897",
-            })
-        self.add_reading(
-            {
-                "Frequency": "1357.28577",
-                "Temperature": "21.93",
-                "Compensated": "1600.6000",
-                "SG": "1.07897",
-            })
-        self.add_reading(
-            {
-                "Frequency": "1357.28577",
-                "Temperature": "21.93",
-                "Compensated": "1600.6000",
-                "SG": "1.07897",
-            })
-        self.add_reading(
-            {
-                "Frequency": "1357.28577",
-                "Temperature": "21.93",
-                "Compensated": "1600.6000",
-                "SG": "1.07897",
-            })
-        self.add_reading(
-            {
-                "Frequency": "1357.28577",
-                "Temperature": "21.93",
-                "Compensated": "1600.6000",
-                "SG": "1.07897",
-            })
-
-    def reset_list(self):
+    def reset_readings(self):
         self.readings.clear()
+        for i in reversed(range(self.list_layout.count())): 
+            self.list_layout.itemAt(i).widget().setParent(None)
 
     def add_reading(self, reading: dict):
-        self.readings.append(ReadingComponent(reading["Frequency"], reading["Temperature"], reading["Compensated"], reading["SG"], len(self.readings)))
+        self.readings.append(ReadingComponent(reading["frequency"], reading["temperature"], reading["compensated"], reading["sg"], len(self.readings)+1))
         self.list_layout.addWidget(self.readings[len(self.readings)-1])
+        

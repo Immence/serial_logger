@@ -50,7 +50,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.button = QtWidgets.QPushButton("Click me!")
 
-        self.response_handler = ResponseHandler()
+        self.response_handler = ResponseHandler(self.PSB)
         self.PSB.qr_code_set.connect(self.response_handler.set_qr_code)
 
         self.serial_thread = SerialThread(BAUD_RATE)

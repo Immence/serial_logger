@@ -24,7 +24,10 @@ class ReadingComponent(QtWidgets.QWidget):
         
         layout.setSpacing(0)
         
-        index_label = QtWidgets.QLabel(str(index+1))
+        if index > 0:
+            index_label = QtWidgets.QLabel(str(index))
+            layout.addWidget(index_label, 0, 0, 2, 1)
+        
         frequency = QtWidgets.QLabel("Hz")
         temperature = QtWidgets.QLabel(u"\N{DEGREE SIGN}C")
         gravity = QtWidgets.QLabel("SG")
@@ -33,7 +36,6 @@ class ReadingComponent(QtWidgets.QWidget):
         temperature_value = QtWidgets.QLabel(self.temp)
         gravity_value = QtWidgets.QLabel(self.sg)
         
-        layout.addWidget(index_label, 0, 0, 2, 1)
         layout.addWidget(frequency, 0, 1)
         layout.addWidget(temperature, 0, 2)
         layout.addWidget(gravity, 0, 3)
@@ -41,6 +43,12 @@ class ReadingComponent(QtWidgets.QWidget):
         layout.addWidget(temperature_value, 1, 2)
         layout.addWidget(gravity_value, 1, 3)
         self.setLayout(layout)
+
+    def clear_component(self):
+        for i in reversed(range(self.layout().count())): 
+            widget = self.layout().itemAt(i).widget()
+            self.layout().removeWidget(widget)
+            widget.setParent(None)  
 
     
 

@@ -37,7 +37,8 @@ class PortScanner(QtCore.QThread):
         blacklist = [
             "Bluetooth",
             "Powerbeats",
-            "JBLFlip"
+            "JBLFlip",
+            "ACM"
         ]
 
         blacklistExp = re.compile(

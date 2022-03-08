@@ -20,7 +20,7 @@ class SerialThread(QtCore.QThread):
     buf: bytearray
 
     response_emitter = QtCore.Signal(str)
-
+    
     def __init__(self, baud_rate: int):
         QtCore.QThread.__init__(self)
         self.baud_rate = baud_rate
