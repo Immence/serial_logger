@@ -13,20 +13,20 @@ class PortSelector(QtWidgets.QComboBox):
     __connected: bool
     __indicator: ConnectionIndicator
     
-    __port_watcher: PortScanner
+    __port_scanner: PortScanner
     __ports = QtCore.QStringListModel([])
     __active_port: str = None
 
-    def __init__(self):
+    def __init__(self, port_scanner: PortScanner):
         QtWidgets.QComboBox.__init__(self)
 
         self.setMaximumWidth(200)
         self.setPlaceholderText(placeholder_text)
         self.setModel(self.__ports)
         self.activated.connect(self.set_current_port)
-        self.__port_watcher = PortScanner()
-        self.__port_watcher.ports_updated.connect(self.on_port_list_change)
-        self.__port_watcher.start()
+        self.__port_scanner = port_scanner
+        self.__port_scanner.ports_updated.connect(self.on_port_list_change)
+        self.__port_scanner.start()
         self.__indicator = ConnectionIndicator()
         
 

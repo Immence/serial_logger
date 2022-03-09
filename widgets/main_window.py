@@ -9,6 +9,7 @@ from widgets.input_widget import InputWidget
 from widgets.button_menu import CommandButtonGroup
 from widgets.toolbar import ToolBar
 from util.serial_thread import SerialThread
+from util.port_scanner import PortScanner
 
 from handlers.response_handler import ResponseHandler
 from bridges.program_state_bridge import ProgramStateBridge
@@ -30,7 +31,8 @@ class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         QtWidgets.QMainWindow.__init__(self)
         self.PSB = ProgramStateBridge()
-        self.port_selector = PortSelector()
+        self.port_scanner = PortScanner()
+        self.port_selector = PortSelector(self.port_scanner)
         self.bottom_widget = QtWidgets.QDockWidget("Serial Port")
         self.bottom_widget.setWidget(self.port_selector)
         self.bottom_widget.setFeatures(QtWidgets.QDockWidget.NoDockWidgetFeatures)
@@ -45,7 +47,7 @@ class MainWindow(QtWidgets.QMainWindow):
         #Exit QAction
         exit_action = QtGui.QAction("Exit", self)
         exit_action.setShortcut(QtGui.QKeySequence.Quit)
-        exit_action.triggered.connect(self.close)
+        exit_action.triggered.connect(self.exit_program)
 
         self.button = QtWidgets.QPushButton("Click me!")
 
@@ -113,3 +115,9 @@ class MainWindow(QtWidgets.QMainWindow):
             self.serial_widget.show()
         else:
             self.serial_widget.hide()
+
+    def exit_program(self):
+        self.port_scanner.stop()
+        self.serial_thread.stop()
+        self.close()
+        

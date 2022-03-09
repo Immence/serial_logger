@@ -8,9 +8,15 @@ from serial.tools import list_ports
 class PortScanner(QtCore.QThread):
 
     ports_updated = QtCore.Signal(list)
+    __abort: bool = False
+    __condition: QtCore.QWaitCondition
+    __mutex: QtCore.QMutex
 
     def __init__(self):
-        super().__init__()
+        QtCore.QThread.__init__(self)
+        self.__mutex = QtCore.QMutex()
+        self.__condition = QtCore.QWaitCondition()
+
         self.__ports = []
 
     def get_ports(self):
@@ -29,6 +35,8 @@ class PortScanner(QtCore.QThread):
     def run(self):
         print("Port watcher running")
         while True:
+            if self.__abort:
+                return
             self.get_ports()
 
             time.sleep(0.7)
@@ -50,3 +58,11 @@ class PortScanner(QtCore.QThread):
                 filtered_ports.append(port)
 
         return filtered_ports
+    
+    def stop(self):
+        self.__mutex.lock()
+        self.__abort = True
+        self.__condition.wakeOne()
+        self.__mutex.unlock()
+        self.wait(2000)
+        self.exit()
