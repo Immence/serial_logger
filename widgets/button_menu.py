@@ -23,9 +23,9 @@ class CommandButtonGroup(QtWidgets.QWidget):
     def __init__(self):
         QtWidgets.QWidget.__init__(self)
         layout = QtWidgets.QVBoxLayout(self)
-        self.get_freq_run = CommandButton("Start reading", Commands.get_freq_run)
+        self.get_period_run = CommandButton("Start reading", Commands.get_period_run)
         self.get_freq_stop = CommandButton("Stop reading", Commands.get_freq_stop)
 
-        layout.addWidget(self.get_freq_run)
+        layout.addWidget(self.get_period_run)
         layout.addWidget(self.get_freq_stop)
         self.setLayout(layout)

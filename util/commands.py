@@ -145,3 +145,7 @@ class Commands():
     def set_temp_constant_e(constant):
         return f"temp set constant e {constant}\n"
 
+    @staticmethod
+    def get_period_run():
+        return f"fork get period run\n"
+
