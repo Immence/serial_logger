@@ -15,21 +15,40 @@ class SerialThread(QtCore.QThread):
 
     text_queue: Queue
 
-    serial_connection: serial.Serial
+    serial_connection: serial.Serial = None
 
     buf: bytearray
 
     response_emitter = QtCore.Signal(str)
+    serial_connected = QtCore.Signal()
+    serial_disconnected = QtCore.Signal()
 
+    __abort: bool = False
+    __condition: QtCore.QWaitCondition
+    __mutex: QtCore.QMutex
+    
     def __init__(self, baud_rate: int):
         QtCore.QThread.__init__(self)
+        self.__mutex = QtCore.QMutex()
+        self.__condition = QtCore.QWaitCondition()
+        
         self.baud_rate = baud_rate
         self.running = True
         self.text_queue = Queue()
         self.buf = bytearray()
 
+
     def set_port(self, port_name):
+        if port_name == "":
+            self.stop()
+            self.port_name = None
+            return
+
+        if self.port_name != None:
+            self.stop()
+            
         self.port_name = port_name
+        self.__abort = False
         self.start()
         
     def run(self):
@@ -39,6 +58,7 @@ class SerialThread(QtCore.QThread):
             self.serial_connection = serial.Serial(self.port_name, self.baud_rate, timeout=SER_TIMEOUT)
             time.sleep(SER_TIMEOUT*1.2)
             self.serial_connection.flushInput()
+            print("SERIAL CONNECTION", self.serial_connection)
             print("Connection opened successfully")
         
         except Exception as e:
@@ -47,9 +67,14 @@ class SerialThread(QtCore.QThread):
 
         if self.serial_connection is None:
             print("Failed to open the port")
-            self.running = False
+            self.__abort = True
 
-        while self.running:
+        else:
+            self.serial_connected.emit()
+
+        while True:
+            if self.__abort:
+                return
             try:
                 if not COMMAND_QUEUE.empty():
                     output = COMMAND_QUEUE.get()
@@ -62,13 +87,11 @@ class SerialThread(QtCore.QThread):
                 if line:
                     line = line.decode("ascii", "ignore").strip("\r\n")
                     self.response_emitter.emit(line)
-                    
-            except:
-                print("Device has been disconnected")
-                break
-        if self.serial_connection:
-            self.serial_connection.close()
-            self.serial_connection = None
+
+            except Exception as e:
+                self.serial_disconnected.emit()
+                self.__abort = True
+
 
     def read_line(self):
         i = self.buf.find(b"\n")
@@ -88,3 +111,14 @@ class SerialThread(QtCore.QThread):
                 return r
             else:
                 self.buf.extend(data)
+
+    def stop(self):
+        self.__mutex.lock()
+        self.__abort = True
+        self.__condition.wakeOne()
+        if self.serial_connection:
+            self.serial_connection.close()
+            self.serial_connection = None
+        self.__mutex.unlock()
+        self.wait(2000)
+        self.exit()

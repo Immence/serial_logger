@@ -1,7 +1,5 @@
-from PySide6 import QtCore, QtWidgets
-
+from PySide6 import QtCore, QtWidgets, QtGui
 from util.port_scanner import PortScanner
-
 
 placeholder_text = "No ports found.."
 
@@ -9,8 +7,10 @@ class PortSelector(QtWidgets.QComboBox):
 
     port_selected = QtCore.Signal(str)
     port_disconnected = QtCore.Signal()
+
+    __connected: bool
     
-    __port_watcher: PortScanner
+    __port_scanner: PortScanner
     __ports = QtCore.QStringListModel([])
     __active_port: str = None
 
@@ -20,36 +20,20 @@ class PortSelector(QtWidgets.QComboBox):
         self.setMaximumWidth(200)
         self.setPlaceholderText(placeholder_text)
         self.setModel(self.__ports)
-        self.activated.connect(self.set_current_port)
-        self.__port_watcher = PortScanner()
-        self.__port_watcher.ports_updated.connect(self.on_port_list_change)
-        self.__port_watcher.start()
+        # self.activated.connect(self.set_current_port)
+        self.__port_scanner = PortScanner()
+        self.__port_scanner.ports_updated.connect(self.on_port_list_change)
+        self.__port_scanner.start()
+        self.currentTextChanged.connect(self.set_current_port)
         
-
     def on_port_list_change(self, ports):
         self.__ports.setStringList(ports)
 
-        self.setCurrentText(self.__active_port)
-        
-        if len(ports) == 0:
-            self.setCurrentIndex(-1)
-            self.clear()
-            self.set_current_port()
+    def set_current_port(self, port : str):
+        if self.__active_port is None and port == "":
             return
 
-        elif len(ports) == 1:
-            self.set_current_port()
-            return
-
-        if self.__active_port not in ports:
-            self.port_disconnected.emit()
-    
-
-    def set_current_port(self):
-        if self.__active_port is None and self.currentText() == "":
-            return
-
-        elif self.currentText() == "":
+        if port == "":
             self.port_disconnected.emit()
             return
 
@@ -59,3 +43,6 @@ class PortSelector(QtWidgets.QComboBox):
     def on_port_disconnected(self):
         self.__active_port = None
         self.set_current_port()
+    
+    def stop(self):
+        self.__port_scanner.stop()

@@ -2,8 +2,6 @@ import sys
 
 from PySide6 import QtCore, QtGui, QtWidgets
 
-from util.serial_thread import SerialThread
-from components.my_text_box import MyTextBox
 from global_values import RETURN_CHAR, PASTE_CHAR, TEXT_SIZE
 
 class SerialMonitor(QtWidgets.QWidget):
@@ -12,7 +10,8 @@ class SerialMonitor(QtWidgets.QWidget):
 
     def __init__(self):
         QtWidgets.QWidget.__init__(self)
-        self.text_box = MyTextBox()
+        self.text_box = QtWidgets.QTextEdit()
+        self.text_box.setReadOnly(True)
         font = QtGui.QFont()
         font.setPointSize(TEXT_SIZE)
         self.text_box.setFont(font)
@@ -32,7 +31,7 @@ class SerialMonitor(QtWidgets.QWidget):
     
     def append_global(self, text):
         self.append_text("GLOBAL SIGNAL" + text)
-    def append_text(self, text):
+    def append_text(self, text : str):
         curr = self.text_box.textCursor()
         curr.movePosition(QtGui.QTextCursor.End)
         s = str(text) + "\n"
@@ -42,17 +41,13 @@ class SerialMonitor(QtWidgets.QWidget):
             if sep:
                 curr.insertBlock()
         self.text_box.setTextCursor(curr)
-    
-    # def keypress_handler(self, event):
-    #     k = event.key()
-    #     s = RETURN_CHAR if k == QtCore.Qt.Key_Return else event.text()
-    #     if len(s)>0 and s[0] == PASTE_CHAR:
-    #         cb = QtWidgets.QApplication.clipboard()
-    #         self.serial_thread.ser_out(cb.text())
-    #     else:
-    #         self.serial_thread.ser_out(s)
 
-
+    def toggleSerialMonitor(self):
+        if self.isHidden():
+            self.show()
+        else:
+            self.hide()
+            
     def closeEvent(self, event):
         self.serial_thread.running = False
         self.serial_thread.wait()
