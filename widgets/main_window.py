@@ -14,6 +14,8 @@ from handlers.response_handler import ResponseHandler
 from widgets.toolbars.top_toolbar import TopToolBar
 from widgets.toolbars.bottom_toolbar import BottomToolBar
 
+from widgets.central_widget import CentralWidget
+
 from global_values import WIN_HEIGHT, WIN_WIDTH, BAUD_RATE
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -57,7 +59,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.button = QtWidgets.QPushButton("Click me!")
         
-        self.response_handler = ResponseHandler()
+        self.response_handler = ResponseHandler(self.PSB)
         self.input_field.emit_input.connect(self.response_handler.set_qr_code)
         
         self.serial_thread = SerialThread(BAUD_RATE)
@@ -71,6 +73,9 @@ class MainWindow(QtWidgets.QMainWindow):
         # self.setLayout(layout)
         if self.serial_monitor_dock_widget:
             self.addDockWidget(Qt.BottomDockWidgetArea, self.serial_monitor_dock_widget)
+        
+        self.central_widget = CentralWidget(self.PSB)
+        self.setCentralWidget(self.central_widget)
         self.__create_toolbars()
         self.resize(WIN_WIDTH, WIN_HEIGHT)
     
