@@ -13,6 +13,10 @@ class ProgramStateBridge(QObject):
     # Command mode signal
     device_ready = Signal()
 
+    # Reading signal
+    start_reading = Signal()
+    stop_reading = Signal()
+
     serial_received = Signal(dict)
 
     reading_received = Signal(dict)
@@ -56,6 +60,8 @@ class ProgramStateBridge(QObject):
         self.allow_continue.connect(self.debug)
         self.update_bath_state.connect(self.debug)
         self.success_dialog.connect(self.debug)
+        self.start_reading.connect(self.debug)
+        self.stop_reading.connect(self.debug)
 
 
     def debug(self, signal_str = "GLOBAL WOWEEEEEE"):

@@ -3,10 +3,20 @@ from PySide6.QtCore import Qt
 
 class Icons:
     TEST_ICON_PATH = "res/icons8-e-96.png"
+    LINE_GRAPH_ICON_PATH = "res/line-graph-icon.png"
+    SCATTER_PLOT_ICON_PATH = "res/scatter-plot-icon.png"
 
     @staticmethod
     def test_icon() -> QtGui.QIcon:
         return QtGui.QIcon(Icons.TEST_ICON_PATH)
+    
+    @staticmethod
+    def line_graph_icon() -> QtGui.QIcon:
+        return QtGui.QIcon(Icons.LINE_GRAPH_ICON_PATH)
+
+    @staticmethod
+    def scatter_plot_icon() -> QtGui.QIcon:
+        return QtGui.QIcon(Icons.SCATTER_PLOT_ICON_PATH)
     
     @staticmethod
     def connection_indicator(color: Qt.GlobalColor) -> QtGui.QIcon:

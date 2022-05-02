@@ -2,6 +2,8 @@ from PySide6 import QtWidgets, QtGui
 
 from PySide6.QtCore import Qt
 from bridges.program_state_bridge import ProgramStateBridge
+from widgets.line_graph_widget import LineGraphWidget
+from widgets.scatter_graph_widget import ScatterGraphWidget
 from widgets.port_selector import PortSelector
 
 from widgets.serial_monitor import SerialMonitor
@@ -23,6 +25,8 @@ class MainWindow(QtWidgets.QMainWindow):
     PSB : ProgramStateBridge
 
     serial_monitor_dock_widget : QtWidgets.QDockWidget
+    graph_dock_widget : QtWidgets.QDockWidget
+
     def __init__(self):
         QtWidgets.QMainWindow.__init__(self)
         self.PSB = ProgramStateBridge()
@@ -36,7 +40,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.input_widget.setWidget(self.input_field)
         self.input_widget.setFeatures(QtWidgets.QDockWidget.NoDockWidgetFeatures)
 
-        self.command_buttons = CommandButtonGroup()
+        self.command_buttons = CommandButtonGroup(self.PSB)
         self.command_widget = QtWidgets.QDockWidget("Commands")
         self.command_widget.setWidget(self.command_buttons)
         self.command_widget.setFeatures(QtWidgets.QDockWidget.NoDockWidgetFeatures)
@@ -48,6 +52,21 @@ class MainWindow(QtWidgets.QMainWindow):
         self.serial_monitor_dock_widget.setFeatures(QtWidgets.QDockWidget.NoDockWidgetFeatures)
         self.serial_monitor_dock_widget.resize(1000, 600)
         self.serial_monitor_dock_widget.setHidden(True)
+
+        ## Graph widgets
+        line_graph_widget = LineGraphWidget()
+        self.graph_dock_widget = QtWidgets.QDockWidget()
+        self.graph_dock_widget.setWidget(line_graph_widget)
+        self.graph_dock_widget.setFeatures(QtWidgets.QDockWidget.NoDockWidgetFeatures)
+        self.graph_dock_widget.resize(1000, 600)
+        self.graph_dock_widget.setHidden(True)
+
+        scatter_graph_widget = ScatterGraphWidget()
+        self.scatter_dock_widget = QtWidgets.QDockWidget()
+        self.scatter_dock_widget.setWidget(scatter_graph_widget)
+        self.scatter_dock_widget.setFeatures(QtWidgets.QDockWidget.NoDockWidgetFeatures)
+        self.scatter_dock_widget.resize(1000, 600)
+        self.scatter_dock_widget.setHidden(True)
         #Menu
         self.addDockWidget(Qt.TopDockWidgetArea, self.input_widget)
         self.addDockWidget(Qt.TopDockWidgetArea, self.dock_widget)
@@ -64,6 +83,8 @@ class MainWindow(QtWidgets.QMainWindow):
         
         self.serial_thread = SerialThread(BAUD_RATE)
         self.serial_thread.response_emitter.connect(monitor.append_text)
+        self.PSB.reading_received.connect(line_graph_widget.add_reading)
+        self.PSB.reading_received.connect(scatter_graph_widget.add_reading)
         self.port_selector.port_selected.connect(self.serial_thread.set_port)
         self.serial_thread.response_emitter.connect(self.response_handler.handle_response)
 
@@ -73,6 +94,10 @@ class MainWindow(QtWidgets.QMainWindow):
         # self.setLayout(layout)
         if self.serial_monitor_dock_widget:
             self.addDockWidget(Qt.BottomDockWidgetArea, self.serial_monitor_dock_widget)
+        if self.graph_dock_widget:
+            self.addDockWidget(Qt.BottomDockWidgetArea, self.graph_dock_widget)
+        if self.scatter_dock_widget:
+            self.addDockWidget(Qt.BottomDockWidgetArea, self.scatter_dock_widget)
         
         self.central_widget = CentralWidget(self.PSB)
         self.setCentralWidget(self.central_widget)
@@ -81,7 +106,7 @@ class MainWindow(QtWidgets.QMainWindow):
     
     def __create_toolbars(self):
         top_toolbar = TopToolBar(self, self.PSB)
-        bottom_toolbar = BottomToolBar(self, self.toggle_serial_monitor)
+        bottom_toolbar = BottomToolBar(self, self.toggle_serial_monitor, self.toggle_line_graph_dock_widget, self.toggle_scatter_graph_dock_widget)
         self.addToolBar(Qt.BottomToolBarArea, bottom_toolbar)
         self.addToolBar(Qt.TopToolBarArea, top_toolbar)
 
@@ -97,3 +122,20 @@ class MainWindow(QtWidgets.QMainWindow):
             self.serial_monitor_dock_widget.show()
         else:
             self.serial_monitor_dock_widget.hide()
+
+    def toggle_line_graph_dock_widget(self):
+        if self.graph_dock_widget.isHidden():
+            if not self.graph_dock_widget.isFloating():
+                self.graph_dock_widget.setFloating(True)
+            self.graph_dock_widget.show()
+        else:
+            self.graph_dock_widget.hide()
+
+    def toggle_scatter_graph_dock_widget(self):
+        if self.scatter_dock_widget.isHidden():
+            if not self.scatter_dock_widget.isFloating():
+                self.scatter_dock_widget.setFloating(True)
+            self.scatter_dock_widget.show()
+        else:
+            self.scatter_dock_widget.hide()
+

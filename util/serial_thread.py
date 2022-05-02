@@ -56,6 +56,7 @@ class SerialThread(QtCore.QThread):
         
         try:
             self.serial_connection = serial.Serial(self.port_name, self.baud_rate, timeout=SER_TIMEOUT)
+            print(self.serial_connection)
             time.sleep(SER_TIMEOUT*1.2)
             self.serial_connection.flushInput()
             print("SERIAL CONNECTION", self.serial_connection)
