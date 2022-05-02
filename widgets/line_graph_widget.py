@@ -84,9 +84,11 @@ class LineGraphWidget(QtWidgets.QWidget):
         self.yax_1.setData(self.frequencies)
         self.yax_2.setData(self.temperatures)
 
-    def clear_readings(self):
+    def clear_data(self):
         self.frequencies.clear()
         self.temperatures.clear()
+        self.yax_1.clear()
+        self.yax_2.clear()
 
     def toggleGraphWindow(self):
         if self.isHidden():

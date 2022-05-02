@@ -54,16 +54,16 @@ class MainWindow(QtWidgets.QMainWindow):
         self.serial_monitor_dock_widget.setHidden(True)
 
         ## Graph widgets
-        line_graph_widget = LineGraphWidget()
+        self.line_graph_widget = LineGraphWidget()
         self.graph_dock_widget = QtWidgets.QDockWidget()
-        self.graph_dock_widget.setWidget(line_graph_widget)
+        self.graph_dock_widget.setWidget(self.line_graph_widget)
         self.graph_dock_widget.setFeatures(QtWidgets.QDockWidget.NoDockWidgetFeatures)
         self.graph_dock_widget.resize(1000, 600)
         self.graph_dock_widget.setHidden(True)
 
-        scatter_graph_widget = ScatterGraphWidget()
+        self.scatter_graph_widget = ScatterGraphWidget()
         self.scatter_dock_widget = QtWidgets.QDockWidget()
-        self.scatter_dock_widget.setWidget(scatter_graph_widget)
+        self.scatter_dock_widget.setWidget(self.scatter_graph_widget)
         self.scatter_dock_widget.setFeatures(QtWidgets.QDockWidget.NoDockWidgetFeatures)
         self.scatter_dock_widget.resize(1000, 600)
         self.scatter_dock_widget.setHidden(True)
@@ -80,11 +80,13 @@ class MainWindow(QtWidgets.QMainWindow):
         
         self.response_handler = ResponseHandler(self.PSB)
         self.input_field.emit_input.connect(self.response_handler.set_qr_code)
+
+        self.PSB.device_disconnected.connect(self.handle_device_disconnected)
         
         self.serial_thread = SerialThread(BAUD_RATE)
         self.serial_thread.response_emitter.connect(monitor.append_text)
-        self.PSB.reading_received.connect(line_graph_widget.add_reading)
-        self.PSB.reading_received.connect(scatter_graph_widget.add_reading)
+        self.PSB.reading_received.connect(self.line_graph_widget.add_reading)
+        self.PSB.reading_received.connect(self.scatter_graph_widget.add_reading)
         self.port_selector.port_selected.connect(self.serial_thread.set_port)
         self.serial_thread.response_emitter.connect(self.response_handler.handle_response)
 
@@ -114,6 +116,12 @@ class MainWindow(QtWidgets.QMainWindow):
         self.port_selector.stop()
         self.serial_thread.stop()
         self.close()
+
+    def handle_device_disconnected(self):
+        print("HANDLE DEVICE DISCONNECTED")
+        self.line_graph_widget.clear_data()
+        self.scatter_graph_widget.clear_data()
+        self.command_buttons.stop_readings()
 
     def toggle_serial_monitor(self):
         if self.serial_monitor_dock_widget.isHidden():

@@ -53,8 +53,11 @@ class ScatterGraphWidget(QtWidgets.QWidget):
         self.scatter.setData(self.spots)
         self.average_line.setPos(np.average(self.frequencies))
 
-    def clear_readings(self):
+    def clear_data(self):
         self.frequencies.clear()
+        self.scatter.clear()
+        self.spots.clear()
+        self.average_line.setPos(0)
 
     def toggleGraphWindow(self):
         if self.isHidden():

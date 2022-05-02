@@ -32,3 +32,6 @@ class CommandButtonGroup(QtWidgets.QWidget):
         layout.addWidget(self.get_freq_run)
         layout.addWidget(self.get_freq_stop)
         self.setLayout(layout)
+
+    def stop_readings(self):
+        self.get_freq_stop.click()
