@@ -18,7 +18,7 @@ if __name__ == "__main__":
     w = MainWindow()
     w.setWindowTitle("PLAATO Serial Logger")
     w.show()
-    with open("res/style.qss", "r") as f:
+    with open("files/res/style.qss", "r") as f:
         _style = f.read()
         app.setStyleSheet(_style)
     r = app.exec()

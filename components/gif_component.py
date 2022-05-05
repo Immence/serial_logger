@@ -1,6 +1,6 @@
 from PySide6 import QtWidgets, QtCore, QtGui
 
-GIF_RESOURCES_PATH = "res"
+GIF_RESOURCES_PATH = "files/res"
 class GifComponent(QtWidgets.QLabel):
     
     __gif_path : str

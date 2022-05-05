@@ -1,6 +1,7 @@
 from PySide6 import QtWidgets
 from PySide6.QtCore import Qt
-from res.font_styles import Fonts
+from files.res.font_styles import Fonts
+
 class StatusFrame(QtWidgets.QFrame):
     def __init__(self):
         QtWidgets.QFrame.__init__(self)

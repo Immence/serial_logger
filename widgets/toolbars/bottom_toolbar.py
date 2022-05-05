@@ -1,5 +1,5 @@
 from PySide6 import QtWidgets, QtGui
-from res.icons import Icons
+from files.res.icons import Icons
 
 class BottomToolBar(QtWidgets.QToolBar):
 

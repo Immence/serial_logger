@@ -1,7 +1,7 @@
 from PySide6 import QtWidgets, QtGui
 from PySide6.QtCore import Qt
 from bridges.program_state_bridge import ProgramStateBridge
-from res.icons import Icons
+from files.res.icons import Icons
 
 class TopToolBar(QtWidgets.QToolBar):
 
