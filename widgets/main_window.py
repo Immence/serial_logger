@@ -16,7 +16,7 @@ from handlers.response_handler import ResponseHandler
 from widgets.toolbars.top_toolbar import TopToolBar
 from widgets.toolbars.bottom_toolbar import BottomToolBar
 
-from widgets.central_widget import CentralWidget
+from widgets.gearhead_widget import GearheadWidget
 
 from global_values import WIN_HEIGHT, WIN_WIDTH, BAUD_RATE
 
@@ -101,7 +101,7 @@ class MainWindow(QtWidgets.QMainWindow):
         if self.scatter_dock_widget:
             self.addDockWidget(Qt.BottomDockWidgetArea, self.scatter_dock_widget)
         
-        self.central_widget = CentralWidget(self.PSB)
+        self.central_widget = GearheadWidget(self.PSB)
         self.setCentralWidget(self.central_widget)
         self.__create_toolbars()
         self.resize(WIN_WIDTH, WIN_HEIGHT)

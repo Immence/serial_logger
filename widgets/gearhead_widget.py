@@ -4,7 +4,7 @@ from bridges.program_state_bridge import ProgramStateBridge
 from widgets.readings_widget.readings_widget import ReadingsWidget
 from components.gif_component import GifComponent
 
-class CentralWidget(QtWidgets.QWidget):
+class GearheadWidget(QtWidgets.QWidget):
     _PSB : ProgramStateBridge
     
     readings_widget : ReadingsWidget
