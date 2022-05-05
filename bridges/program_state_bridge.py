@@ -25,9 +25,6 @@ class ProgramStateBridge(QObject):
 
     write_to_csv = Signal(dict)
 
-    bath_temperature_set = Signal(str)
-    bath_sg_set = Signal(str)
-    bath_state_set = Signal()
 
     raise_error = Signal(Exception)
 
@@ -37,6 +34,9 @@ class ProgramStateBridge(QObject):
     notify_interrupted = Signal()
     allow_continue = Signal()
 
+    qr_code_set = Signal(str)
+    file_name_set = Signal(str)
+    
     # Top bar signals
     update_bath_state = Signal()
     export_data = Signal()
