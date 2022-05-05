@@ -1,6 +1,9 @@
 from PySide6 import QtWidgets, QtCore, QtGui
 
-GIF_RESOURCES_PATH = "files/res"
+from handlers.settings_file_handler import SettingsFileHandler
+
+GIF_RESOURCES_PATH = SettingsFileHandler().get_gif_resources_path()
+
 class GifComponent(QtWidgets.QLabel):
     
     __gif_path : str
@@ -46,7 +49,7 @@ class GifComponent(QtWidgets.QLabel):
         return self.__gif_path
 
     def set_movie(self):
-        movie = QtGui.QMovie(f"{GIF_RESOURCES_PATH}/{self.get_gif_path()}")
+        movie = QtGui.QMovie(f"{GIF_RESOURCES_PATH}{self.get_gif_path()}")
         self.setMovie(movie)
         
 

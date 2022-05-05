@@ -1,11 +1,14 @@
 from PySide6 import QtGui
 from PySide6.QtCore import Qt
 
-ICON_RESOURCES_PATH = "files/res"
+from handlers.settings_file_handler import SettingsFileHandler
+
+ICON_RESOURCES_PATH = SettingsFileHandler().get_icon_resources_path()
+
 class Icons:
-    TEST_ICON_PATH = f"{ICON_RESOURCES_PATH}/icons8-e-96.png"
-    LINE_GRAPH_ICON_PATH = f"{ICON_RESOURCES_PATH}/line-graph-icon.png"
-    SCATTER_PLOT_ICON_PATH = f"{ICON_RESOURCES_PATH}/scatter-plot-icon.png"
+    TEST_ICON_PATH = f"{ICON_RESOURCES_PATH}icons8-e-96.png"
+    LINE_GRAPH_ICON_PATH = f"{ICON_RESOURCES_PATH}line-graph-icon.png"
+    SCATTER_PLOT_ICON_PATH = f"{ICON_RESOURCES_PATH}scatter-plot-icon.png"
 
     @staticmethod
     def test_icon() -> QtGui.QIcon:
