@@ -16,7 +16,6 @@ class ScatterGraphWidget(QtWidgets.QWidget):
 
     pw : pg.PlotWidget
     yax_1 : pg.PlotDataItem
-    yax_2 : pg.PlotCurveItem
 
     def __init__(self,):
         QtWidgets.QWidget.__init__(self)
@@ -37,6 +36,7 @@ class ScatterGraphWidget(QtWidgets.QWidget):
 
         self.pw.addItem(self.scatter)
         self.pw.addItem(self.average_line)
+        self.scatter.getViewBox().setMouseEnabled(False, False)
         # Set layout
         self.setLayout(layout)
 
