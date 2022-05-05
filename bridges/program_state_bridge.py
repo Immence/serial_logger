@@ -27,6 +27,7 @@ class ProgramStateBridge(QObject):
 
 
     raise_error = Signal(Exception)
+    emit_error = Signal(Exception)
 
     # All interrupt signals
     request_interrupt = Signal()
@@ -36,7 +37,7 @@ class ProgramStateBridge(QObject):
 
     qr_code_set = Signal(str)
     file_name_set = Signal(str)
-    
+
     # Top bar signals
     update_bath_state = Signal()
     export_data = Signal()
@@ -62,7 +63,11 @@ class ProgramStateBridge(QObject):
         self.success_dialog.connect(self.debug)
         self.start_reading.connect(self.debug)
         self.stop_reading.connect(self.debug)
-
+        self.qr_code_set.connect(self.debug)
+        self.file_name_set.connect(self.debug)
+        
+        #interceptor
+        self.raise_error.connect(self.intercept_error_signal)
 
     def debug(self, signal_str = "GLOBAL WOWEEEEEE"):
         sender_index = self.senderSignalIndex()
@@ -75,3 +80,9 @@ class ProgramStateBridge(QObject):
         except:
             print("Caught error without a message set!")
             print(f"{self.metaObject().method(sender_index).name()} --#-- Signal: {error.args[0]}")
+
+    def intercept_error_signal(self, error : Exception):
+        if not hasattr(error, "message"):
+            error.message = error.args[0]
+
+        self.emit_error.emit(error)
