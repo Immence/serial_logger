@@ -91,6 +91,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.close()
 
     def handle_device_ready(self):
+        # Waiting half a second before sending command because the device appears to have issues reading commands at startup
         QtCore.QTimer.singleShot(500, lambda :  COMMAND_QUEUE.put(Commands.get_qr_code()))
         
     def handle_device_disconnected(self):
