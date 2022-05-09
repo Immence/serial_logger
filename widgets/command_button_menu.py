@@ -18,17 +18,20 @@ class CommandButton(QtWidgets.QPushButton):
 
 class CommandButtonGroup(QtWidgets.QWidget):
 
+    get_qr_code: CommandButton
     get_freq_run: CommandButton
     get_freq_stop: CommandButton
 
     def __init__(self, PSB : ProgramStateBridge):
         QtWidgets.QWidget.__init__(self)
         layout = QtWidgets.QVBoxLayout(self)
+        self.get_qr_code = CommandButton("Get QR code", Commands.get_qr_code)
         self.get_freq_run = CommandButton("Start reading", Commands.get_freq_run)
         self.get_freq_run.clicked.connect(lambda : PSB.start_reading.emit())
         self.get_freq_stop = CommandButton("Stop reading", Commands.get_freq_stop)
         self.get_freq_stop.clicked.connect(lambda : PSB.stop_reading.emit())
 
+        layout.addWidget(self.get_qr_code)
         layout.addWidget(self.get_freq_run)
         layout.addWidget(self.get_freq_stop)
         self.setLayout(layout)

@@ -9,3 +9,10 @@ class InvalidQrCodeException(Exception):
     def __init__(self, message="Invalid QR-code"):
         self.message = message
         super().__init__(self.message)
+
+class CommunicationFailedException(Exception):
+    
+    def __init__(self, message="Communication with the device failed - this is probably a flasher issue! Please try again."):
+        self.message = message
+        super().__init__(self.message)
+

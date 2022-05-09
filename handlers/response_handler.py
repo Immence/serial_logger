@@ -4,6 +4,7 @@ from datetime import datetime
 import time
 from bridges.program_state_bridge import ProgramStateBridge
 from util import log_writer
+from util.exceptions import CommunicationFailedException
 
 unit_dict = {           # Fuck it, I might handle unit stuff at a later point if it's necessary.
     "c": "Celsius",
@@ -17,7 +18,6 @@ fail_triggers = ["Sleep"]
 
 class ResponseHandler(QtCore.QObject):
     _PSB : ProgramStateBridge
-    qr_code = ""
     
     # Serial connection status signals
     serial_connected = QtCore.Signal()
@@ -31,45 +31,92 @@ class ResponseHandler(QtCore.QObject):
         super().__init__()
         self._PSB = PSB
 
-    def handle_response(self, text) -> None:
-        log_writer.write_log_line(text)
-         # Device has been connected and turned on
+    def handle_response(self, text: str) -> None:
+        log_writer.write_log_line(f"{int(time.time())} | {text}")
+
+        # Device has been connected and turned on
         if text.startswith("rst"):
             if "POWERON_RESET" in text:
                 self._PSB.serial_connected.emit()
         
+        elif text == "Could not find command":
+            self._PSB.raise_error.emit(CommunicationFailedException())
+            return
         # Device reports that command mode is ready
         elif text.startswith(ready_triggers[0]):
+            print("DEVICE READY, RESPONSE HANDLER")
             self._PSB.device_ready.emit()
             
         # Device has been turned off or disconnected
         elif text.startswith(disconnect_triggers[0]):
             self._PSB.device_disconnected.emit()
-
+        
         elif text.startswith("#"):
-            parsed_text = self.interpret_response(self.qr_code, text)
+            parsed_text = ResponseHandler.__interpret_response(text)
             if "frequency" and "temperature" in parsed_text:
                 self._PSB.reading_received.emit(parsed_text)
-                
-    def set_qr_code(self, qr_code: str) -> None:
-        self.qr_code = qr_code
-        self.handle_response(f"//////////////////////////////////\nQR-code has been set to {self.qr_code}")
-        print(f"QR-code has been set to {self.qr_code}")
+            else:
+                if "qrcode" in parsed_text:
+                    self._PSB.qr_code_received.emit(parsed_text["qrcode"])   
+                self._PSB.serial_received.emit(parsed_text)
 
     @staticmethod
-    def interpret_response(qr_code: str, text: str) -> dict:
+    def __interpret_response(text: str) -> dict:
         parsed_text = {
-            "qr_code": qr_code,
             }
-
+        
         word_list = text.strip("# ").split()
         headers = []
         values= []
-        for word in word_list:
-            if word.endswith(":"):
-                headers.append(word.strip(":").lower())
-            elif word[len(word)-1].isnumeric():
-                values.append(word)
+        if len(word_list) > 2:
+            if "Frequency:" and "Temperature:" in word_list:
+                for word in word_list:
+                    if word.endswith(":"):
+                        headers.append(word.strip(":").lower())
+                    elif word[len(word)-1].isnumeric():
+                        values.append(word)
+            elif "frequency" in word_list:
+                headers.append("low")
+                values.append(word_list[4])
+                
+            elif "Temp" in word_list:
+                if "B:" in word_list:
+                    headers.append("temp_b")
+                elif "C:" in word_list:
+                    headers.append("temp_c")
+                elif "D:" in word_list:
+                    headers.append("temp_d")
+                elif "E:" in word_list:
+                    headers.append("temp_e")
+                values.append(word_list[2])
+            
+            elif "Low" in word_list:
+                if "frequency:" in word_list:
+                    headers.append("low_liquid_frequency")
+                    values.append(word_list[3])
+            elif "High" in word_list:
+                if "frequency:" in word_list:
+                    headers.append("high_liquid_frequency")
+                    values.append(word_list[3])
+            
+            elif "variant:" in word_list:
+                headers.append("device_variant")
+                values.append(word_list[2])
+
+            elif "Fork" in word_list:
+                if "A:" in word_list:
+                    headers.append("constant_a")
+                    values.append(word_list[2])
+                elif "B:" in word_list:
+                    headers.append("constant_b")
+                    values.append(word_list[2])
+
+        else:
+            for word in word_list:
+                if word.endswith(":"):
+                    headers.append(word.strip(":").lower())
+                else: 
+                    values.append(word)
 
         for i in range (0,len(headers)):
             parsed_text[headers[i]] = values[i]
@@ -79,4 +126,3 @@ class ResponseHandler(QtCore.QObject):
         parsed_text["unix"] = unix
 
         return parsed_text
-    

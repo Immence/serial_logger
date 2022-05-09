@@ -1,13 +1,14 @@
-from PySide6 import QtWidgets, QtGui
+from PySide6 import QtWidgets, QtGui, QtCore
 
 from PySide6.QtCore import Qt
 from bridges.program_state_bridge import ProgramStateBridge
+from util.commands import Commands
 from widgets.line_graph_widget import LineGraphWidget
 from widgets.scatter_graph_widget import ScatterGraphWidget
 from widgets.port_selector import PortSelector
 
 from widgets.serial_monitor import SerialMonitor
-from widgets.button_menu import CommandButtonGroup
+from widgets.command_button_menu import CommandButtonGroup
 
 from util.serial_thread import SerialThread
 from util.logger import Logger
@@ -18,7 +19,7 @@ from widgets.toolbars.bottom_toolbar import BottomToolBar
 
 from widgets.gearhead_widget import GearheadWidget
 
-from global_values import WIN_HEIGHT, WIN_WIDTH, BAUD_RATE
+from global_values import COMMAND_QUEUE, WIN_HEIGHT, WIN_WIDTH, BAUD_RATE
 from widgets.views.text_variable_view import TextVariableView
 from components.custom_dock_widget import CustomDockWidget
 from widgets.dialogs.custom_dialog import CustomErrorDialog
@@ -55,10 +56,12 @@ class MainWindow(QtWidgets.QMainWindow):
 
         # Init connection events
         self.PSB.device_disconnected.connect(self.handle_device_disconnected)
+        self.PSB.device_ready.connect(self.handle_device_ready)
 
         # Init serial thread  
         self.serial_thread = SerialThread(BAUD_RATE)
         self.serial_thread.response_emitter.connect(self.response_handler.handle_response)
+        
         
         # Serial monitor widget needs to be connected to receive text for the entire run of the program
         self.serial_monitor = SerialMonitor()
@@ -87,6 +90,9 @@ class MainWindow(QtWidgets.QMainWindow):
         self.serial_thread.stop()
         self.close()
 
+    def handle_device_ready(self):
+        QtCore.QTimer.singleShot(500, lambda :  COMMAND_QUEUE.put(Commands.get_qr_code()))
+        
     def handle_device_disconnected(self):
         print("HANDLE DEVICE DISCONNECTED")
         pass

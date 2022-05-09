@@ -35,6 +35,7 @@ class ProgramStateBridge(QObject):
     notify_interrupted = Signal()
     allow_continue = Signal()
 
+    qr_code_received = Signal(str)
     qr_code_set = Signal(str)
     file_name_set = Signal(str)
 

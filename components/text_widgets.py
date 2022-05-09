@@ -101,7 +101,7 @@ class ToggleTextEdit(QtWidgets.QWidget):
         self.__edit_text_view.set_text_field_width(self.text_width_max)
 
         # Connect signals
-        self.__edit_text_view.emit_input.connect(self.handle_text_change)
+        self.__edit_text_view.emit_input.connect(self.__handle_text_change)
         self.__edit_text_view.emit_hidden.connect(self.handle_toggle_click)
 
         # Self display size stuff
@@ -126,7 +126,7 @@ class ToggleTextEdit(QtWidgets.QWidget):
     def get_default_text(self) -> str:
         return self.__default_text
     
-    def handle_text_change(self, text : str) -> None:
+    def __handle_text_change(self, text : str) -> None:
         if text == "":
             return
         self.__current_text_view.setText(text)
@@ -141,6 +141,12 @@ class ToggleTextEdit(QtWidgets.QWidget):
         self.__invisible_padding_box.setHidden(self.edit_mode)
         self.__toggle_button.setDisabled(self.edit_mode)
         self.__edit_text_view.setVisible(self.edit_mode)
+
+    def set_text(self, text : str) -> None:
+        self.__handle_text_change(text)
+
+    def get_text(self) -> str:
+        return self.__current_text_view.text()
 
 class ToggleTextEditWithTitle(QtWidgets.QFrame):
 
@@ -173,3 +179,6 @@ class ToggleTextEditWithTitle(QtWidgets.QFrame):
 
     def set_default_text(self, text : str):
         self.text_edit.set_default_text(text)
+    
+    def set_text(self, text : str):
+        self.text_edit.set_text(text)

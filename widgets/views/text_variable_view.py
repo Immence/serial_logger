@@ -2,7 +2,7 @@ from PySide6 import QtWidgets, QtCore
 from bridges.program_state_bridge import ProgramStateBridge
 
 from components.text_widgets import ToggleTextEditWithTitle
-
+from util.validators import Validators
 from datetime import datetime
 
 class TextVariableView(QtWidgets.QWidget):
@@ -32,13 +32,14 @@ class TextVariableView(QtWidgets.QWidget):
         self.setLayout(self.layout)
 
     def start(self):
-        self.file_name.set_default_text(datetime.now().strftime("%Y-%M-%d.csv"))
+        self.file_name.set_default_text(datetime.now().strftime("%Y-%m-%d.csv"))
 
     def clear(self):
         self.qr_code.clear()
 
     def connect_signals(self, PSB : ProgramStateBridge):
         PSB.device_disconnected.connect(self.clear)
+        PSB.qr_code_received.connect(self.qr_code.set_text)
         self.qr_code_change.connect(PSB.qr_code_set)
         self.file_name_change.connect(PSB.file_name_set)
         self.start()
