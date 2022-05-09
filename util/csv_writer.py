@@ -30,7 +30,7 @@ def __verify_csv_has_headers() -> bool:
         return sniffer.has_header(sample)
 
 
-def write_csv_line(output_dict: dict):
+def write_csv_line(file_name : str, output_dict: dict):
     if not __open_csv_file():
         print(f"Failed to open {file_name}")
         return

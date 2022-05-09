@@ -32,7 +32,6 @@ class ResponseHandler(QtCore.QObject):
         self._PSB = PSB
 
     def handle_response(self, text: str) -> None:
-        log_writer.write_log_line(f"{int(time.time())} | {text}")
 
         # Device has been connected and turned on
         if text.startswith("rst"):

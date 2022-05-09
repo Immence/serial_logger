@@ -12,6 +12,7 @@ class SettingsFileHandler:
             "program_version_number": str
         },
         "FILES": {
+            "default_output_path" : str,
             "gif_resources_path" : str,
             "icon_resources_path" : str
         }
@@ -70,3 +71,6 @@ class SettingsFileHandler:
 
     def get_icon_resources_path(self) -> str:
         return self.config.get("FILES", "icon_resources_path")
+
+    def get_default_output_path(self) -> str:
+        return self.config.get("FILES", "default_output_path")

@@ -31,6 +31,7 @@ class SerialMonitor(QtWidgets.QWidget):
     
     def append_global(self, text):
         self.append_text("GLOBAL SIGNAL" + text)
+        
     def append_text(self, text : str):
         curr = self.text_box.textCursor()
         curr.movePosition(QtGui.QTextCursor.End)

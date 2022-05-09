@@ -65,8 +65,9 @@ class MainWindow(QtWidgets.QMainWindow):
         
         # Serial monitor widget needs to be connected to receive text for the entire run of the program
         self.serial_monitor = SerialMonitor()
-        self.serial_thread.response_emitter.connect(self.serial_monitor.append_text)
-
+        self.serial_monitor.text_update.connect(self.logger.log_communication)
+        self.serial_thread.response_emitter.connect(self.serial_monitor.write)
+        
         self.port_selector = PortSelector()
 
         self.init_dock_widgets()
