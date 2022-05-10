@@ -1,11 +1,9 @@
-import sys
+from PySide6 import QtWidgets
 
-from PySide6 import QtCore, QtGui, QtWidgets
-
-from datetime import datetime
 import pyqtgraph as pg
 import numpy as np
-from random import randint
+
+from components.data_containers.reading import Reading
 
 class ScatterGraphWidget(QtWidgets.QWidget):
     
@@ -41,15 +39,15 @@ class ScatterGraphWidget(QtWidgets.QWidget):
         self.setLayout(layout)
 
 
-    def add_reading(self, reading : dict = None):
+    def add_reading(self, reading : Reading = None):
         if len(self.frequencies) > self.max_reading_length:
             self.frequencies = self.frequencies[1:]
             self.spots = self.spots[1:]
-        self.frequencies.append(float(reading["frequency"]))
+        self.frequencies.append(float(reading.frequency))
         if len(self.spots) == 0:
-            self.spots.append({"pos": (0, float(reading["frequency"]))})
+            self.spots.append({"pos": (0, float(reading.frequency))})
         else:
-            self.spots.append({"pos": (self.spots[-1]["pos"][0]+1, float(reading["frequency"]))})
+            self.spots.append({"pos": (self.spots[-1]["pos"][0]+1, float(reading.frequency))})
         self.scatter.setData(self.spots)
         self.average_line.setPos(np.average(self.frequencies))
 

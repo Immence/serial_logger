@@ -1,6 +1,8 @@
 from PySide6 import QtCore
 
+from dataclasses import asdict
 from bridges.program_state_bridge import ProgramStateBridge
+from components.data_containers.reading import Reading
 from util.csv_writer import write_csv_line
 from util.log_writer import write_log_line
 
@@ -30,7 +32,7 @@ class Logger(QtCore.QObject):
         qr_code = qr_code.upper()
 
         if not Validators.validate_qr_code(qr_code):
-            self._PSB.raise_error.emit(InvalidQrCodeException)
+            self._PSB.raise_error.emit(InvalidQrCodeException())
             return
 
         self.qr_code = qr_code
@@ -56,9 +58,9 @@ class Logger(QtCore.QObject):
             e.message = "Something went wrong when writing to the log file."
             self._PSB.raise_error.emit(e)
 
-    def handle_reading_received(self, reading_dict):
+    def handle_reading_received(self, reading : Reading):
         try:
-            write_csv_line(self.file_name, {"qr_code" : self.qr_code, **reading_dict})
+            write_csv_line(self.file_name, {"qr_code" : self.qr_code, **asdict(reading)})
         except Exception as e:
             e.message = "Something went wrong when writing to the CSV file. Make sure it is not in use by another program."
             self._PSB.raise_error.emit(e)

@@ -1,5 +1,6 @@
 from PySide6 import QtWidgets
 from typing import List
+from components.data_containers.reading import Reading
 
 from widgets.readings_widget.reading_list import ReadingList
 from widgets.readings_widget.stability_widget import StabilityComponent
@@ -8,7 +9,7 @@ from widgets.readings_widget.reading_list import ReadingList
 
 class ReadingsWidget(QtWidgets.QWidget):
     
-    readings: List[dict]
+    readings: List[Reading]
     temperature_stability_widget : StabilityComponent
     frequency_stability_widget : StabilityComponent
 
@@ -35,7 +36,7 @@ class ReadingsWidget(QtWidgets.QWidget):
         self.frequency_stability_widget.clear_data()
 
 
-    def add_reading(self, reading: dict):
+    def add_reading(self, reading: Reading):
         self.readings.append(reading)
         if len(self.readings) > 10:
             self.readings.pop(0)
@@ -44,13 +45,13 @@ class ReadingsWidget(QtWidgets.QWidget):
         self.reading_list.update_data(self.readings)
 
     def update_temp_stats(self):
-        temperatures = [ float(reading["temperature"]) for reading in self.readings ]
+        temperatures = [ float(reading.temperature) for reading in self.readings ]
         temp_avg = np.round(np.average(temperatures), 2)
         temp_std = np.round(np.std(temperatures), 2)
         self.temperature_stability_widget.update_status(str(temp_avg), str(temp_std))
 
     def update_freq_stats(self):
-        frequencies = [ float(reading["frequency"]) for reading in self.readings ]
+        frequencies = [ float(reading.frequency) for reading in self.readings ]
         freq_avg = np.round(np.average(frequencies), 2)
         freq_std = np.round(np.std(frequencies), 2)
         self.frequency_stability_widget.update_status(str(freq_avg), str(freq_std))

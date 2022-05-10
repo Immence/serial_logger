@@ -1,5 +1,7 @@
 from PySide6.QtCore import QObject, Signal
 
+from components.data_containers.reading import Reading
+
 class ProgramStateBridge(QObject):
     """Handles the general program-wide signals"""
     # Serial connection status signals
@@ -19,7 +21,7 @@ class ProgramStateBridge(QObject):
 
     serial_received = Signal(dict)
 
-    reading_received = Signal(dict)
+    reading_received = Signal(Reading)
 
     clear_reading_list = Signal()
 

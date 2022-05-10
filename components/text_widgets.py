@@ -133,7 +133,8 @@ class ToggleTextEdit(QtWidgets.QWidget):
         self.emit_text_change.emit(self.get_text())
 
     def clear(self) -> None:
-        self.__current_text_view.clear()        
+        self.__current_text_view.clear()
+        self.__current_text_view.setText(self.set_default_text())     
 
     def handle_toggle_click(self) -> None:
         self.edit_mode = not self.edit_mode

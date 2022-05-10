@@ -12,11 +12,11 @@ class TextVariableView(QtWidgets.QWidget):
 
     qr_code_change = QtCore.Signal(str)
     file_name_change = QtCore.Signal(str)
+    reading_amount_change = QtCore.Signal(str)
 
     def __init__(self, parent=None):
         QtWidgets.QWidget.__init__(self, parent)
 
-        self.setMaximumHeight(250)
         self.setMinimumWidth(400)
 
         self.layout = QtWidgets.QVBoxLayout()
@@ -25,9 +25,12 @@ class TextVariableView(QtWidgets.QWidget):
         self.qr_code.emit_text_change.connect(self.qr_code_change)
         self.file_name = ToggleTextEditWithTitle(self, "Target file name")
         self.file_name.emit_text_change.connect(self.file_name_change)
+        # self.reading_amount = ToggleTextEditWithTitle(self, "Set reading amount")
+        # self.reading_amount.emit_text_change.connect(self.reading_amount_change)
 
         self.layout.addWidget(self.qr_code)
         self.layout.addWidget(self.file_name)
+        # self.layout.addWidget(self.reading_amount)
         self.layout.addStretch()
         self.setLayout(self.layout)
 
