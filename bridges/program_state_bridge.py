@@ -68,6 +68,7 @@ class ProgramStateBridge(QObject):
         self.stop_reading.connect(self.debug)
         self.qr_code_set.connect(self.debug)
         self.file_name_set.connect(self.debug)
+        self.reset_readings.connect(self.debug)
         
         #interceptor
         self.raise_error.connect(self.intercept_error_signal)

@@ -15,6 +15,7 @@ class DeviceReadingsWidget(QtWidgets.QWidget):
 
     def __init__(self):
         QtWidgets.QWidget.__init__(self)
+        
         self.readings = []
         self.temperature_stability_widget = StabilityComponent("Temperature")
         self.frequency_stability_widget = StabilityComponent("Frequency")

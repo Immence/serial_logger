@@ -29,8 +29,16 @@ class GearheadWidget(QtWidgets.QWidget):
         
         device_readings_layout = QtWidgets.QVBoxLayout()
         self.device_readings_widget = DeviceReadingsWidget()
+        device_readings_title_bar = QtWidgets.QHBoxLayout()
         device_readings_title = QtWidgets.QLabel("Device readings")
-        device_readings_layout.addWidget(device_readings_title, alignment=QtCore.Qt.AlignHCenter)
+        device_readings_reset_button = QtWidgets.QToolButton(self)
+        device_readings_reset_button.clicked.connect(PSB.reset_readings)
+        device_readings_reset_button.setText("Reset")
+        device_readings_reset_button.setIcon(QtGui.QIcon.fromTheme("edit-undo"))
+    
+        device_readings_title_bar.addWidget(device_readings_title,alignment= QtCore.Qt.AlignHCenter)
+        device_readings_title_bar.addWidget(device_readings_reset_button, alignment=QtCore.Qt.AlignRight)
+        device_readings_layout.addLayout(device_readings_title_bar)
         device_readings_layout.addWidget(self.device_readings_widget)
 
         self._PSB.reading_received.connect(self.device_readings_widget.add_reading)
