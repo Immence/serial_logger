@@ -119,11 +119,13 @@ class MainWindow(QtWidgets.QMainWindow):
 
         ## Graph widgets
         line_graph_widget = LineGraphWidget()
+        self.PSB.reset_readings.connect(line_graph_widget.clear_data)
         self.PSB.device_disconnected.connect(line_graph_widget.clear_data)
         self.PSB.reading_received.connect(line_graph_widget.add_reading)
         self.line_graph_dock_widget = CustomDockWidget(line_graph_widget, self, windowed=True, title="Line graph, last 100 readings")
 
         scatter_plot_widget = ScatterGraphWidget()
+        self.PSB.reset_readings.connect(scatter_plot_widget.clear_data)
         self.PSB.device_disconnected.connect(scatter_plot_widget.clear_data)
         self.PSB.reading_received.connect(scatter_plot_widget.add_reading)
         self.scatter_plot_dock_widget = CustomDockWidget(scatter_plot_widget, self, windowed=True, title="Scatter plot, last 10 readings")

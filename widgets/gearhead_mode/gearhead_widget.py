@@ -34,7 +34,7 @@ class GearheadWidget(QtWidgets.QWidget):
         device_readings_layout.addWidget(self.device_readings_widget)
 
         self._PSB.reading_received.connect(self.device_readings_widget.add_reading)
-        self._PSB.clear_reading_list.connect(self.device_readings_widget.clear_readings)
+        self._PSB.reset_readings.connect(self.device_readings_widget.clear_readings)
         
         self.options_view = OptionsLayout(self)
 
