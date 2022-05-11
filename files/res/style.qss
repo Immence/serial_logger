@@ -45,6 +45,8 @@ QPushButton#icon-button {
     width: 40;
 }
 
-SerialMonitor {
-    border: 2px solid black
+QFrame#dockwidget-frame {
+    background: "#10000000"
 }
+
+

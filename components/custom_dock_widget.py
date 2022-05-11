@@ -3,13 +3,24 @@ from PySide6 import QtWidgets
 class CustomDockWidget(QtWidgets.QDockWidget):
     
     windowed : bool = False
+    frame : QtWidgets.QFrame
 
     def __init__(self, widget : QtWidgets.QWidget, parent=None, **kwargs):
         QtWidgets.QDockWidget.__init__(self, parent)
 
-        self.setWidget(widget)
+        self.frame = QtWidgets.QFrame()
+        self.frame.setObjectName("dockwidget-frame")
+        self.frame.setFrameStyle(QtWidgets.QFrame.StyledPanel | QtWidgets.QFrame.Raised)
+        self.frame.setLineWidth(3)
+        self.frame.setMidLineWidth(3)
+
+        layout = QtWidgets.QVBoxLayout()
+        layout.addWidget(widget)
+        self.frame.setLayout(layout)
+
+        self.setWidget(self.frame)
         self.setFeatures(QtWidgets.QDockWidget.NoDockWidgetFeatures)
-        
+
         for key, value in kwargs.items():
             if key == "windowed" and value == True:
                 self.resize(1000, 600)

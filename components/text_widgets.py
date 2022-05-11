@@ -1,4 +1,4 @@
-from PySide6 import QtWidgets, QtCore
+from PySide6 import QtWidgets, QtCore, QtGui
 
 from files.res.icons import Icons
 
@@ -23,18 +23,20 @@ class InputWithConfirmation(QtWidgets.QWidget):
         self.text_field = QtWidgets.QLineEdit()
 
         # Button stuff
-        buttons = QtWidgets.QDialogButtonBox.Ok | QtWidgets.QDialogButtonBox.Cancel
-        self.button_box = QtWidgets.QDialogButtonBox(buttons)
-        self.button_box.accepted.connect(self.accept)
-        self.button_box.rejected.connect(self.reject)
-
-        self.button_box.setMaximumWidth(150)
-
+        cancel_button = QtWidgets.QToolButton(self)
+        cancel_button.setMaximumWidth(40)
+        cancel_button.setIcon(QtGui.QIcon.fromTheme("process-stop"))
+        cancel_button.clicked.connect(self.reject)
+        accept_button = QtWidgets.QToolButton(self)
+        accept_button.setMaximumWidth(40)
+        accept_button.setIcon(QtGui.QIcon.fromTheme("document-save"))
+        accept_button.clicked.connect(self.accept)
         # Signal connection stuff
         # Layout stuff
         self.layout = QtWidgets.QHBoxLayout()
         self.layout.addWidget(self.text_field, 1)
-        self.layout.addWidget(self.button_box, 1)
+        self.layout.addWidget(cancel_button)
+        self.layout.addWidget(accept_button)
         self.setLayout(self.layout)
         
 
@@ -72,7 +74,7 @@ class ToggleTextEdit(QtWidgets.QWidget):
     emit_text_change = QtCore.Signal(str)
     
     text_width_max : int = 200
-    padding_box_width : int = 150
+    button_box_padding : int = 80
     
     edit_mode : bool = False
 
@@ -94,7 +96,7 @@ class ToggleTextEdit(QtWidgets.QWidget):
         self.__current_text_view.setObjectName("display-text-view")
 
         self.__invisible_padding_box = QtWidgets.QWidget(self)
-        self.__invisible_padding_box.setMaximumWidth(150)
+        self.__invisible_padding_box.setMaximumWidth(80)
 
         self.__edit_text_view = InputWithConfirmation(self)
         self.__edit_text_view.hide()
@@ -105,7 +107,7 @@ class ToggleTextEdit(QtWidgets.QWidget):
         self.__edit_text_view.emit_hidden.connect(self.handle_toggle_click)
 
         # Self display size stuff
-        self.setMaximumWidth(self.__toggle_button.width()+self.text_width_max+self.padding_box_width)
+        self.setMaximumWidth(self.__toggle_button.width()+self.text_width_max+self.button_box_padding)
         
 
         self.layout = QtWidgets.QHBoxLayout()
@@ -149,6 +151,12 @@ class ToggleTextEdit(QtWidgets.QWidget):
     def get_text(self) -> str:
         return self.__current_text_view.text()
 
+    def set_text_width_max(self, text_width : int):
+        self.text_width_max = text_width
+        self.__edit_text_view.set_text_field_width(self.text_width_max)
+        self.setMaximumWidth(self.__toggle_button.width()+self.text_width_max+self.button_box_padding)
+
+
 class ToggleTextEditWithTitle(QtWidgets.QFrame):
 
     title : QtWidgets.QLabel
@@ -183,3 +191,6 @@ class ToggleTextEditWithTitle(QtWidgets.QFrame):
     
     def set_text(self, text : str):
         self.text_edit.set_text(text)
+
+    def set_text_width_max(self, text_width : int):
+        self.text_edit.set_text_width_max(text_width)

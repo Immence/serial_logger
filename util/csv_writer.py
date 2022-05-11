@@ -5,7 +5,7 @@ from global_values import OUTPUT_FOLDER
 
 file_name = f"{OUTPUT_FOLDER}/hour-{datetime.now().hour}.csv"
 
-def __open_csv_file() -> bool:
+def __open_csv_file(file_name) -> bool:
     success = False
 
     if os.path.exists(file_name):
@@ -20,7 +20,7 @@ def __open_csv_file() -> bool:
         
     return success
 
-def __verify_csv_has_headers() -> bool:
+def __verify_csv_has_headers(file_name) -> bool:
     sniffer = csv.Sniffer()
     with open(file_name, mode = "r") as _f:
         sample = _f.read(1024)
@@ -29,9 +29,8 @@ def __verify_csv_has_headers() -> bool:
 
         return sniffer.has_header(sample)
 
-
 def write_csv_line(file_name : str, output_dict: dict):
-    if not __open_csv_file():
+    if not __open_csv_file(file_name):
         print(f"Failed to open {file_name}")
         return
     
@@ -40,7 +39,7 @@ def write_csv_line(file_name : str, output_dict: dict):
 
         writer = csv.DictWriter(_csv_file, fieldnames=field_names)
 
-        if not __verify_csv_has_headers():
+        if not __verify_csv_has_headers(file_name):
             writer.writeheader()
 
         writer.writerow(output_dict)

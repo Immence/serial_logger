@@ -3,8 +3,8 @@ from PySide6 import QtWidgets, QtGui, QtCore
 from PySide6.QtCore import Qt
 from bridges.program_state_bridge import ProgramStateBridge
 from util.commands import Commands
-from widgets.line_graph_widget import LineGraphWidget
-from widgets.scatter_graph_widget import ScatterGraphWidget
+from widgets.graphs.line_graph_widget import LineGraphWidget
+from widgets.graphs.scatter_graph_widget import ScatterGraphWidget
 from widgets.port_selector import PortSelector
 
 from widgets.serial_monitor import SerialMonitor
@@ -17,7 +17,7 @@ from handlers.response_handler import ResponseHandler
 from widgets.toolbars.top_toolbar import TopToolBar
 from widgets.toolbars.bottom_toolbar import BottomToolBar
 
-from widgets.gearhead_widget import GearheadWidget
+from widgets.gearhead_mode.gearhead_widget import GearheadWidget
 
 from global_values import COMMAND_QUEUE, WIN_HEIGHT, WIN_WIDTH, BAUD_RATE
 from widgets.views.text_variable_view import TextVariableView
@@ -96,7 +96,6 @@ class MainWindow(QtWidgets.QMainWindow):
         QtCore.QTimer.singleShot(500, lambda :  COMMAND_QUEUE.put(Commands.get_qr_code()))
         
     def handle_device_disconnected(self):
-        print("HANDLE DEVICE DISCONNECTED")
         pass
 
     def init_dock_widgets(self):
@@ -120,12 +119,12 @@ class MainWindow(QtWidgets.QMainWindow):
 
         ## Graph widgets
         line_graph_widget = LineGraphWidget()
-        self.PSB.device_disconnected.connect(line_graph_widget.clear_data())
+        self.PSB.device_disconnected.connect(line_graph_widget.clear_data)
         self.PSB.reading_received.connect(line_graph_widget.add_reading)
         self.line_graph_dock_widget = CustomDockWidget(line_graph_widget, self, windowed=True, title="Line graph, last 100 readings")
 
         scatter_plot_widget = ScatterGraphWidget()
-        self.PSB.device_disconnected.connect(scatter_plot_widget.clear_data())
+        self.PSB.device_disconnected.connect(scatter_plot_widget.clear_data)
         self.PSB.reading_received.connect(scatter_plot_widget.add_reading)
         self.scatter_plot_dock_widget = CustomDockWidget(scatter_plot_widget, self, windowed=True, title="Scatter plot, last 10 readings")
 

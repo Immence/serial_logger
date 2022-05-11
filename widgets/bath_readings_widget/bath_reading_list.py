@@ -1,7 +1,7 @@
 from PySide6 import QtCore, QtWidgets
 from typing import List
+from components.data_containers.bath_reading import BathReading
 
-from components.data_containers.reading import Reading
 class ReadingListObjectWidget(QtWidgets.QFrame):
 
     _freq_label : QtWidgets.QLabel
@@ -18,7 +18,7 @@ class ReadingListObjectWidget(QtWidgets.QFrame):
         # Upper layout items
         upper_layout = QtWidgets.QHBoxLayout()
         self._freq_label = QtWidgets.QLabel()
-        self._freq_unit_label = QtWidgets.QLabel("Hz")
+        self._freq_unit_label = QtWidgets.QLabel("SG")
         upper_layout.addWidget(self._freq_label, 1, QtCore.Qt.AlignHCenter)
         upper_layout.addWidget(self._freq_unit_label)
         # Lower layout items
@@ -58,7 +58,7 @@ class ReadingListWidget(QtWidgets.QListWidget):
                 item_data = item.data(QtCore.Qt.UserRole)
                 widget = ReadingListObjectWidget()
                 widget.setIndexLabel(item_data["index"])
-                widget.setFreqLabel(item_data["frequency"])
+                widget.setFreqLabel(item_data["sg"])
                 widget.setTempLabel(item_data["temperature"])
                 item.setSizeHint(widget.sizeHint())
                 self.setItemWidget(item, widget)
@@ -77,12 +77,12 @@ class ReadingList(QtWidgets.QWidget):
 
         layout.addWidget(self.reading_list_widget)
 
-    def update_data(self, readings: List[Reading]):
+    def update_data(self, readings: List[BathReading]):
         self.reading_list_widget.clear()
         for index, reading in enumerate(reversed(readings)):
             list_widget_item = QtWidgets.QListWidgetItem(self.reading_list_widget)
             # store the data needed to create/re-create the custom widget
-            list_widget_item.setData(QtCore.Qt.UserRole, {"index": len(readings)-index, "frequency": reading.frequency, "temperature": reading.temperature})
+            list_widget_item.setData(QtCore.Qt.UserRole, {"index": len(readings)-index, "sg": reading.sg, "temperature": reading.temperature})
             self.reading_list_widget.addItem(list_widget_item)
     
     def clear_data(self):

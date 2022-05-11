@@ -23,7 +23,6 @@ class PortScanner(QtCore.QThread):
         ports = []
         for port, desc, hwid in sorted(list_ports.comports()):
             ports.append(port)
-
         filtered_ports = self.filter_ports(ports)
         if len(filtered_ports) != len(self.__ports):
             # Publish port change

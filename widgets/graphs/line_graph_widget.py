@@ -7,7 +7,7 @@ import pyqtgraph as pg
 
 from random import randint
 
-from components.data_containers.reading import Reading
+from components.data_containers.device_reading import DeviceReading
 
 class LineGraphWidget(QtWidgets.QWidget):
     
@@ -77,7 +77,7 @@ class LineGraphWidget(QtWidgets.QWidget):
         self.p2.linkedViewChanged(self.p1.vb, self.p2.XAxis)
 
 
-    def add_reading(self, reading : Reading = None):
+    def add_reading(self, reading : DeviceReading = None):
         if len(self.frequencies) > self.max_reading_length:
             self.frequencies = self.frequencies[1:]
             self.temperatures = self.temperatures[1:]

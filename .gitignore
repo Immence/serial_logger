@@ -1,6 +1,7 @@
 #Output folder
 output/*
 output_qc/*
+slogger
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

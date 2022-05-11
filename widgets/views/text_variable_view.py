@@ -16,11 +16,9 @@ class TextVariableView(QtWidgets.QWidget):
 
     def __init__(self, parent=None):
         QtWidgets.QWidget.__init__(self, parent)
-
-        self.setMinimumWidth(400)
-
+    
         self.layout = QtWidgets.QVBoxLayout()
-        
+        self.setMinimumWidth(320)
         self.qr_code = ToggleTextEditWithTitle(self, "QR code")
         self.qr_code.emit_text_change.connect(self.qr_code_change)
         self.file_name = ToggleTextEditWithTitle(self, "Target file name")

@@ -5,7 +5,7 @@ import time
 from bridges.program_state_bridge import ProgramStateBridge
 from util import log_writer
 from util.exceptions import CommunicationFailedException
-from components.data_containers.reading import Reading
+from components.data_containers.device_reading import DeviceReading
 
 unit_dict = {           # Fuck it, I might handle unit stuff at a later point if it's necessary.
     "c": "Celsius",
@@ -53,7 +53,7 @@ class ResponseHandler(QtCore.QObject):
         
         elif text.startswith("#"):
             parsed_text = ResponseHandler.__interpret_response(text)
-            if type(parsed_text) is Reading:
+            if type(parsed_text) is DeviceReading:
                 self._PSB.reading_received.emit(parsed_text)
             else:
                 if "qrcode" in parsed_text:
@@ -76,7 +76,7 @@ class ResponseHandler(QtCore.QObject):
                     elif word[len(word)-1].isnumeric():
                         values.append(word)
                 zip_iterator = zip(headers, values)
-                return Reading(**dict(zip_iterator))
+                return DeviceReading(**dict(zip_iterator))
 
             elif "frequency" in word_list:
                 headers.append("low")

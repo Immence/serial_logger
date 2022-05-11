@@ -2,7 +2,8 @@ from PySide6 import QtCore
 
 from dataclasses import asdict
 from bridges.program_state_bridge import ProgramStateBridge
-from components.data_containers.reading import Reading
+from components.data_containers.bath_reading import BathReading
+from components.data_containers.device_reading import DeviceReading
 from util.csv_writer import write_csv_line
 from util.log_writer import write_log_line
 
@@ -16,6 +17,7 @@ class Logger(QtCore.QObject):
     target_dir : str
     file_name : str = None
     log_file_name : str = None
+    latest_bath_reading : BathReading = BathReading("", "")
     _PSB : ProgramStateBridge
 
     def __init__(self, PSB : ProgramStateBridge):
@@ -29,6 +31,9 @@ class Logger(QtCore.QObject):
         self._PSB.file_name_set.connect(self.set_file_name)
 
     def set_qr_code(self, qr_code : str):
+        if qr_code == "Not set":
+            return
+
         qr_code = qr_code.upper()
 
         if not Validators.validate_qr_code(qr_code):
@@ -58,10 +63,11 @@ class Logger(QtCore.QObject):
             e.message = "Something went wrong when writing to the log file."
             self._PSB.raise_error.emit(e)
 
-    def handle_reading_received(self, reading : Reading):
+    def handle_reading_received(self, reading : DeviceReading):
         try:
-            write_csv_line(self.file_name, {"qr_code" : self.qr_code, **asdict(reading)})
+            write_csv_line(self.file_name, {"qr_code" : self.qr_code, **asdict(reading), **self.latest_bath_reading.to_dict()})
         except Exception as e:
+            print(f"Exception type: {type(e)}\nException message: {e.args[0]}")
             e.message = "Something went wrong when writing to the CSV file. Make sure it is not in use by another program."
             self._PSB.raise_error.emit(e)
 

@@ -3,7 +3,7 @@ from PySide6 import QtWidgets
 import pyqtgraph as pg
 import numpy as np
 
-from components.data_containers.reading import Reading
+from components.data_containers.device_reading import DeviceReading
 
 class ScatterGraphWidget(QtWidgets.QWidget):
     
@@ -39,7 +39,7 @@ class ScatterGraphWidget(QtWidgets.QWidget):
         self.setLayout(layout)
 
 
-    def add_reading(self, reading : Reading = None):
+    def add_reading(self, reading : DeviceReading = None):
         if len(self.frequencies) > self.max_reading_length:
             self.frequencies = self.frequencies[1:]
             self.spots = self.spots[1:]
