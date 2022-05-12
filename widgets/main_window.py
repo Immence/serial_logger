@@ -2,7 +2,9 @@ from PySide6 import QtWidgets, QtGui, QtCore
 
 from PySide6.QtCore import Qt
 from bridges.program_state_bridge import ProgramStateBridge
+from handlers.settings_file_handler import SettingsFileHandler
 from util.commands import Commands
+from widgets.dialogs.mode_picker_dialog import ModePickerDialog
 from widgets.graphs.line_graph_widget import LineGraphWidget
 from widgets.graphs.scatter_graph_widget import ScatterGraphWidget
 from widgets.port_selector import PortSelector
@@ -40,8 +42,12 @@ class MainWindow(QtWidgets.QMainWindow):
     text_variable_dock_widget : CustomDockWidget
     serial_monitor_dock_widget : CustomDockWidget
 
+    central_widget : QtWidgets.QWidget = None
+    current_mode : str
+
     def __init__(self):
         QtWidgets.QMainWindow.__init__(self)
+        self.current_mode = SettingsFileHandler().get_program_mode()
         self.PSB = ProgramStateBridge()
         self.PSB.emit_error.connect(self.raise_error_dialog)
 
@@ -74,13 +80,22 @@ class MainWindow(QtWidgets.QMainWindow):
         self.add_dock_widgets()
 
         ### Set layout
-        self.central_widget = GearheadWidget(self.PSB)
-        self.setCentralWidget(self.central_widget)
+        self.run_selected_mode()
         self.__create_toolbars()
         self.resize(WIN_WIDTH, WIN_HEIGHT)
     
+    def run_selected_mode(self):
+        print("Running selected mode")
+        if self.current_mode == "gearhead":
+            print("Running gearhead")
+            self.central_widget = GearheadWidget(self.PSB)
+        elif self.current_mode == "qc":
+            print("Running QC")
+            pass
+        self.setCentralWidget(self.central_widget)
+
     def __create_toolbars(self):
-        top_toolbar = TopToolBar(self, self.PSB)
+        top_toolbar = TopToolBar(self, self.PSB, self.raise_mode_select_dialog)
         bottom_toolbar = BottomToolBar(self, self.serial_monitor_dock_widget.toggle_window, self.line_graph_dock_widget.toggle_window, self.scatter_plot_dock_widget.toggle_window)
         
         self.addToolBar(Qt.TopToolBarArea, top_toolbar)
@@ -142,6 +157,19 @@ class MainWindow(QtWidgets.QMainWindow):
         self.addDockWidget(Qt.BottomDockWidgetArea, self.serial_monitor_dock_widget)
         self.addDockWidget(Qt.BottomDockWidgetArea, self.line_graph_dock_widget)
         self.addDockWidget(Qt.BottomDockWidgetArea, self.scatter_plot_dock_widget)
+
+    def raise_mode_select_dialog(self):
+        dlg = ModePickerDialog(self)
+
+        if dlg.exec_():
+            print("Success")
+            if dlg.selected_mode == self.current_mode:
+                return
+            else:
+                self.current_mode = dlg.selected_mode
+                self.run_selected_mode()
+        else:
+            print("Cancel")
 
     def raise_error_dialog(self, exception: Exception):
         dlg = CustomErrorDialog(exception, self)
