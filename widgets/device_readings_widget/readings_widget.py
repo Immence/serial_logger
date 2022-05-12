@@ -1,5 +1,6 @@
 from PySide6 import QtWidgets
 from typing import List
+from bridges.local_state_bridge import LocalStateBridge
 from components.data_containers.device_reading import DeviceReading
 
 from widgets.device_readings_widget.reading_list import ReadingList
@@ -12,6 +13,7 @@ class DeviceReadingsWidget(QtWidgets.QWidget):
     readings: List[DeviceReading]
     temperature_stability_widget : StabilityComponent
     frequency_stability_widget : StabilityComponent
+
 
     def __init__(self):
         QtWidgets.QWidget.__init__(self)
@@ -56,3 +58,7 @@ class DeviceReadingsWidget(QtWidgets.QWidget):
         freq_avg = np.round(np.average(frequencies), 2)
         freq_std = np.round(np.std(frequencies), 2)
         self.frequency_stability_widget.update_status(str(freq_avg), str(freq_std))
+
+    def connect_local_state_signals(self, LSB : LocalStateBridge):
+        LSB.bath_temperature_set.connect(self.set_bath_temperature)
+        LSB.bath_sg_set.connect(self.set_bath_sg)

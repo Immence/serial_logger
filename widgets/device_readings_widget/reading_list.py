@@ -4,45 +4,53 @@ from typing import List
 from components.data_containers.device_reading import DeviceReading
 class ReadingListObjectWidget(QtWidgets.QFrame):
 
+    _index_label : QtWidgets.QLabel
+    _sg_label : QtWidgets.QLabel
     _freq_label : QtWidgets.QLabel
     _temp_label : QtWidgets.QLabel
-    _index_label : QtWidgets.QLabel
 
-    _freq_unit_label : QtWidgets.QLabel
-    _temp_unit_label : QtWidgets.QLabel
+    _sg_unit = "SG"
+    _freq_unit = "Hz"
+    _temp_unit = u"\N{DEGREE SIGN}C"
 
     def __init__(self, parent=None):
         QtWidgets.QFrame.__init__(self, parent)
         self.text_layout = QtWidgets.QVBoxLayout()
+        self.sg_layout = QtWidgets.QVBoxLayout()
         self.widget_layout = QtWidgets.QHBoxLayout()
+        # SG layout items
+        self._sg_label = QtWidgets.QLabel()
+        self.sg_layout.addWidget(self._sg_label)
         # Upper layout items
         upper_layout = QtWidgets.QHBoxLayout()
         self._freq_label = QtWidgets.QLabel()
-        self._freq_unit_label = QtWidgets.QLabel("Hz")
-        upper_layout.addWidget(self._freq_label, 1, QtCore.Qt.AlignHCenter)
-        upper_layout.addWidget(self._freq_unit_label)
+        upper_layout.addWidget(self._freq_label, 1, QtCore.Qt.AlignRight)
         # Lower layout items
         lower_layout = QtWidgets.QHBoxLayout()
         self._temp_label = QtWidgets.QLabel()
-        self._temp_unit_label = QtWidgets.QLabel(u"\N{DEGREE SIGN}C")
-        lower_layout.addWidget(self._temp_label, 1, QtCore.Qt.AlignHCenter)
-        lower_layout.addWidget(self._temp_unit_label)
+        lower_layout.addWidget(self._temp_label, 1, QtCore.Qt.AlignRight)
         #Final layout creation
         self._index_label = QtWidgets.QLabel()
         self.text_layout.addLayout(upper_layout)
         self.text_layout.addLayout(lower_layout)
         self.widget_layout.addWidget(self._index_label, 0)
+        self.widget_layout.addLayout(self.sg_layout, 1)
         self.widget_layout.addLayout(self.text_layout, 1)
         self.setLayout(self.widget_layout)
 
     def setIndexLabel(self, index):
         if index == 10:
             self.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Raised)
+        else:
+            self.setFrameStyle(QtWidgets.QFrame.Panel | QtWidgets.QFrame.Sunken)
         self._index_label.setText(str(index))
+    
+    def setSgLabel(self, sg):
+        self._sg_label.setText(f"{str(sg)} {self._sg_unit}")
     def setFreqLabel(self, freq):
-        self._freq_label.setText(str(freq))
+        self._freq_label.setText(f"{str(freq)} {self._freq_unit}")
     def setTempLabel(self, temp):
-        self._temp_label.setText(str(temp))
+        self._temp_label.setText(f"{str(temp)}  {self._temp_unit}")
 
 
 class ReadingListWidget(QtWidgets.QListWidget):
@@ -58,6 +66,7 @@ class ReadingListWidget(QtWidgets.QListWidget):
                 item_data = item.data(QtCore.Qt.UserRole)
                 widget = ReadingListObjectWidget()
                 widget.setIndexLabel(item_data["index"])
+                widget.setSgLabel(item_data["sg"])
                 widget.setFreqLabel(item_data["frequency"])
                 widget.setTempLabel(item_data["temperature"])
                 item.setSizeHint(widget.sizeHint())
@@ -82,7 +91,7 @@ class ReadingList(QtWidgets.QWidget):
         for index, reading in enumerate(reversed(readings)):
             list_widget_item = QtWidgets.QListWidgetItem(self.reading_list_widget)
             # store the data needed to create/re-create the custom widget
-            list_widget_item.setData(QtCore.Qt.UserRole, {"index": len(readings)-index, "frequency": reading.frequency, "temperature": reading.temperature})
+            list_widget_item.setData(QtCore.Qt.UserRole, {"index": len(readings)-index, "sg": reading.sg, "frequency": reading.frequency, "temperature": reading.temperature})
             self.reading_list_widget.addItem(list_widget_item)
     
     def clear_data(self):

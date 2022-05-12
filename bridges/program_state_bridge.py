@@ -40,7 +40,8 @@ class ProgramStateBridge(QObject):
     qr_code_received = Signal(str)
     qr_code_set = Signal(str)
     file_name_set = Signal(str)
-
+    bath_sg_set = Signal(str)
+    bath_temperature_set = Signal(str)
     # Top bar signals
     update_bath_state = Signal()
     export_data = Signal()
@@ -69,6 +70,8 @@ class ProgramStateBridge(QObject):
         self.qr_code_set.connect(self.debug)
         self.file_name_set.connect(self.debug)
         self.reset_readings.connect(self.debug)
+        self.bath_sg_set.connect(self.debug)
+        self.bath_temperature_set.connect(self.debug)
         
         #interceptor
         self.raise_error.connect(self.intercept_error_signal)

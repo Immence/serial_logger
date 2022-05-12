@@ -29,6 +29,8 @@ class Logger(QtCore.QObject):
         self._PSB.device_disconnected.connect(self.handle_device_disconnect)
         self._PSB.qr_code_set.connect(self.set_qr_code)
         self._PSB.file_name_set.connect(self.set_file_name)
+        self._PSB.bath_temperature_set.connect(self.handle_bath_reading_temp_update)
+        self._PSB.bath_sg_set.connect(self.handle_bath_reading_sg_update)
 
     def set_qr_code(self, qr_code : str):
         if qr_code == "Not set":
@@ -53,6 +55,12 @@ class Logger(QtCore.QObject):
     def handle_device_disconnect(self):
         self.qr_code = None
     
+    def handle_bath_reading_temp_update(self, temperature : str):
+        self.latest_bath_reading = BathReading(temperature, self.latest_bath_reading.sg)
+
+    def handle_bath_reading_sg_update(self, sg : str):
+        self.latest_bath_reading = BathReading(self.latest_bath_reading.temperature, sg)
+
     def log_communication(self, text : str):
         try:
             if not self.log_file_name:

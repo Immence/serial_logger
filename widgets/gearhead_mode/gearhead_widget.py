@@ -1,4 +1,5 @@
 from PySide6 import QtWidgets, QtCore, QtGui
+from bridges.local_state_bridge import LocalStateBridge
 from bridges.program_state_bridge import ProgramStateBridge
 from widgets.views.options_view import OptionsLayout
 
@@ -10,7 +11,7 @@ from components.gif_component import GifComponent
 
 class GearheadWidget(QtWidgets.QWidget):
     _PSB : ProgramStateBridge
-    
+
     device_readings_widget : DeviceReadingsWidget
     in_progress_indicator : QtWidgets.QLabel
     options_view : OptionsLayout
@@ -27,6 +28,7 @@ class GearheadWidget(QtWidgets.QWidget):
         self._PSB.device_disconnected.connect(self.handle_device_disconnected)
         self.loading_gif_path = "cool_loading_1.gif"
         
+        # Device readings stuff
         device_readings_layout = QtWidgets.QVBoxLayout()
         self.device_readings_widget = DeviceReadingsWidget()
         device_readings_title_bar = QtWidgets.QHBoxLayout()
@@ -41,11 +43,16 @@ class GearheadWidget(QtWidgets.QWidget):
         device_readings_layout.addLayout(device_readings_title_bar)
         device_readings_layout.addWidget(self.device_readings_widget)
 
+        # Device readings signal
         self._PSB.reading_received.connect(self.device_readings_widget.add_reading)
         self._PSB.reset_readings.connect(self.device_readings_widget.clear_readings)
         
-        self.options_view = OptionsLayout(self)
+        # Options
+        self.options_view = OptionsLayout(self)    
+        self.options_view.bath_temperature_change.connect(self._PSB.bath_temperature_set)
+        self.options_view.bath_sg_change.connect(self._PSB.bath_sg_set)
 
+        # Rest
         self._PSB.start_reading.connect(self.handle_start_reading)
         self._PSB.stop_reading.connect(self.handle_stop_reading)
 
