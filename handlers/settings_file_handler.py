@@ -55,7 +55,7 @@ class SettingsFileHandler:
                     raise Exception(
                         f'Invalid value in {self.settings_file_path} under section [{section}] for option "{option}". Must be of type {option_type}')
 
-    def update_mode(self, mode : str):
+    def set_mode(self, mode : str):
         self.config["GENERAL"]["mode"] = mode
         with open(self.settings_file_path, "w") as config_file:
             self.config.write(config_file)

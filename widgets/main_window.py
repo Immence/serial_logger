@@ -20,6 +20,7 @@ from widgets.toolbars.top_toolbar import TopToolBar
 from widgets.toolbars.bottom_toolbar import BottomToolBar
 
 from widgets.gearhead_mode.gearhead_widget import GearheadWidget
+from widgets.qc_mode.qc_mode_main_widget import QcModeMainWidget
 
 from global_values import COMMAND_QUEUE, WIN_HEIGHT, WIN_WIDTH, BAUD_RATE
 from widgets.views.text_variable_view import TextVariableView
@@ -91,7 +92,8 @@ class MainWindow(QtWidgets.QMainWindow):
             self.central_widget = GearheadWidget(self.PSB)
         elif self.current_mode == "qc":
             print("Running QC")
-            pass
+            self.central_widget = QcModeMainWidget(self.PSB)
+        SettingsFileHandler().set_mode(self.current_mode)
         self.setCentralWidget(self.central_widget)
 
     def __create_toolbars(self):

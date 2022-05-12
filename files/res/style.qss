@@ -49,4 +49,11 @@ QFrame#dockwidget-frame {
     background: "#10000000"
 }
 
+QcReadingListObjectWidget {
+    background: "#FFFFFF"
+}
+
+QcReadingListObjectWidget::outside_threshold {
+    background: "#10000000"
+}
 

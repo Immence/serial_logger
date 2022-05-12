@@ -1,13 +1,11 @@
-from PySide6 import QtWidgets, QtCore, QtGui
 from bridges.local_state_bridge import LocalStateBridge
 from bridges.program_state_bridge import ProgramStateBridge
+from components.gif_component import GifComponent
+from PySide6 import QtCore, QtGui, QtWidgets
+from widgets.device_readings_widget.readings_widget import DeviceReadingsWidget
 from widgets.views.options_view import OptionsLayout
-
 from widgets.views.text_variable_view import TextVariableView
 
-from widgets.device_readings_widget.readings_widget import DeviceReadingsWidget
-from widgets.bath_readings_widget.bath_readings_widget import BathReadingsWidget
-from components.gif_component import GifComponent
 
 class GearheadWidget(QtWidgets.QWidget):
     _PSB : ProgramStateBridge
