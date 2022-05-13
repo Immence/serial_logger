@@ -1,13 +1,14 @@
-from PySide6 import QtWidgets
 from bridges.program_state_bridge import ProgramStateBridge
-
-from util.commands import Commands
 from global_values import COMMAND_QUEUE
+from PySide6 import QtWidgets
+from util.commands import Commands
+
 
 class CommandButton(QtWidgets.QPushButton):
 
     def __init__(self, name, fun):
         QtWidgets.QPushButton.__init__(self, name)
+        self.setObjectName("standard-button")
         self.fun = fun
         self.clicked.connect(self.on_click)
         self.setDisabled(True)

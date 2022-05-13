@@ -2,6 +2,7 @@ from datetime import datetime
 
 from bridges.program_state_bridge import ProgramStateBridge
 from components.field_with_title import FieldWithTitle
+from components.start_stop_button import StartStopButton
 from global_values import COMMAND_QUEUE
 from PySide6 import QtCore, QtGui, QtWidgets
 from util.commands import Commands
@@ -144,16 +145,13 @@ class QcModeMainWidget(QtWidgets.QWidget):
 
     
     def create_run_status_layout(self) -> QtWidgets.QVBoxLayout:
-        self.run_status_frame = QtWidgets.QLabel("")
-        super_special_font = QtGui.QFont("Helvetica", pointSize=28, weight = QtGui.QFont.Bold)
-        self.run_status_frame.setFont(super_special_font)
-        self.run_status_frame.setMaximumHeight(200)
+        self.run_button = StartStopButton(self)
         self.worst_reading_frame = SingleReadingComponent("Worst reading")
         self.worst_reading_deviance_frame = FieldWithTitle("Deviance")
         self.latest_reading_frame = SingleReadingComponent("Latest reading")
         self._PSB.reading_received.connect(self.latest_reading_frame.update_reading)
         run_status_layout = QtWidgets.QVBoxLayout()
-        run_status_layout.addWidget(self.run_status_frame)
+        run_status_layout.addWidget(self.run_button)
         run_status_layout.addWidget(self.worst_reading_frame)
         run_status_layout.addWidget(self.worst_reading_deviance_frame)
         run_status_layout.addWidget(self.latest_reading_frame)

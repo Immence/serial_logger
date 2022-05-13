@@ -135,6 +135,6 @@ class QcReadingList(QtWidgets.QWidget):
     def clear_data(self):
         self.reading_list_widget.clear()
     
-    def set_list_item_type(self, list_item_type):
+    def set_list_item_type(self, list_item_type : object):
         self.reading_list_widget.set_list_item_type(list_item_type)
 
