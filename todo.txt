@@ -1,11 +1,8 @@
 - Create file handler between response_handler and the writers
 - Give feedback when a device is connected
-- Add export function
 - Add function to discover stable temperature
-- Reject logging when no barcode is set
-- Reset barcode when device is disconnected
-- Remove old files from dir (every 2 weeks?)
-- Add enter to submit barcode
 - Send data directly to google sheet
-- Add line between QR-codes ? 
 - Add button to turn off automatically scrolling textbox
+
+- Make logging happen in the central widget
+- Make the reading list widget more generalized and also working you know

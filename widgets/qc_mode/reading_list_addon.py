@@ -45,18 +45,19 @@ class QcReadingListObjectWidget(QtWidgets.QFrame):
         self.setLayout(self.widget_layout)
 
     def set_data(self, data):
+        print("SET DATA", data)
         self.set_index_label(data["index"])
         self.set_sg_label(data["sg"])
         self.set_freq_label(data["frequency"])
         self.set_temp_label(data["temperature"])
 
-        if "sg_diff" and "pass_threshold" in data:
-            self.set_sg_diff_label(data["sg_diff"], data["pass_threshold"])
-            self.check_outside_threshold(data["sg_diff"], data["pass_threshold"])
-        elif "sg_diff" in data:
-            self.set_sg_diff_label(data["sg_diff"])
+        if "deviance" and "pass_threshold" in data:
+            self.set_sg_diff_label(data["deviance"], data["pass_threshold"])
+            self.check_outside_threshold(data["deviance"], data["pass_threshold"])
+        elif "deviance" in data:
+            self.set_sg_diff_label(data["deviance"], data["pass_threshold"])
         else:
-            self.set_sg_diff_label(None)
+            self.set_sg_diff_label(None, None)
 
     def set_index_label(self, index):
         if index == 10:
@@ -71,18 +72,18 @@ class QcReadingListObjectWidget(QtWidgets.QFrame):
         self._freq_label.setText(f"{str(freq)} {self._freq_unit}")
     def set_temp_label(self, temp):
         self._temp_label.setText(f"{str(temp)}  {self._temp_unit}")
-    def set_sg_diff_label(self, sg_diff):
-        if sg_diff is None:
+    def set_sg_diff_label(self, deviance, pass_threshold):
+        if deviance is None:
             self._sg_diff_label.setText("diff: Not set")
         else:
-            self._sg_diff_label.setText(f"diff: {str(sg_diff)} {self._freq_unit}")
+            self._sg_diff_label.setText(f"diff: {str(deviance)} {self._sg_unit}")
     
-    def check_outside_threshold(self, sg_diff : str, pass_threshold : str):
-        self._sg_diff_label.setText(f"diff: {str(sg_diff)} {self._freq_unit}")
-        sg_diff = float(sg_diff)
+    def check_outside_threshold(self, deviance : str, pass_threshold : str):
+        self._sg_diff_label.setText(f"diff: {str(deviance)} {self._freq_unit}")
+        deviance = float(deviance)
         pass_threshold = float(pass_threshold)
 
-        if abs(sg_diff) > pass_threshold:
+        if abs(deviance) > pass_threshold:
             self.outside_threshold = True
 
 
@@ -100,6 +101,7 @@ class ReadingListWidget(QtWidgets.QListWidget):
     def handleRowsInserted(self, parent, first, last):
         for index in range(first, last + 1):
             item = self.item(index)
+            print("ITEM", item.data)
             if item is not None and self.itemWidget(item) is None:
                 widget = self.list_item_type()
                 widget.set_data(item.data(QtCore.Qt.UserRole))
@@ -129,7 +131,7 @@ class QcReadingList(QtWidgets.QWidget):
             list_widget_item = QtWidgets.QListWidgetItem(self.reading_list_widget)
                 
             # store the data needed to create/re-create the custom widget
-            list_widget_item.setData(QtCore.Qt.UserRole, {"index": len(readings)-index, **asdict(reading), **kwargs})
+            list_widget_item.setData(QtCore.Qt.UserRole, {"index": len(readings)-index, **reading.to_dict()}, **kwargs)
             self.reading_list_widget.addItem(list_widget_item)
     
     def clear_data(self):

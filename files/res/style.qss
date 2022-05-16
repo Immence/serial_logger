@@ -38,16 +38,14 @@ QPushButton#standard-button {
     padding: 10px;
 }
 
-StartStopButton {
-
-}
-/* StartStopButton[ready="true"][in_progress="false"] {
+StartStopButton#ready{
 
     background-color: #2ABf9E;
     
     padding: 10px;
-} */
-StartStopButton::in_progress {
+}
+
+StartStopButton#in-progress {
 
     background-color: #c95b4b;
     

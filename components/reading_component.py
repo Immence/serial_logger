@@ -1,55 +1,60 @@
-from PySide6 import QtWidgets, QtGui
-
 from files.res.font_styles import Fonts
+from PySide6 import QtGui, QtWidgets
+
+from components.data_containers.device_reading import QcDeviceReading
 
 
-class ReadingComponent(QtWidgets.QWidget):
+class QcReadingComponent(QtWidgets.QWidget):
     
-    freq: float
-    temp: float
-    freq_comp: float
-    sg: float
+    reading : QcDeviceReading
+    freq_label : QtWidgets.QLabel
+    temp_label : QtWidgets.QLabel
+    sg_label : QtWidgets.QLabel
+    deviance_label : QtWidgets.QLabel
 
-    def __init__(self, freq, temp, freq_comp, sg, index = 0):
-        QtWidgets.QWidget.__init__(self)
+    def __init__(self, parent=None):
+        QtWidgets.QWidget.__init__(self, parent)
 
-        self.freq = freq
-        self.temp = temp
-        self.freq_comp = freq_comp
-        self.sg = sg
+        self.freq_label = QtWidgets.QLabel(self, objectName="title")
+        self.temp_label = QtWidgets.QLabel(self, objectName="title")
+        self.sg_label = QtWidgets.QLabel(self, objectName="title")
+        self.deviance_label = QtWidgets.QLabel(self, objectName="title")
         
-        self.setMaximumHeight(100)
-        self.setMaximumWidth(400)
-        layout = QtWidgets.QGridLayout()
+        self.layout = QtWidgets.QVBoxLayout()
         
-        layout.setSpacing(0)
-        
-        if index > 0:
-            index_label = QtWidgets.QLabel(str(index))
-            layout.addWidget(index_label, 0, 0, 2, 1)
-        
-        frequency = QtWidgets.QLabel("Hz")
-        temperature = QtWidgets.QLabel(u"\N{DEGREE SIGN}C")
-        gravity = QtWidgets.QLabel("SG")
+        title_layout = QtWidgets.QHBoxLayout()
+        value_layout = QtWidgets.QHBoxLayout()
+        frequency_unit = QtWidgets.QLabel("Hz", objectName="body")
+        temperature_unit = QtWidgets.QLabel(u"\N{DEGREE SIGN}C", objectName="body")
+        gravity_unit = QtWidgets.QLabel("SG", objectName="body")
+        deviance_unit = QtWidgets.QLabel("Deviance SG", objectName="body")   
 
-        freq_value = QtWidgets.QLabel(self.freq)
-        temperature_value = QtWidgets.QLabel(self.temp)
-        gravity_value = QtWidgets.QLabel(self.sg)
+        title_layout.addWidget(frequency_unit, 1)
+        title_layout.addWidget(temperature_unit, 1)
+        title_layout.addWidget(gravity_unit, 1)
+        title_layout.addWidget(deviance_unit)
+
+        value_layout.addWidget(self.freq_label,1)
+        value_layout.addWidget(self.temp_label,1)
+        value_layout.addWidget(self.sg_label, 1)
+        value_layout.addWidget(self.deviance_label)
+        self.layout.addLayout(title_layout, 1)
+        self.layout.addLayout(value_layout, 1)
+        self.setLayout(self.layout)
+
+    def clear(self):
+        self.reading = None
+        self.freq_label.clear()
+        self.temp_label.clear()
+        self.sg_label.clear()
+        self.deviance_label.clear()
         
-        layout.addWidget(frequency, 0, 1)
-        layout.addWidget(temperature, 0, 2)
-        layout.addWidget(gravity, 0, 3)
-        layout.addWidget(freq_value, 1, 1)
-        layout.addWidget(temperature_value, 1, 2)
-        layout.addWidget(gravity_value, 1, 3)
-        self.setLayout(layout)
-
-    def clear_component(self):
-        for i in reversed(range(self.layout().count())): 
-            widget = self.layout().itemAt(i).widget()
-            self.layout().removeWidget(widget)
-            widget.setParent(None)  
-
+    def set_data(self, reading : QcDeviceReading):
+        self.reading = reading
+        self.freq_label.setText(reading.frequency)
+        self.temp_label.setText(reading.temperature)
+        self.sg_label.setText(reading.sg)
+        self.deviance_label.setText("{:e}".format(reading.deviance()))
     
 
     

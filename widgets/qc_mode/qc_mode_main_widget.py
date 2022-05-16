@@ -1,23 +1,24 @@
-from datetime import datetime
 
 from bridges.program_state_bridge import ProgramStateBridge
+from components.data_containers.device_reading import (DeviceReading,
+                                                       QcDeviceReading)
 from components.field_with_title import FieldWithTitle
 from components.start_stop_button import StartStopButton
+from components.success_indicator import SuccessIndicator
 from global_values import COMMAND_QUEUE
 from PySide6 import QtCore, QtGui, QtWidgets
 from util.commands import Commands
-from widgets.qc_mode.last_reading_component import SingleReadingComponent
 from widgets.qc_mode.local_state_bridge import LocalStateBridge
 from widgets.qc_mode.readings_widget_addon import QcReadingsWidget
+from widgets.qc_mode.worst_reading_component import WorstReadingComponent
 from widgets.views.options_view import QcOptionsLayout
 
-QC_OUTPUT_FOLDER = "output_qc"
 
 class QcModeMainWidget(QtWidgets.QWidget):
     _PSB : ProgramStateBridge
     _LSB: LocalStateBridge
 
-    target_sg: float = None
+    target_sg: float = 1.0342
     pass_threshold: float = 0.001
     worst_reading: float = None
     worst_reading_deviance: float = 0
@@ -89,7 +90,8 @@ class QcModeMainWidget(QtWidgets.QWidget):
         main_layout.addLayout(device_readings_layout, 1)
         self.setLayout(main_layout)
         self.check_program_ready()
-
+        reading = DeviceReading(str(1337.75610),str(24.12),str(1339.41916),str(1.034))
+        self._PSB.reading_received.emit(reading)
 
     # Setters
     def set_target_sg(self, target_sg_str: str):
@@ -120,54 +122,47 @@ class QcModeMainWidget(QtWidgets.QWidget):
         self.check_program_ready()
 
     # Logic shit
-    def check_reading(self, reading: dict):
-        reading["target_sg"] = self.target_sg
-        reading["accepted_deviance"] = self.pass_threshold
+    def check_reading(self, qc_reading: QcDeviceReading):
 
-        if float(reading["sg"]) == 0:
+        if float(qc_reading.sg) == 0:
             self.status = False
             self.worst_reading = 0
             self.worst_reading_deviance = -self.target_sg
-            reading["deviance"] = self.worst_reading_deviance
-            self.worst_reading_frame.update_reading(reading)
+            self.worst_reading_frame.update_reading(qc_reading)
 
         else:
-            deviance = round(self.target_sg-float(reading["sg"]), 6)
-            reading["deviance"] = deviance
+            deviance = qc_reading.deviance()
             if abs(deviance) > self.pass_threshold:
                 self.status = False
             
             if abs(deviance) > abs(self.worst_reading_deviance):
-                self.worst_reading =  float(reading["sg"])
+                self.worst_reading =  float(qc_reading.sg)
                 self.worst_reading_deviance = deviance
-                self.worst_reading_deviance_frame.set_text(self.worst_reading_deviance)
-                self.worst_reading_frame.update_reading(reading)
+                self.worst_reading_frame.update_reading(qc_reading)
 
     
     def create_run_status_layout(self) -> QtWidgets.QVBoxLayout:
         self.run_button = StartStopButton(self)
-        self.worst_reading_frame = SingleReadingComponent("Worst reading")
-        self.worst_reading_deviance_frame = FieldWithTitle("Deviance")
-        self.latest_reading_frame = SingleReadingComponent("Latest reading")
-        self._PSB.reading_received.connect(self.latest_reading_frame.update_reading)
+        self.run_button.setMinimumHeight(200)
+        self.success_indicator = SuccessIndicator(self)
+        upper_layout = QtWidgets.QHBoxLayout()
+        upper_layout.addWidget(self.run_button)
+        upper_layout.addWidget(self.success_indicator, alignment=QtCore.Qt.AlignHCenter)
+        self.worst_reading_frame = WorstReadingComponent("Worst reading")
         run_status_layout = QtWidgets.QVBoxLayout()
-        run_status_layout.addWidget(self.run_button)
+        run_status_layout.addLayout(upper_layout)
         run_status_layout.addWidget(self.worst_reading_frame)
-        run_status_layout.addWidget(self.worst_reading_deviance_frame)
-        run_status_layout.addWidget(self.latest_reading_frame)
-
+        
         return run_status_layout
 
     def handle_device_disconnected(self):
         self.device_connection = False
         self.rerun = False
         self.running = False
-        self.run_status_frame.setText("Disconnected")
         self.reset_vars()
         self.check_program_ready()
 
     def handle_qr_code_set(self):
-        self.run_status_frame.setText("Waiting for other variables to be set")
         COMMAND_QUEUE.put(Commands().get_freq_run())
         self.receiving_readings = True
         self.rerun = True
@@ -190,29 +185,25 @@ class QcModeMainWidget(QtWidgets.QWidget):
         self.running = True
         self.run_status_frame.setText("Running..")
 
-    def handle_reading_received(self, reading: dict):
-        if self.running:
-            self.check_reading(reading)
-            self.readings_done += 1
-            if self.readings_done >= self.target_reading_amount:
-                COMMAND_QUEUE.put(Commands().get_freq_stop())
-                self.receiving_readings = False
-            
-                if self.status:
-                    self.run_status_frame.setText(f"Finished - Success!")
-                elif not self.status:
-                    self.run_status_frame.setText(f"Finished - YOU FAIL!")
+    def handle_reading_received(self, reading : DeviceReading):
+        qc_reading = QcDeviceReading(**reading.to_dict(), target_sg = self.target_sg, pass_threshold = self.pass_threshold)
+        
+        # if self.running:
+        self.check_reading(qc_reading)
+        self.device_readings_widget.add_reading(qc_reading)
+        self.readings_done += 1
+        if self.readings_done >= self.target_reading_amount:
+            COMMAND_QUEUE.put(Commands().get_freq_stop())
+            self.receiving_readings = False
         
 
     def reset_vars(self):
         self.running = False
         self._PSB.reset_readings.emit()
         self.worst_reading_frame.reset_reading()
-        self.latest_reading_frame.reset_reading()
 
         self.worst_reading = None
         self.worst_reading_deviance = 0
-        self.worst_reading_deviance_frame.set_text(self.worst_reading_deviance)
         self.readings_done = 0
 
         self.receiving_readings = False

@@ -1,12 +1,14 @@
-from PySide6 import QtWidgets, QtCore
 from typing import List
-from bridges.local_state_bridge import LocalStateBridge
-from components.data_containers.device_reading import DeviceReading
 
-from widgets.qc_mode.reading_list_addon import QcReadingList
-from widgets.device_readings_widget.stability_widget import StabilityComponent
 import numpy as np
+from bridges.local_state_bridge import LocalStateBridge
+from components.data_containers.device_reading import (DeviceReading,
+                                                       QcDeviceReading)
+from PySide6 import QtCore, QtWidgets
 from widgets.device_readings_widget.reading_list import ReadingList
+from widgets.device_readings_widget.stability_widget import StabilityComponent
+from widgets.qc_mode.reading_list_addon import QcReadingList
+
 
 class DeviceReadingsWidget(QtWidgets.QWidget):
     
@@ -66,6 +68,6 @@ class QcReadingsWidget(DeviceReadingsWidget):
         self.setMaximumWidth(400)
         self.start()
 
-    def add_reading(self, reading : DeviceReading):
+    def add_reading(self, reading : QcDeviceReading):
         print("Overridden add_reading function")
         super().add_reading(reading)

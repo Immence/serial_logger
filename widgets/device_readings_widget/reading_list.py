@@ -1,7 +1,9 @@
-from PySide6 import QtCore, QtWidgets
 from typing import List
 
 from components.data_containers.device_reading import DeviceReading
+from PySide6 import QtCore, QtWidgets
+
+
 class ReadingListObjectWidget(QtWidgets.QFrame):
 
     _index_label : QtWidgets.QLabel
@@ -91,7 +93,7 @@ class ReadingList(QtWidgets.QWidget):
         for index, reading in enumerate(reversed(readings)):
             list_widget_item = QtWidgets.QListWidgetItem(self.reading_list_widget)
             # store the data needed to create/re-create the custom widget
-            list_widget_item.setData(QtCore.Qt.UserRole, {"index": len(readings)-index, "sg": reading.sg, "frequency": reading.frequency, "temperature": reading.temperature})
+            list_widget_item.setData(QtCore.Qt.UserRole, {"index": len(readings)-index, **reading.to_dict()})
             self.reading_list_widget.addItem(list_widget_item)
     
     def clear_data(self):
