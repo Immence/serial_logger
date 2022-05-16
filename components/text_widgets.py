@@ -1,6 +1,8 @@
-from PySide6 import QtWidgets, QtCore, QtGui
+from typing import Callable
 
 from files.res.icons import Icons
+from PySide6 import QtCore, QtGui, QtWidgets
+
 
 class InputWithConfirmation(QtWidgets.QWidget):
     text_field : QtWidgets.QLineEdit
@@ -9,7 +11,10 @@ class InputWithConfirmation(QtWidgets.QWidget):
     emit_input = QtCore.Signal(str)
     emit_hidden = QtCore.Signal()
 
-    def __init__(self, parent : QtWidgets.QWidget = None):
+    middleware : Callable
+    validator : Callable
+
+    def __init__(self, parent : QtWidgets.QWidget = None, middleware : Callable = None, validator : Callable = None):
         QtWidgets.QWidget.__init__(self, parent)
         
         # Signal creation stuff
@@ -21,7 +26,8 @@ class InputWithConfirmation(QtWidgets.QWidget):
 
         # Text field stuff
         self.text_field = QtWidgets.QLineEdit()
-
+        self.middleware = middleware
+        self.validator = validator
         # Button stuff
         cancel_button = QtWidgets.QToolButton(self)
         cancel_button.setMaximumWidth(40)
@@ -58,7 +64,13 @@ class InputWithConfirmation(QtWidgets.QWidget):
         pass
 
     def accept(self):
-        self.emit_input.emit(self.text_field.text())
+        text = self.text_field.text()
+        if self.middleware:
+            text = self.middleware(text)
+        if self.validator:
+            if not self.validator(text):
+                return
+        self.emit_input.emit(text)
         self.hide()
 
     def reject(self):
@@ -66,6 +78,12 @@ class InputWithConfirmation(QtWidgets.QWidget):
 
     def set_text_field_width(self, width : int):
         self.text_field.setMaximumWidth(width)
+    
+    def add_middleware(self, middleware : Callable):
+        self.middleware = middleware
+
+    def add_validator(self, validator : Callable):
+        self.validator = validator
 
 class ToggleTextEdit(QtWidgets.QWidget):
     __current_text_view : QtWidgets.QLineEdit
@@ -80,7 +98,7 @@ class ToggleTextEdit(QtWidgets.QWidget):
 
     __toggle_button : QtWidgets.QToolButton
     
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, middleware : Callable = None, validator : Callable = None):
         QtWidgets.QWidget.__init__(self, parent)
 
         self.__toggle_button = QtWidgets.QToolButton(self)
@@ -98,7 +116,7 @@ class ToggleTextEdit(QtWidgets.QWidget):
         self.__invisible_padding_box = QtWidgets.QWidget(self)
         self.__invisible_padding_box.setMaximumWidth(80)
 
-        self.__edit_text_view = InputWithConfirmation(self)
+        self.__edit_text_view = InputWithConfirmation(self, middleware, validator)
         self.__edit_text_view.hide()
         self.__edit_text_view.set_text_field_width(self.text_width_max)
 
@@ -156,6 +174,11 @@ class ToggleTextEdit(QtWidgets.QWidget):
         self.__edit_text_view.set_text_field_width(self.text_width_max)
         self.setMaximumWidth(self.__toggle_button.width()+self.text_width_max+self.button_box_padding)
 
+    def add_middleware(self, middleware : Callable):
+        self.__edit_text_view.add_middleware(middleware)
+
+    def add_validator(self, validator : Callable):
+        self.__edit_text_view.add_validator(validator)
 
 class ToggleTextEditWithTitle(QtWidgets.QFrame):
 
@@ -164,12 +187,12 @@ class ToggleTextEditWithTitle(QtWidgets.QFrame):
 
     emit_text_change = QtCore.Signal(str)
 
-    def __init__(self, parent=None, title: str = "Title not set"):        
+    def __init__(self, parent=None, title: str = "Title not set", middleware : Callable = None, validator : Callable = None):        
         QtWidgets.QFrame.__init__(self, parent)
 
         self.title = QtWidgets.QLabel(self)
         self.title.setText(title)
-        self.text_edit = ToggleTextEdit(self)
+        self.text_edit = ToggleTextEdit(self, middleware, validator)
         self.text_edit.emit_text_change.connect(self.emit_text_change)
 
         self.layout = QtWidgets.QVBoxLayout()
@@ -194,3 +217,18 @@ class ToggleTextEditWithTitle(QtWidgets.QFrame):
 
     def set_text_width_max(self, text_width : int):
         self.text_edit.set_text_width_max(text_width)
+    
+    def add_middleware(self, middleware : Callable):
+        try:
+            self.text_edit.add_middleware(middleware)
+        except Exception as e:
+            print(e.args[0])
+            raise e
+
+
+    def add_validator(self, validator : Callable):
+        try:
+            self.text_edit.add_validator(validator)
+        except Exception as e:
+            print(e.args[0])
+            raise e

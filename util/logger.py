@@ -1,16 +1,16 @@
-from PySide6 import QtCore
-
 from dataclasses import asdict
+
 from bridges.program_state_bridge import ProgramStateBridge
 from components.data_containers.bath_reading import BathReading
 from components.data_containers.device_reading import DeviceReading
+from handlers.settings_file_handler import SettingsFileHandler
+from PySide6 import QtCore
+
+import util.validators as Validators
 from util.csv_writer import write_csv_line
+from util.exceptions import InvalidFileNameException, InvalidQrCodeException
 from util.log_writer import write_log_line
 
-from util.exceptions import InvalidFileNameException, InvalidQrCodeException
-
-from util.validators import Validators
-from handlers.settings_file_handler import SettingsFileHandler
 
 class Logger(QtCore.QObject):
     qr_code: str = None
@@ -25,7 +25,6 @@ class Logger(QtCore.QObject):
 
         self.target_dir = SettingsFileHandler().get_default_output_path()
         self._PSB = PSB
-        self._PSB.reading_received.connect(self.handle_reading_received)
         self._PSB.device_disconnected.connect(self.handle_device_disconnect)
         self._PSB.qr_code_set.connect(self.set_qr_code)
         self._PSB.file_name_set.connect(self.set_file_name)
@@ -71,7 +70,7 @@ class Logger(QtCore.QObject):
             e.message = "Something went wrong when writing to the log file."
             self._PSB.raise_error.emit(e)
 
-    def handle_reading_received(self, reading : DeviceReading):
+    def write_to_csv(self, reading : DeviceReading):
         try:
             write_csv_line(self.file_name, {"qr_code" : self.qr_code, **asdict(reading), **self.latest_bath_reading.to_dict()})
         except Exception as e:

@@ -1,5 +1,6 @@
 
 from bridges.program_state_bridge import ProgramStateBridge
+from components.data_containers.bath_reading import BathReading
 from components.data_containers.device_reading import (DeviceReading,
                                                        QcDeviceReading)
 from components.field_with_title import FieldWithTitle
@@ -8,6 +9,7 @@ from components.success_indicator import SuccessIndicator
 from global_values import COMMAND_QUEUE
 from PySide6 import QtCore, QtGui, QtWidgets
 from util.commands import Commands
+from util.logger import Logger
 from widgets.qc_mode.local_state_bridge import LocalStateBridge
 from widgets.qc_mode.readings_widget_addon import QcReadingsWidget
 from widgets.qc_mode.worst_reading_component import WorstReadingComponent
@@ -17,6 +19,9 @@ from widgets.views.options_view import QcOptionsLayout
 class QcModeMainWidget(QtWidgets.QWidget):
     _PSB : ProgramStateBridge
     _LSB: LocalStateBridge
+    logger : Logger
+
+    latest_bath_reading : BathReading
 
     target_sg: float = 1.0342
     pass_threshold: float = 0.001
@@ -40,18 +45,15 @@ class QcModeMainWidget(QtWidgets.QWidget):
         #Communication bridges
         self._PSB = PSB
         self._LSB = LocalStateBridge()
-    
-        #Program state bridge connections
-        self._PSB.bath_sg_set.connect(self.set_target_sg)
-       
+        self.logger = Logger(self._PSB)
+           
         #Local state bridge connections
         # Main layout
         self.options = QcOptionsLayout(self)
-        self.options.bath_temperature_change.connect(self._PSB.bath_temperature_set)
-        self.options.bath_sg_change.connect(self._PSB.bath_sg_set)
+        self.options.bath_temperature_change.connect(self.handle_bath_reading_temp_update)
+        self.options.bath_sg_change.connect(self.handle_bath_reading_sg_update)
         self.options.bath_sg_change.connect(self.set_target_sg)
         self.options.reading_amount_change.connect(self.set_reading_amount)
-        self.options.target_sg_change.connect(self.set_target_sg)
         self.options.pass_threshold_change.connect(self.set_pass_threshold)
 
         run_status_layout = self.create_run_status_layout()
@@ -91,7 +93,7 @@ class QcModeMainWidget(QtWidgets.QWidget):
         self.setLayout(main_layout)
         self.check_program_ready()
         reading = DeviceReading(str(1337.75610),str(24.12),str(1339.41916),str(1.034))
-        self._PSB.reading_received.emit(reading)
+        # self._PSB.reading_received.emit(reading)
 
     # Setters
     def set_target_sg(self, target_sg_str: str):
@@ -192,10 +194,18 @@ class QcModeMainWidget(QtWidgets.QWidget):
         self.check_reading(qc_reading)
         self.device_readings_widget.add_reading(qc_reading)
         self.readings_done += 1
+        self.logger.write_to_csv(qc_reading.to_dict())
         if self.readings_done >= self.target_reading_amount:
             COMMAND_QUEUE.put(Commands().get_freq_stop())
             self.receiving_readings = False
-        
+    
+    def handle_bath_reading_temp_update(self, temperature : str):
+        self.latest_bath_reading = BathReading(temperature, self.latest_bath_reading.sg)
+        self.check_program_ready()
+
+    def handle_bath_reading_sg_update(self, sg : str):
+        self.latest_bath_reading = BathReading(self.latest_bath_reading.temperature, sg)
+        self.check_program_ready()
 
     def reset_vars(self):
         self.running = False

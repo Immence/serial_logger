@@ -1,8 +1,11 @@
-from PySide6 import QtWidgets, QtCore
+import util.middlewares as Middlewares
+import util.validators as Validators
 from bridges.local_state_bridge import LocalStateBridge
 from bridges.program_state_bridge import ProgramStateBridge
 from components.text_widgets import ToggleTextEditWithTitle
 from handlers.settings_file_handler import SettingsFileHandler
+from PySide6 import QtCore, QtWidgets
+
 
 class OptionsLayout(QtWidgets.QFrame):
 
@@ -39,13 +42,11 @@ class QcOptionsLayout(QtWidgets.QFrame):
     bath_temperature : ToggleTextEditWithTitle
     bath_sg : ToggleTextEditWithTitle    
     reading_amount : ToggleTextEditWithTitle
-    target_sg : ToggleTextEditWithTitle
     pass_threshold : ToggleTextEditWithTitle
 
     bath_temperature_change = QtCore.Signal(str)
     bath_sg_change = QtCore.Signal(str)
     reading_amount_change = QtCore.Signal(str)
-    target_sg_change = QtCore.Signal(str)
     pass_threshold_change = QtCore.Signal(str)
 
     def __init__(self, parent=None):
@@ -56,16 +57,14 @@ class QcOptionsLayout(QtWidgets.QFrame):
         self.layout = QtWidgets.QVBoxLayout()
         title_label = QtWidgets.QLabel("QC settings")
 
-        self.bath_temperature = ToggleTextEditWithTitle(self, "Bath temperature")
+        self.bath_temperature = ToggleTextEditWithTitle(self, "Bath temperature", Middlewares.replace_comma)
         self.bath_temperature.emit_text_change.connect(self.bath_temperature_change)
-        self.bath_sg = ToggleTextEditWithTitle(self, "Bath SG")
+        self.bath_sg = ToggleTextEditWithTitle(self, "Bath SG", Middlewares.replace_comma)
         self.bath_sg.emit_text_change.connect(self.bath_sg_change)
         self.reading_amount = ToggleTextEditWithTitle(self, "Reading amount")
         self.reading_amount.emit_text_change.connect(self.reading_amount_change)
         self.reading_amount.set_default_text("5")
-        self.target_sg = ToggleTextEditWithTitle(self, "Target SG")
-        self.target_sg.emit_text_change.connect(self.target_sg_change)
-        self.pass_threshold = ToggleTextEditWithTitle(self, "Pass threshold")
+        self.pass_threshold = ToggleTextEditWithTitle(self, "Pass threshold", Middlewares.replace_comma)
         self.pass_threshold.emit_text_change.connect(self.pass_threshold_change)
         self.pass_threshold.set_default_text("0.001")
         
@@ -74,9 +73,7 @@ class QcOptionsLayout(QtWidgets.QFrame):
         self.layout.addWidget(self.bath_temperature)
         self.layout.addWidget(self.bath_sg)
         self.layout.addWidget(self.reading_amount)
-        self.layout.addWidget(self.target_sg)
         self.layout.addWidget(self.pass_threshold)
         self.layout.addStretch()
 
         self.setLayout(self.layout)
-

@@ -1,9 +1,11 @@
-from PySide6 import QtWidgets, QtCore
-from bridges.program_state_bridge import ProgramStateBridge
-
-from components.text_widgets import ToggleTextEditWithTitle
-from util.validators import Validators
 from datetime import datetime
+
+import util.middlewares as Middlewares
+import util.validators as Validators
+from bridges.program_state_bridge import ProgramStateBridge
+from components.text_widgets import ToggleTextEditWithTitle
+from PySide6 import QtCore, QtWidgets
+
 
 class TextVariableView(QtWidgets.QWidget):
 
@@ -19,7 +21,7 @@ class TextVariableView(QtWidgets.QWidget):
     
         self.layout = QtWidgets.QVBoxLayout()
         self.setMinimumWidth(320)
-        self.qr_code = ToggleTextEditWithTitle(self, "QR code")
+        self.qr_code = ToggleTextEditWithTitle(self, "QR code", Middlewares.replace_plus_signs, Validators.validate_qr_code)
         self.qr_code.emit_text_change.connect(self.qr_code_change)
         self.file_name = ToggleTextEditWithTitle(self, "Target file name")
         self.file_name.emit_text_change.connect(self.file_name_change)

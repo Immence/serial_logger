@@ -1,31 +1,27 @@
-from PySide6 import QtWidgets, QtGui, QtCore
-
-from PySide6.QtCore import Qt
+import util.log_writer as LogWriter
 from bridges.program_state_bridge import ProgramStateBridge
+from components.custom_dock_widget import CustomDockWidget
+from global_values import BAUD_RATE, COMMAND_QUEUE, WIN_HEIGHT, WIN_WIDTH
+from handlers.response_handler import ResponseHandler
 from handlers.settings_file_handler import SettingsFileHandler
+from PySide6 import QtCore, QtGui, QtWidgets
+from PySide6.QtCore import Qt
 from util.commands import Commands
+from util.serial_thread import SerialThread
+
+from widgets.command_button_menu import CommandButtonGroup
+from widgets.dialogs.custom_dialog import CustomErrorDialog
 from widgets.dialogs.mode_picker_dialog import ModePickerDialog
+from widgets.gearhead_mode.gearhead_widget import GearheadWidget
 from widgets.graphs.line_graph_widget import LineGraphWidget
 from widgets.graphs.scatter_graph_widget import ScatterGraphWidget
 from widgets.port_selector import PortSelector
-
-from widgets.serial_monitor import SerialMonitor
-from widgets.command_button_menu import CommandButtonGroup
-
-from util.serial_thread import SerialThread
-from util.logger import Logger
-
-from handlers.response_handler import ResponseHandler
-from widgets.toolbars.top_toolbar import TopToolBar
-from widgets.toolbars.bottom_toolbar import BottomToolBar
-
-from widgets.gearhead_mode.gearhead_widget import GearheadWidget
 from widgets.qc_mode.qc_mode_main_widget import QcModeMainWidget
-
-from global_values import COMMAND_QUEUE, WIN_HEIGHT, WIN_WIDTH, BAUD_RATE
+from widgets.serial_monitor import SerialMonitor
+from widgets.toolbars.bottom_toolbar import BottomToolBar
+from widgets.toolbars.top_toolbar import TopToolBar
 from widgets.views.text_variable_view import TextVariableView
-from components.custom_dock_widget import CustomDockWidget
-from widgets.dialogs.custom_dialog import CustomErrorDialog
+
 
 class MainWindow(QtWidgets.QMainWindow):
 
@@ -35,7 +31,6 @@ class MainWindow(QtWidgets.QMainWindow):
     serial_thread : SerialThread
     response_handler : ResponseHandler
     serial_monitor : SerialMonitor
-    logger : Logger
 
     port_selector_dock_widget : CustomDockWidget
     serial_monitor_dock_widget : CustomDockWidget
@@ -53,7 +48,6 @@ class MainWindow(QtWidgets.QMainWindow):
         self.PSB.emit_error.connect(self.raise_error_dialog)
 
         self.response_handler = ResponseHandler(self.PSB)
-        self.logger = Logger(self.PSB)
       
         #Exit QAction
         exit_action = QtGui.QAction("Exit", self)
@@ -72,7 +66,7 @@ class MainWindow(QtWidgets.QMainWindow):
         
         # Serial monitor widget needs to be connected to receive text for the entire run of the program
         self.serial_monitor = SerialMonitor()
-        self.serial_monitor.text_update.connect(self.logger.log_communication)
+        self.serial_monitor.text_update.connect(LogWriter.write_log_line)
         self.serial_thread.response_emitter.connect(self.serial_monitor.write)
         
         self.port_selector = PortSelector()
