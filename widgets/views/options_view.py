@@ -44,6 +44,7 @@ class QcOptionsLayout(QtWidgets.QFrame):
     reading_amount : ToggleTextEditWithTitle
     pass_threshold : ToggleTextEditWithTitle
 
+    force_start : QtWidgets.QPushButton
     bath_temperature_change = QtCore.Signal(str)
     bath_sg_change = QtCore.Signal(str)
     reading_amount_change = QtCore.Signal(str)
@@ -63,10 +64,9 @@ class QcOptionsLayout(QtWidgets.QFrame):
         self.bath_sg.emit_text_change.connect(self.bath_sg_change)
         self.reading_amount = ToggleTextEditWithTitle(self, "Reading amount")
         self.reading_amount.emit_text_change.connect(self.reading_amount_change)
-        self.reading_amount.set_default_text("5")
         self.pass_threshold = ToggleTextEditWithTitle(self, "Pass threshold", Middlewares.replace_comma)
         self.pass_threshold.emit_text_change.connect(self.pass_threshold_change)
-        self.pass_threshold.set_default_text("0.001")
+        self.force_start = QtWidgets.QPushButton("Force start")
         
         self.setMaximumWidth(250)
         self.layout.addWidget(title_label)
@@ -75,5 +75,13 @@ class QcOptionsLayout(QtWidgets.QFrame):
         self.layout.addWidget(self.reading_amount)
         self.layout.addWidget(self.pass_threshold)
         self.layout.addStretch()
+        self.layout.addWidget(self.force_start)
 
         self.setLayout(self.layout)
+
+    def set_default_values(self):
+        self.bath_temperature.set_text("23")
+        self.bath_sg.set_text("1.0352")
+        self.reading_amount.set_default_text("2")
+        self.pass_threshold.set_default_text("0.001")
+

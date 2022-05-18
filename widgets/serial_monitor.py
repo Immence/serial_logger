@@ -1,8 +1,8 @@
 import sys
 
+from global_values import PASTE_CHAR, RETURN_CHAR, TEXT_SIZE
 from PySide6 import QtCore, QtGui, QtWidgets
 
-from global_values import RETURN_CHAR, PASTE_CHAR, TEXT_SIZE
 
 class SerialMonitor(QtWidgets.QWidget):
     

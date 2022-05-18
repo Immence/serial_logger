@@ -70,9 +70,11 @@ class Logger(QtCore.QObject):
             e.message = "Something went wrong when writing to the log file."
             self._PSB.raise_error.emit(e)
 
-    def write_to_csv(self, reading : DeviceReading):
+    def write_to_csv(self, reading : dict, latest_bath_reading : dict):
+        if self.file_name == None:
+            return
         try:
-            write_csv_line(self.file_name, {"qr_code" : self.qr_code, **asdict(reading), **self.latest_bath_reading.to_dict()})
+            write_csv_line(self.file_name, {"qr_code" : self.qr_code, **reading, **self.latest_bath_reading.to_dict()})
         except Exception as e:
             print(f"Exception type: {type(e)}\nException message: {e.args[0]}")
             e.message = "Something went wrong when writing to the CSV file. Make sure it is not in use by another program."

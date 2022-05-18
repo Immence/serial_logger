@@ -21,3 +21,6 @@ class BathReading:
             
     def to_dict(self) -> dict:
         return {"bath_temperature" : self.temperature, "bath_sg": self.sg}
+
+    def validate(self) -> bool:
+        return self.temperature is not None and self.sg is not None

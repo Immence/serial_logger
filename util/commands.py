@@ -77,6 +77,9 @@ class Commands():
         return "sg get hl\n"
 
     @staticmethod
+    def get_freq_read_n(n : int):
+        return f"fork get freq read {n}"
+    @staticmethod
     def get_freq_run():
         return "fork get freq run\n"
 

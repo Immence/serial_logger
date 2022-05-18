@@ -69,5 +69,4 @@ class QcReadingsWidget(DeviceReadingsWidget):
         self.start()
 
     def add_reading(self, reading : QcDeviceReading):
-        print("Overridden add_reading function")
         super().add_reading(reading)

@@ -45,7 +45,6 @@ class QcReadingListObjectWidget(QtWidgets.QFrame):
         self.setLayout(self.widget_layout)
 
     def set_data(self, data):
-        print("SET DATA", data)
         self.set_index_label(data["index"])
         self.set_sg_label(data["sg"])
         self.set_freq_label(data["frequency"])
@@ -101,7 +100,6 @@ class ReadingListWidget(QtWidgets.QListWidget):
     def handleRowsInserted(self, parent, first, last):
         for index in range(first, last + 1):
             item = self.item(index)
-            print("ITEM", item.data)
             if item is not None and self.itemWidget(item) is None:
                 widget = self.list_item_type()
                 widget.set_data(item.data(QtCore.Qt.UserRole))

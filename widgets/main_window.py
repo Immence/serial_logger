@@ -1,6 +1,7 @@
 import util.log_writer as LogWriter
 from bridges.program_state_bridge import ProgramStateBridge
 from components.custom_dock_widget import CustomDockWidget
+from components.data_containers.device_reading import DeviceReading
 from global_values import BAUD_RATE, COMMAND_QUEUE, WIN_HEIGHT, WIN_WIDTH
 from handlers.response_handler import ResponseHandler
 from handlers.settings_file_handler import SettingsFileHandler
@@ -78,6 +79,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.run_selected_mode()
         self.__create_toolbars()
         self.resize(WIN_WIDTH, WIN_HEIGHT)
+
     
     def run_selected_mode(self):
         print("Running selected mode")
