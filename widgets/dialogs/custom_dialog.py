@@ -1,6 +1,6 @@
-from PySide6 import QtWidgets, QtCore, QtGui
+from PySide6 import QtCore, QtGui, QtWidgets
 
-        
+
 class CustomErrorDialog(QtWidgets.QDialog):
 
     button_box : QtWidgets.QDialogButtonBox
@@ -59,7 +59,7 @@ class SuccessDialog(QtWidgets.QDialog):
         self.layout.addWidget(self.button_box, alignment=QtCore.Qt.AlignHCenter | QtCore.Qt.AlignBottom)
         self.setLayout(self.layout)
 
-class StationPickerDialog(QtWidgets.QDialog):
+class ModePickerDialog(QtWidgets.QDialog):
     button_box : QtWidgets.QDialogButtonBox
 
     station_picked = None

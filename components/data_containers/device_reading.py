@@ -39,7 +39,7 @@ class QcDeviceReading:
 
 
     def deviance(self) -> float:
-        if not self.target_sg:
+        if not self.target_sg or self.target_sg == "Not set":
             return None
         deviance = float(self.sg)-float(self.target_sg)
         return round(deviance, 6)
@@ -51,6 +51,16 @@ class QcDeviceReading:
             "compensated": self.compensated,
             "sg": self.sg,
             "target_sg" : self.target_sg,
+            "pass_threshold": self.pass_threshold,
+            "deviance": self.deviance()
+        }
+
+    def to_csv_dict(self) -> dict:
+        return {
+            "frequency": self.frequency,
+            "temperature": self.temperature,
+            "compensated": self.compensated,
+            "sg": self.sg,
             "pass_threshold": self.pass_threshold,
             "deviance": self.deviance()
         }

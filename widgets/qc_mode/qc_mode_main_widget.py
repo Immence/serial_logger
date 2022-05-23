@@ -22,7 +22,7 @@ class QcModeMainWidget(QtWidgets.QWidget):
     success_indicator : SuccessIndicator
     device_readings_widget : QcReadingsWidget
 
-    latest_bath_reading : BathReading = BathReading("23", "1.0352")
+    latest_bath_reading : BathReading = BathReading(None, None)
 
     pass_threshold: float = 0.001
     worst_reading: float = None
@@ -54,6 +54,7 @@ class QcModeMainWidget(QtWidgets.QWidget):
         #Communication bridges
         self._PSB = PSB
         self.logger = Logger(self._PSB)
+        self._PSB.file_name_set.connect(self.logger.set_file_name)
            
         #Local state bridge connections
         # Main layout
@@ -103,6 +104,9 @@ class QcModeMainWidget(QtWidgets.QWidget):
 
     # Setters
     def set_target_sg(self, target_sg_str: str):
+        if target_sg_str == "" or target_sg_str == "Not set":
+            self.target_sg = None
+            return
         try: 
             self.target_sg = float(target_sg_str.replace(",", "."))
             print("Target sg set: {}".format(self.target_sg))
@@ -113,6 +117,9 @@ class QcModeMainWidget(QtWidgets.QWidget):
         self.check_program_ready()
 
     def set_pass_threshold(self, pass_threshold_str: str):
+        if pass_threshold_str == "" or pass_threshold_str == "Not set":
+            self.pass_threshold = None
+            return
         try: 
             self.pass_threshold = float(pass_threshold_str.replace(",", "."))
             print("Pass threshold set: {}".format(self.pass_threshold))
@@ -122,15 +129,15 @@ class QcModeMainWidget(QtWidgets.QWidget):
         self.check_program_ready()
 
     def set_reading_amount(self, reading_amount_str: str):
+        if reading_amount_str == "" or reading_amount_str == "Not set":
+            self.target_reading_amount = None
+            return
         try:
             self.target_reading_amount = int(reading_amount_str)
             print(f"Reading amount set: {self.target_reading_amount}")
         except Exception as e:
             self._PSB.emit_error(e)
         self.check_program_ready()
-
-  
-
     
     def create_run_status_layout(self) -> QtWidgets.QVBoxLayout:
         #Big fancy button
@@ -198,7 +205,9 @@ class QcModeMainWidget(QtWidgets.QWidget):
         self.check_program_ready()
 
     def check_program_ready(self):
-        ready = self.latest_bath_reading.validate() and self.qr_code_set and self.pass_threshold and self.target_reading_amount and self.device_connection
+        ready = False
+        if self.latest_bath_reading:
+            ready = self.latest_bath_reading.validate() and self.qr_code_set and self.pass_threshold and self.target_reading_amount and self.device_connection
         self.set_program_ready(ready)
     
     def handle_button_click(self):
@@ -214,7 +223,6 @@ class QcModeMainWidget(QtWidgets.QWidget):
     def handle_force_start(self):
         if self.program_running:
             return
-        # self.recording_readings = False
         self.throw_reading = False
         self.handle_program_start()
 
@@ -223,21 +231,18 @@ class QcModeMainWidget(QtWidgets.QWidget):
         self.worst_reading_deviance = 0
         self.readings_done = 0
         
-        # if not self.recording_readings:
         self.reset_vars()
-            # self.recording_readings = True
         self.set_program_running(True)
-        COMMAND_QUEUE.put(Commands().get_freq_read_n(self.target_reading_amount-1))
-        # reading = DeviceReading(str(1337.75610),str(24.12),str(1339.41916),str(1.034))
-        # self._PSB.reading_received.emit(reading)
+        if self.target_reading_amount == 1:
+            COMMAND_QUEUE.put(Commands().get_freq_read_n(self.target_reading_amount))
+        else:
+            COMMAND_QUEUE.put(Commands().get_freq_read_n(self.target_reading_amount-1))
 
     def handle_program_stop(self):
         self.set_program_running(False)
         self.reset_vars()
-        # self.recording_readings = False
 
     def handle_program_finish(self):
-        # self.recording_readings = False
         self.set_program_running(False)
         self.set_program_finished(True)
 
@@ -261,11 +266,14 @@ class QcModeMainWidget(QtWidgets.QWidget):
                 self.worst_reading_frame.update_reading(qc_reading)
 
     def handle_reading_received(self, reading : DeviceReading):
-        qc_reading = QcDeviceReading(**reading.to_dict(), target_sg=self.latest_bath_reading.sg, pass_threshold = self.pass_threshold)
-        
+        qc_reading = None
+        if self.latest_bath_reading:
+            qc_reading = QcDeviceReading(**reading.to_dict(), target_sg=self.latest_bath_reading.sg, pass_threshold = self.pass_threshold)
+        else:
+            qc_reading = QcDeviceReading(**reading.to_dict(), target_sg="Not set", pass_threshold = "Not set")
+
         # The fork usually sends an extra reading whenever it receives a command to stop. We want to throw this away.
         if self.throw_reading:
-            # self.recording_readings = False
             self.throw_reading = False
             if self.program_running:
                 self.handle_program_start()
@@ -278,11 +286,15 @@ class QcModeMainWidget(QtWidgets.QWidget):
             self.check_reading(qc_reading)
             self.device_readings_widget.add_reading(qc_reading)
             self.readings_done += 1
-            self.logger.write_to_csv(qc_reading.to_dict(), self.latest_bath_reading.to_dict())
+            self.logger.write_to_csv(qc_reading.to_csv_dict(), self.latest_bath_reading.to_dict(), purpose="qc", reading_no=self.readings_done)
             if self.readings_done >= self.target_reading_amount:
                 self.handle_program_finish()
         
         else:
+            if not self.latest_bath_reading:
+                self.logger.write_to_csv(qc_reading.to_csv_dict(), {"bath_temperature" : "Not set", "bath_sg": "Not set"}, purpose="stabilization")
+            else:
+                self.logger.write_to_csv(qc_reading.to_csv_dict(), self.latest_bath_reading.to_dict(), purpose="stabilization")
             self.device_readings_widget.add_reading(qc_reading)
 
     def handle_bath_reading_temp_update(self, temperature : str):
@@ -302,7 +314,6 @@ class QcModeMainWidget(QtWidgets.QWidget):
         self.worst_reading_deviance = 0
         self.readings_done = 0
 
-        # self.recording_readings = False
         self.set_program_running(False)
         self.set_program_finished(False)
         self.set_program_success(True)

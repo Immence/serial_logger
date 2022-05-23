@@ -15,6 +15,10 @@ SuccessDialog {
     background-color: white;
     border: 4px solid green;
 }
+ModePickerDialog {
+    background-color: white;
+    border: 4px solid black;
+}
 QLabel#title {
     font-size: 30px;
 }

@@ -51,9 +51,10 @@ class QcReadingListObjectWidget(QtWidgets.QFrame):
         self.set_temp_label(data["temperature"])
 
         if "deviance" and "pass_threshold" in data:
-            self.set_sg_diff_label(data["deviance"], data["pass_threshold"])
-            self.check_outside_threshold(data["deviance"], data["pass_threshold"])
-        elif "deviance" in data:
+            if data["deviance"] is not None and data["pass_threshold"] is not None:
+                self.set_sg_diff_label(data["deviance"], data["pass_threshold"])
+                self.check_outside_threshold(data["deviance"], data["pass_threshold"])
+        elif "deviance" in data and data["deviance"] is not None:
             self.set_sg_diff_label(data["deviance"], data["pass_threshold"])
         else:
             self.set_sg_diff_label(None, None)

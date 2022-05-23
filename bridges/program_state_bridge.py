@@ -1,6 +1,6 @@
+from components.data_containers.device_reading import DeviceReading
 from PySide6.QtCore import QObject, Signal
 
-from components.data_containers.device_reading import DeviceReading
 
 class ProgramStateBridge(QObject):
     """Handles the general program-wide signals"""
@@ -39,7 +39,10 @@ class ProgramStateBridge(QObject):
 
     qr_code_received = Signal(str)
     qr_code_set = Signal(str)
+    
     file_name_set = Signal(str)
+    request_file_name = Signal()
+
     bath_sg_set = Signal(str)
     bath_temperature_set = Signal(str)
     # Top bar signals

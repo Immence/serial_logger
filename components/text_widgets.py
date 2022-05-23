@@ -215,6 +215,8 @@ class ToggleTextEditWithTitle(QtWidgets.QFrame):
     def set_text(self, text : str):
         self.text_edit.set_text(text)
 
+    def get_text(self):
+        self.emit_text_change.emit(self.text_edit.get_text())
     def set_text_width_max(self, text_width : int):
         self.text_edit.set_text_width_max(text_width)
     

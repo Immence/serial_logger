@@ -30,6 +30,7 @@ class Logger(QtCore.QObject):
         self._PSB.file_name_set.connect(self.set_file_name)
         self._PSB.bath_temperature_set.connect(self.handle_bath_reading_temp_update)
         self._PSB.bath_sg_set.connect(self.handle_bath_reading_sg_update)
+        self._PSB.request_file_name.emit()
 
     def set_qr_code(self, qr_code : str):
         if qr_code == "Not set":
@@ -70,11 +71,13 @@ class Logger(QtCore.QObject):
             e.message = "Something went wrong when writing to the log file."
             self._PSB.raise_error.emit(e)
 
-    def write_to_csv(self, reading : dict, latest_bath_reading : dict):
+    def write_to_csv(self, reading : dict, latest_bath_reading : dict, **kwargs):
         if self.file_name == None:
-            return
+            e = Exception()
+            e.message = "No file name set!"
+            self._PSB.raise_error.emit(e)
         try:
-            write_csv_line(self.file_name, {"qr_code" : self.qr_code, **reading, **self.latest_bath_reading.to_dict()})
+            write_csv_line(self.file_name, {"qr_code" : self.qr_code, **reading, **latest_bath_reading, **kwargs})
         except Exception as e:
             print(f"Exception type: {type(e)}\nException message: {e.args[0]}")
             e.message = "Something went wrong when writing to the CSV file. Make sure it is not in use by another program."

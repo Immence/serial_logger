@@ -1,9 +1,5 @@
 import util.middlewares as Middlewares
-import util.validators as Validators
-from bridges.local_state_bridge import LocalStateBridge
-from bridges.program_state_bridge import ProgramStateBridge
 from components.text_widgets import ToggleTextEditWithTitle
-from handlers.settings_file_handler import SettingsFileHandler
 from PySide6 import QtCore, QtWidgets
 
 
@@ -80,8 +76,6 @@ class QcOptionsLayout(QtWidgets.QFrame):
         self.setLayout(self.layout)
 
     def set_default_values(self):
-        self.bath_temperature.set_text("23")
-        self.bath_sg.set_text("1.0352")
-        self.reading_amount.set_default_text("2")
+        self.reading_amount.set_default_text("5")
         self.pass_threshold.set_default_text("0.001")
 
