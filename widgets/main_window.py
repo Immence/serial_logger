@@ -119,7 +119,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
         # Command button widget
         command_buttons = CommandButtonGroup(self.PSB)
-        self.PSB.device_disconnected.connect(command_buttons.stop_readings())
+        self.PSB.device_disconnected.connect(command_buttons.stop_readings)
         self.command_button_dock_widget = CustomDockWidget(command_buttons, self, title="Commands")
 
         # Text set widget

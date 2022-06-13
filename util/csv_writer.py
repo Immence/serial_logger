@@ -24,10 +24,15 @@ def __verify_csv_has_headers(file_name) -> bool:
     sniffer = csv.Sniffer()
     with open(file_name, mode = "r") as _f:
         sample = _f.read(1024)
+        _f.seek(0)
         if len(sample) == 0:
             return False
 
-        return sniffer.has_header(sample)
+        try:
+            return sniffer.has_header(sample)
+        except:
+            # This can give a delimiter error, and in that case it always has a header (at least so far)
+            return True
 
 def write_csv_line(file_name : str, output_dict: dict):
     if not __open_csv_file(file_name):
@@ -37,7 +42,7 @@ def write_csv_line(file_name : str, output_dict: dict):
     with open(file_name, "a", newline="") as _csv_file:
         field_names = output_dict.keys()
 
-        writer = csv.DictWriter(_csv_file, fieldnames=field_names)
+        writer = csv.DictWriter(_csv_file, fieldnames=field_names, delimiter=",")
 
         if not __verify_csv_has_headers(file_name):
             writer.writeheader()

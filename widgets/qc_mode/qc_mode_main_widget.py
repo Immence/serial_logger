@@ -34,7 +34,7 @@ class QcModeMainWidget(QtWidgets.QWidget):
     rerun = False
     program_ready = False
     program_running = False
-    program_finished = False
+    program_finished = True
     program_success = True
     
     recording_readings = False
@@ -218,7 +218,8 @@ class QcModeMainWidget(QtWidgets.QWidget):
         else:
             COMMAND_QUEUE.put(Commands.get_freq_stop())
             self.throw_reading = True
-            self.set_program_running(not self.program_running)
+            self.set_program_finished(not self.program_finished)
+            self.set_program_running(False)
 
     def handle_force_start(self):
         if self.program_running:
@@ -233,10 +234,8 @@ class QcModeMainWidget(QtWidgets.QWidget):
         
         self.reset_vars()
         self.set_program_running(True)
-        if self.target_reading_amount == 1:
-            COMMAND_QUEUE.put(Commands().get_freq_read_n(self.target_reading_amount))
-        else:
-            COMMAND_QUEUE.put(Commands().get_freq_read_n(self.target_reading_amount-1))
+        COMMAND_QUEUE.put(Commands().get_freq_read_n(self.target_reading_amount))
+
 
     def handle_program_stop(self):
         self.set_program_running(False)
